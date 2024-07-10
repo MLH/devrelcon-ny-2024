@@ -2,10 +2,10 @@ import { css } from 'lit';
 
 export const theme = css`
   :host {
-    --dark-primary-color: #512da8;
-    --default-primary-color: #673ab7;
-    --focused-color: #311b92;
-    --light-primary-color: #d1c4e9;
+    --dark-primary-color: #2b4450;
+    --default-primary-color: #00add0;
+    --focused-color: #2b4450;
+    --light-primary-color: #99eeff;
     --text-primary-color: #fff;
     --accent-color: #ff5252;
     --primary-background-color: #fff;
@@ -17,7 +17,7 @@ export const theme = css`
     --footer-text-color: #616161;
     --twitter-color: #4099ff;
     --facebook-color: #3b5998;
-    --border-light-color: #e2e2e2;
+    --border-light-color: #99eeff;
     --error-color: #e64a19;
 
     /* Custom */
@@ -40,8 +40,8 @@ export const theme = css`
       -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial, sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     --max-container-width: 1280px;
-    --primary-color-transparent: rgb(103 58 183 / 10%);
-    --primary-color-light: rgb(103 58 183 / 80%);
+    --primary-color-transparent: rgb(0 173 208 / 10%);
+    --primary-color-light: rgb(0 173 208 / 80%);
     --primary-color-white: #ede7f6;
 
     /* Labels */
