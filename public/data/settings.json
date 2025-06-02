@@ -80,6 +80,7 @@
     },
     "schedule": {
       "title": "Schedule",
+      "description": "We are still updating this year's schedule - this list will be changing a bit until the final schedule is live.",
       "metaDescription": "Choose your sessions to visit",
       "background": {
         "color": "#fff"
