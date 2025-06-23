@@ -41,7 +41,7 @@ You may apply for a discounted or complementary ticket scholarship to attend Dev
 
 ### Where should I stay for DevRelCon NY?
 
-We’d recommend reading the [Neighborhood Guide](/neighborhood). If you would like to stay walking distance from the venue, our team is staying at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where our recommended hotels are.
+We’d recommend reading the [Neighborhood Guide](/neighborhood). Our recommended group rate hotel block for 2025 attendees is at the [Even Hotel](https://www.ihg.com/redirect?path=asearch&brandCode=6C&localeCode=en&regionCode=1&hotelCode=BXYEV&checkInDate=16&checkInMonthYear=062025&checkOutDate=20&checkOutMonthYear=062025&rateCode=6CBARC&_PMID=99801505&GPC=DNY&cn=no&adjustMonth=false&showApp=true&monthIndex=00). It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team stayed last year at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
 
 ## Transit & Directions
 

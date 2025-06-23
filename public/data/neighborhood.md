@@ -4,9 +4,9 @@ There is also a [DevRel community-created NYC guide](https://maps.app.goo.gl/vUT
 
 # Places to Stay
 
-We recommend grabbing a hotel room in Downtown Brooklyn, which is just one stop on the D or N train to Industry City. Downtown Brooklyn offers ample choices of hotels including the [Ace Hotel](https://acehotel.com/brooklyn/), [Even Hotel](https://www.ihg.com/evenhotels/hotels/us/en/brooklyn/bxyev/hoteldetail?cm_mmc=GoogleMaps-_-VN-_-US-_-BXYEV), [Hilton](https://www.hilton.com/en/hotels/nycbshh-hilton-brooklyn-new-york/?SEO_id=GMB-AMER-HH-NYCBSHH&y_source=1_MzkxMzQwMS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D), amongst plenty of others. If you prefer to stay within walking distance of the venue, there are options in the area.
+We recommend grabbing a hotel room in Downtown Brooklyn, which is just one stop on the D or N train to Industry City. Downtown Brooklyn offers ample choices of hotels including the [Ace Hotel](https://acehotel.com/brooklyn/), [Even Hotel](https://www.ihg.com/evenhotels/hotels/us/en/brooklyn/bxyev/hoteldetail?cm_mmc=GoogleMaps-_-VN-_-US-_-BXYEV), [Hilton](https://www.hilton.com/en/hotels/nycbshh-hilton-brooklyn-new-york/), amongst plenty of others. If you prefer to stay within walking distance of the venue, there are options in the area.
 
-Stay tuned for an updated hotel block for 2025. It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team is staying at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
+Our recommended group rate hotel block for 2025 attendees is at the [Even Hotel](https://www.ihg.com/redirect?path=asearch&brandCode=6C&localeCode=en&regionCode=1&hotelCode=BXYEV&checkInDate=16&checkInMonthYear=062025&checkOutDate=20&checkOutMonthYear=062025&rateCode=6CBARC&_PMID=99801505&GPC=DNY&cn=no&adjustMonth=false&showApp=true&monthIndex=00). It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team stayed last year at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
 
 # Eats
 
