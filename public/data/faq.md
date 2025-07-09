@@ -55,7 +55,7 @@ If you are driving to DevRelCon NY, you may park in the [public Industry City pa
 
 ### How is the DevRelCon NY venue set up?
 
-The macro venue is called Industry City, which is a converted industrial development in Brooklyn that now houses retail, coworking and event spaces, and more. Within Industry City, our keynotes and registration will be taking place on our Broadway Stage, which is referred to in Industry City as 52A and is in Building 5 in the complex. Our unconference, workshops/sessions, lunch, and our after party will be taking place in our Central Park Room (upstairs) and Brooklyn Bridge Stage (downstairs) which are in a coworking space called Camp David. Camp David is in Building 3 of the complex. There is a short (<5) min walk that is partially outdoors and partially indoors between the two spaces. You can see all of our spaces on the map below.
+The macro venue is called Industry City, which is a converted industrial development in Brooklyn that now houses retail, coworking and event spaces, and more. Within Industry City, our sessions and registration will be taking place in Building 5. Upstairs will be registration and keynotes in room 52A and downstairs will be sessions in the Black Box Theater. Our unconference, lunch, and our after party will be taking place in a coworking space in Building 3 called The Landing (formerly Camp David). There is a short (<5) min walk that is partially outdoors and partially indoors between the two spaces. You can see all of our spaces on the map below.
 
 ### Venue Map
 
