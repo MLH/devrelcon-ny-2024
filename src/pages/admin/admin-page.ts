@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, Unsubscribe, User } from 'firebase/auth';
 import { firebaseApp } from '../../firebase.js';
 import './shoelace-setup.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
@@ -45,6 +45,7 @@ export class AdminPage extends LitElement {
   @state() private user: User | null = null;
   @state() private authChecked = false;
   @state() private currentSection = 'speakers';
+  private unsubAuth: Unsubscribe | null = null;
 
   static override styles = css`
     :host {
@@ -133,10 +134,19 @@ export class AdminPage extends LitElement {
 
   override connectedCallback() {
     super.connectedCallback();
-    onAuthStateChanged(auth, (user) => {
+    const pathParts = window.location.pathname.split('/');
+    if (pathParts[2]) {
+      this.currentSection = pathParts[2];
+    }
+    this.unsubAuth = onAuthStateChanged(auth, (user) => {
       this.user = user;
       this.authChecked = true;
     });
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    this.unsubAuth?.();
   }
 
   private get isAuthorized(): boolean {
