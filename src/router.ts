@@ -167,20 +167,11 @@ const ROUTES: Route[] = [
   //   },
   // },
   {
-    path: '/admin',
+    path: '/admin/(.*)?',
     component: 'admin-page',
     action: async () => {
       await import('./pages/admin/admin-page.js');
     },
-    children: [
-      {
-        path: '/:section?',
-        component: 'admin-page',
-        action: async () => {
-          await import('./pages/admin/admin-page.js');
-        },
-      },
-    ],
   },
   {
     path: '(.*)',

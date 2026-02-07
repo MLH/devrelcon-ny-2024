@@ -4,7 +4,9 @@ service firebase.storage {
     match /admin-uploads/{allPaths=**} {
       allow read: if true;
       allow write: if request.auth != null
-        && request.auth.token.email.matches('.*@majorleaguehacking[.]com$');
+        && request.auth.token.email.matches('.*@majorleaguehacking[.]com$')
+        && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
     }
     match /{allPaths=**} {
       allow read: if true;

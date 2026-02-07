@@ -18,7 +18,7 @@ service cloud.firestore {
     }
 
     match /config/{config} {
-      allow read: if false;
+      allow read: if isMLHAdmin();
       allow write: if isMLHAdmin();
     }
 
