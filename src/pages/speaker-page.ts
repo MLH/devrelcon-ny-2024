@@ -8,8 +8,8 @@ import { RouterLocation } from '@vaadin/router';
 import '../components/hero/simple-hero';
 import '../components/markdown/short-markdown';
 import '../elements/content-loader';
-import '../elements/previous-speakers-block';
 import '../elements/shared-styles';
+import { YearSnapshot } from '../models/previous-session';
 import { SpeakerWithTags } from '../models/speaker';
 import { router } from '../router';
 import { RootState, store } from '../store';
@@ -144,6 +144,25 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
           --paper-progress-active-color: var(--default-primary-color);
           --paper-progress-secondary-color: var(--default-primary-color);
         }
+
+        .history-section {
+          margin-top: 32px;
+        }
+
+        .year-block {
+          margin-bottom: 24px;
+        }
+
+        .year-title {
+          font-size: 18px;
+          margin-bottom: 4px;
+        }
+
+        .year-meta {
+          font-size: 14px;
+          color: var(--secondary-text-color);
+          margin-bottom: 8px;
+        }
       </style>
 
       <simple-hero page="speakers">
@@ -221,7 +240,49 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
         </div>
       </div>
 
-      <previous-speakers-block></previous-speakers-block>
+      <div class="container content history-section" hidden$="[[!hasHistory]]">
+        <h3>Past Talks</h3>
+        <template is="dom-repeat" items="[[historyYears]]" as="yearData">
+          <div class="year-block">
+            <div class="year-title">[[yearData.year]]</div>
+            <div class="year-meta">[[yearData.snapshot.title]], [[yearData.snapshot.company]]</div>
+            <template is="dom-repeat" items="[[yearData.snapshot.talks]]" as="talk">
+              <div class="section">
+                <div class="section-primary-text">[[talk.title]]</div>
+                <div class="tags" hidden$="[[!talk.tags.length]]">
+                  <template is="dom-repeat" items="[[talk.tags]]" as="tag">
+                    <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
+                  </template>
+                </div>
+                <div class="actions" layout horizontal>
+                  <a
+                    class="action"
+                    href$="https://www.youtube.com/watch?v=[[talk.videoId]]"
+                    hidden$="[[!talk.videoId]]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    layout horizontal center
+                  >
+                    <iron-icon icon="hoverboard:video"></iron-icon>
+                    <span>Video</span>
+                  </a>
+                  <a
+                    class="action"
+                    href$="[[talk.presentation]]"
+                    hidden$="[[!talk.presentation]]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    layout horizontal center
+                  >
+                    <iron-icon icon="hoverboard:presentation"></iron-icon>
+                    <span>Slides</span>
+                  </a>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
 
       <footer-block></footer-block>
     `;
@@ -292,6 +353,19 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
 
   private isEmpty(items: unknown[]) {
     return isEmpty(items);
+  }
+
+  @computed('speaker')
+  get hasHistory(): boolean {
+    return !!this.speaker?.history && Object.keys(this.speaker.history).length > 0;
+  }
+
+  @computed('speaker')
+  get historyYears(): Array<{ year: string; snapshot: YearSnapshot }> {
+    if (!this.speaker?.history) return [];
+    return Object.entries(this.speaker.history)
+      .map(([year, snapshot]) => ({ year, snapshot: snapshot as YearSnapshot }))
+      .sort((a, b) => Number(b.year) - Number(a.year));
   }
 
   sessionUrl(id: string) {
