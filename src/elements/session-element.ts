@@ -328,7 +328,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   private getTrackColor(track: { title?: string }, trackOverride?: string): string {
     const title = trackOverride ? trackOverride : track?.title || '';
     const trackMeta = (scheduleTracks as Record<string, { color: string }>)[title];
-    return trackMeta?.color || '';
+    return trackMeta?.color || 'var(--secondary-text-color)';
   }
   private toggleFeedback(event: MouseEvent) {
     event.preventDefault();

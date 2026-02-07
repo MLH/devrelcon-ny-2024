@@ -213,8 +213,7 @@ export class ScheduleDay extends ReduxMixin(PolymerElement) {
   }
 
   private getSessionTrackTitle(session: Session): string {
-    const s = session as Session & { trackOverride?: string; track?: { title: string } };
-    return s.trackOverride || s.track?.title || '';
+    return session.trackOverride || session.track?.title || '';
   }
 
   private filterSessions(sessions: Session[], selectedFilters: Filter[]) {
