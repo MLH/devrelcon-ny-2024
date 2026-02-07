@@ -24,7 +24,10 @@ interface PreviousSession {
 
 interface YearGroup {
   year: string;
-  sessions: PreviousSession[];
+  bio: string;
+  company: string;
+  title: string;
+  talks: PreviousSession[];
 }
 
 const SOCIAL_FIELDS: RepeaterField[] = [
@@ -33,8 +36,8 @@ const SOCIAL_FIELDS: RepeaterField[] = [
   { name: 'icon', label: 'Icon', placeholder: 'e.g. twitter' },
 ];
 
-@customElement('previous-speakers-form')
-export class PreviousSpeakersForm extends LitElement {
+@customElement('speakers-history-form')
+export class SpeakersHistoryForm extends LitElement {
   @property({ type: String }) editId = '';
 
   @state() private data: Record<string, unknown> = {};
@@ -139,21 +142,24 @@ export class PreviousSpeakersForm extends LitElement {
     this.loading = true;
 
     if (this.editId) {
-      const doc = await fetchDocument('previousSpeakers', this.editId);
+      const doc = await fetchDocument('speakers', this.editId);
       if (doc) {
         this.data = doc;
         this.docId = doc.id;
 
-        // Parse sessions from { [year]: PreviousSession[] } to YearGroup[]
-        const sessions = (doc['sessions'] as Record<string, PreviousSession[]>) || {};
-        this.yearGroups = Object.entries(sessions).map(([year, items]) => ({
+        // Parse history from { [year]: YearSnapshot } to YearGroup[]
+        const history = (doc['history'] as Record<string, YearGroup>) || {};
+        this.yearGroups = Object.entries(history).map(([year, snapshot]) => ({
           year,
-          sessions: items,
+          bio: (snapshot as any).bio || '',
+          company: (snapshot as any).company || '',
+          title: (snapshot as any).title || '',
+          talks: (snapshot as any).talks || [],
         }));
       }
     } else {
       this.isNew = true;
-      this.data = { order: 0, socials: [] };
+      this.data = { order: 0, socials: [], active: true };
     }
 
     this.loading = false;
@@ -169,7 +175,7 @@ export class PreviousSpeakersForm extends LitElement {
         <sl-button variant="text" @click=${this.handleBack}>
           <sl-icon name="arrow-left"></sl-icon>
         </sl-button>
-        <h1>${this.isNew ? 'New' : 'Edit'} Previous Speaker</h1>
+        <h1>${this.isNew ? 'New' : 'Edit'} Speaker</h1>
       </div>
 
       ${this.message
@@ -203,24 +209,54 @@ export class PreviousSpeakersForm extends LitElement {
         ></sl-input>
       </div>
       <div class="field">
+        <sl-input label="Pronouns" value="${(this.data['pronouns'] as string) || ''}" placeholder="e.g. she/her"
+          @sl-change=${(e: Event) => this.setField('pronouns', (e.target as HTMLInputElement).value)}
+        ></sl-input>
+      </div>
+      <div class="field">
         <sl-textarea label="Bio" value="${(this.data['bio'] as string) || ''}" rows="4"
           @sl-change=${(e: Event) => this.setField('bio', (e.target as HTMLInputElement).value)}
         ></sl-textarea>
       </div>
       <div class="field">
-        <admin-image-upload label="Photo" value="${(this.data['photoUrl'] as string) || ''}" collection="previous-speakers"
+        <sl-textarea label="Short Bio" value="${(this.data['shortBio'] as string) || ''}" rows="2"
+          @sl-change=${(e: Event) => this.setField('shortBio', (e.target as HTMLInputElement).value)}
+        ></sl-textarea>
+      </div>
+      <div class="field">
+        <admin-image-upload label="Photo" value="${(this.data['photoUrl'] as string) || ''}" collection="speakers"
           @image-uploaded=${(e: CustomEvent) => this.setField('photoUrl', e.detail.url)}
         ></admin-image-upload>
       </div>
       <div class="field">
-        <sl-input label="Company Logo URL" value="${(this.data['companyLogo'] as string) || ''}"
+        <sl-input label="Photo Path" value="${(this.data['photo'] as string) || ''}"
+          @sl-change=${(e: Event) => this.setField('photo', (e.target as HTMLInputElement).value)}
+        ></sl-input>
+      </div>
+      <div class="field">
+        <sl-input label="Company Logo Path" value="${(this.data['companyLogo'] as string) || ''}"
           @sl-change=${(e: Event) => this.setField('companyLogo', (e.target as HTMLInputElement).value)}
         ></sl-input>
+      </div>
+      <div class="field">
+        <admin-image-upload label="Company Logo" value="${(this.data['companyLogoUrl'] as string) || ''}" collection="speakers"
+          @image-uploaded=${(e: CustomEvent) => this.setField('companyLogoUrl', e.detail.url)}
+        ></admin-image-upload>
       </div>
       <div class="field">
         <sl-input label="Display Order" type="number" value="${this.data['order'] ?? 0}" required
           @sl-change=${(e: Event) => this.setField('order', Number((e.target as HTMLInputElement).value))}
         ></sl-input>
+      </div>
+      <div class="field">
+        <sl-switch ?checked=${!!this.data['featured']}
+          @sl-change=${(e: Event) => this.setField('featured', (e.target as HTMLInputElement).checked)}
+        >Featured</sl-switch>
+      </div>
+      <div class="field">
+        <sl-switch ?checked=${!!this.data['active']}
+          @sl-change=${(e: Event) => this.setField('active', (e.target as HTMLInputElement).checked)}
+        >Active (speaking this year)</sl-switch>
       </div>
       <div class="field">
         <admin-repeater label="Social Links" .fields=${SOCIAL_FIELDS}
@@ -229,8 +265,8 @@ export class PreviousSpeakersForm extends LitElement {
         ></admin-repeater>
       </div>
 
-      <!-- Sessions by Year -->
-      <h2>Sessions by Year</h2>
+      <!-- History by Year -->
+      <h2>History by Year</h2>
       ${this.yearGroups.map((yg, yi) => this.renderYearGroup(yg, yi))}
       <sl-button size="small" @click=${this.addYear}>
         <sl-icon slot="prefix" name="plus-lg"></sl-icon>
@@ -259,13 +295,28 @@ export class PreviousSpeakersForm extends LitElement {
             @click=${() => this.removeYear(yi)}
           ></sl-icon-button>
         </div>
-        ${yg.sessions.map((session, si) => html`
+        <div class="field">
+          <sl-input label="Job Title (that year)" size="small" value="${yg.title}"
+            @sl-change=${(e: Event) => this.updateYearField(yi, 'title', (e.target as HTMLInputElement).value)}
+          ></sl-input>
+        </div>
+        <div class="field">
+          <sl-input label="Company (that year)" size="small" value="${yg.company}"
+            @sl-change=${(e: Event) => this.updateYearField(yi, 'company', (e.target as HTMLInputElement).value)}
+          ></sl-input>
+        </div>
+        <div class="field">
+          <sl-textarea label="Bio (that year)" size="small" value="${yg.bio}" rows="3"
+            @sl-change=${(e: Event) => this.updateYearField(yi, 'bio', (e.target as HTMLInputElement).value)}
+          ></sl-textarea>
+        </div>
+        ${yg.talks.map((session, si) => html`
           <div class="session-row">
             <div class="session-row-header">
-              <sl-input size="small" placeholder="Session title" value="${session.title}"
+              <sl-input size="small" placeholder="Talk title" value="${session.title}"
                 @sl-change=${(e: Event) => this.updateSession(yi, si, 'title', (e.target as HTMLInputElement).value)}
               ></sl-input>
-              <sl-icon-button name="x-lg" label="Remove session"
+              <sl-icon-button name="x-lg" label="Remove talk"
                 @click=${() => this.removeSession(yi, si)}
               ></sl-icon-button>
             </div>
@@ -284,7 +335,7 @@ export class PreviousSpeakersForm extends LitElement {
         `)}
         <sl-button size="small" @click=${() => this.addSession(yi)}>
           <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-          Add Session
+          Add Talk
         </sl-button>
       </div>
     `;
@@ -295,7 +346,7 @@ export class PreviousSpeakersForm extends LitElement {
   }
 
   private addYear() {
-    this.yearGroups = [...this.yearGroups, { year: '', sessions: [] }];
+    this.yearGroups = [...this.yearGroups, { year: '', bio: '', company: '', title: '', talks: [] }];
   }
 
   private removeYear(index: number) {
@@ -310,13 +361,21 @@ export class PreviousSpeakersForm extends LitElement {
     this.yearGroups = groups;
   }
 
+  private updateYearField(index: number, field: string, value: string) {
+    const groups = [...this.yearGroups];
+    const existing = groups[index];
+    if (!existing) return;
+    groups[index] = { ...existing, [field]: value };
+    this.yearGroups = groups;
+  }
+
   private addSession(yearIndex: number) {
     const groups = [...this.yearGroups];
     const existing = groups[yearIndex];
     if (!existing) return;
     groups[yearIndex] = {
       ...existing,
-      sessions: [...existing.sessions, { title: '' }],
+      talks: [...existing.talks, { title: '' }],
     };
     this.yearGroups = groups;
   }
@@ -327,7 +386,7 @@ export class PreviousSpeakersForm extends LitElement {
     if (!existing) return;
     groups[yearIndex] = {
       ...existing,
-      sessions: existing.sessions.filter((_, i) => i !== sessionIndex),
+      talks: existing.talks.filter((_, i) => i !== sessionIndex),
     };
     this.yearGroups = groups;
   }
@@ -336,11 +395,11 @@ export class PreviousSpeakersForm extends LitElement {
     const groups = [...this.yearGroups];
     const yearGroup = groups[yearIndex];
     if (!yearGroup) return;
-    const sessions = [...yearGroup.sessions];
-    const existing = sessions[sessionIndex];
+    const talks = [...yearGroup.talks];
+    const existing = talks[sessionIndex];
     if (!existing) return;
-    sessions[sessionIndex] = { ...existing, [field]: value };
-    groups[yearIndex] = { ...yearGroup, sessions };
+    talks[sessionIndex] = { ...existing, [field]: value };
+    groups[yearIndex] = { ...yearGroup, talks };
     this.yearGroups = groups;
   }
 
@@ -349,11 +408,11 @@ export class PreviousSpeakersForm extends LitElement {
     const groups = [...this.yearGroups];
     const yearGroup = groups[yearIndex];
     if (!yearGroup) return;
-    const sessions = [...yearGroup.sessions];
-    const existing = sessions[sessionIndex];
+    const talks = [...yearGroup.talks];
+    const existing = talks[sessionIndex];
     if (!existing) return;
-    sessions[sessionIndex] = { ...existing, tags };
-    groups[yearIndex] = { ...yearGroup, sessions };
+    talks[sessionIndex] = { ...existing, tags };
+    groups[yearIndex] = { ...yearGroup, talks };
     this.yearGroups = groups;
   }
 
@@ -363,15 +422,22 @@ export class PreviousSpeakersForm extends LitElement {
       return;
     }
 
-    // Convert yearGroups back to { [year]: PreviousSession[] }
-    const sessions: Record<string, PreviousSession[]> = {};
+    // Convert yearGroups back to { [year]: YearSnapshot }
+    const history: Record<string, unknown> = {};
     this.yearGroups.forEach((yg) => {
-      if (yg.year) sessions[yg.year] = yg.sessions;
+      if (yg.year) {
+        history[yg.year] = {
+          bio: yg.bio,
+          company: yg.company,
+          title: yg.title,
+          talks: yg.talks,
+        };
+      }
     });
 
     this.saving = true;
     try {
-      await saveDocument('previousSpeakers', this.docId, { ...this.data, sessions });
+      await saveDocument('speakers', this.docId, { ...this.data, history });
       this.message = { type: 'success', text: 'Saved successfully!' };
       if (this.isNew) this.isNew = false;
     } catch (error) {

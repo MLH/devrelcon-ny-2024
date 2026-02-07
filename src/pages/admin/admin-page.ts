@@ -7,7 +7,7 @@ import './admin-list.js';
 import './admin-form.js';
 import './collections/schedule-form.js';
 import './collections/config-form.js';
-import './collections/previous-speakers-form.js';
+import './collections/speakers-history-form.js';
 import { SCHEMAS } from './schemas/index.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
@@ -34,7 +34,6 @@ const NAV_SECTIONS = [
       { label: 'Speakers', path: 'speakers' },
       { label: 'Sessions', path: 'sessions' },
       { label: 'Schedule', path: 'schedule' },
-      { label: 'Previous Speakers', path: 'previous-speakers' },
     ],
   },
   {
@@ -278,12 +277,12 @@ export class AdminPage extends LitElement {
       return html`<config-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></config-form>`;
     }
 
-    // Previous speakers uses its own custom form for sessions-by-year
-    if (this.currentSection === 'previous-speakers') {
+    // Speakers uses a custom form with history editing
+    if (this.currentSection === 'speakers') {
       if (this.currentView === 'list') {
-        return html`<admin-list .schema=${SCHEMAS['previous-speakers']} @admin-action=${this.handleAction}></admin-list>`;
+        return html`<admin-list .schema=${SCHEMAS['speakers']} @admin-action=${this.handleAction}></admin-list>`;
       }
-      return html`<previous-speakers-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></previous-speakers-form>`;
+      return html`<speakers-history-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></speakers-history-form>`;
     }
 
     // Partners and team have subcollection navigation
