@@ -40,7 +40,6 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: 16px;
-          min-height: 80%;
         }
 
         .speaker {

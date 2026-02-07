@@ -72,7 +72,7 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
           content: ',';
         }
 
-        .section {
+        a.section {
           cursor: pointer;
         }
 
@@ -247,7 +247,7 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
             <div class="year-title">[[yearData.year]]</div>
             <div class="year-meta">[[yearData.snapshot.title]], [[yearData.snapshot.company]]</div>
             <template is="dom-repeat" items="[[yearData.snapshot.talks]]" as="talk">
-              <div class="section">
+              <div class="section" style="cursor: default;">
                 <div class="section-primary-text">[[talk.title]]</div>
                 <div class="tags" hidden$="[[!talk.tags.length]]">
                   <template is="dom-repeat" items="[[talk.tags]]" as="tag">
