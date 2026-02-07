@@ -35,10 +35,10 @@ export const selectPastSpeakers = createSelector(
     return speakers
       .filter((speaker) => speaker.history && Object.keys(speaker.history).length > 0)
       .sort((a, b) => {
-        const aYears = Object.keys(a.history || {});
-        const bYears = Object.keys(b.history || {});
-        const aMax = aYears.length > 0 ? Math.max(...aYears.map(Number)) : 0;
-        const bMax = bYears.length > 0 ? Math.max(...bYears.map(Number)) : 0;
+        const aYears = Object.keys(a.history || {}).map(Number).filter((y) => !isNaN(y));
+        const bYears = Object.keys(b.history || {}).map(Number).filter((y) => !isNaN(y));
+        const aMax = aYears.length > 0 ? Math.max(...aYears) : 0;
+        const bMax = bYears.length > 0 ? Math.max(...bYears) : 0;
         return bMax - aMax;
       });
   },
