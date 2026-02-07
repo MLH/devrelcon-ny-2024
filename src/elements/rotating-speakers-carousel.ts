@@ -1,7 +1,7 @@
 import { computed, customElement, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
-import { PreviousSpeaker } from '../models/previous-speaker';
+import { SpeakerWithTags } from '../models/speaker';
 
 @customElement('rotating-speakers-carousel')
 export class RotatingSpeakersCarousel extends PolymerElement {
@@ -105,7 +105,7 @@ export class RotatingSpeakersCarousel extends PolymerElement {
   }
 
   @property({ type: Array })
-  speakers: PreviousSpeaker[] = [];
+  speakers: SpeakerWithTags[] = [];
 
   @property({ type: Number })
   speakersPerSlide = 4;
@@ -158,6 +158,6 @@ export class RotatingSpeakersCarousel extends PolymerElement {
   }
 
   private _getSpeakerUrl(id: string) {
-    return `/previous-speakers/${id}`;
+    return `/speakers/${id}`;
   }
 } 

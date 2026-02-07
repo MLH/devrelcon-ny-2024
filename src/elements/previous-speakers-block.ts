@@ -4,16 +4,12 @@ import '@polymer/iron-icon';
 import '@polymer/paper-button';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
-import { PreviousSpeaker } from '../models/previous-speaker';
-import { router } from '../router';
+import { SpeakerWithTags } from '../models/speaker';
 import { RootState, store } from '../store';
 import { ReduxMixin } from '../store/mixin';
-import { fetchPreviousSpeakers } from '../store/previous-speakers/actions';
-import { selectRandomPreviousSpeakers } from '../store/previous-speakers/selectors';
-import {
-  initialPreviousSpeakersState,
-  PreviousSpeakersState,
-} from '../store/previous-speakers/state';
+import { fetchSpeakers } from '../store/speakers/actions';
+import { selectRandomPastSpeakers } from '../store/speakers/selectors';
+import { initialSpeakersState, SpeakersState } from '../store/speakers/state';
 import { loading, previousSpeakersBlock } from '../utils/data';
 import '../utils/icons';
 import './shared-styles';
@@ -95,7 +91,7 @@ export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
         <template is="dom-if" if="[[!isHomePage]]">
           <div class="speakers-wrapper">
             <template is="dom-repeat" items="[[speakers]]" as="speaker">
-              <a class="speaker" href$="[[previousSpeakerUrl(speaker.id)]]">
+              <a class="speaker" href$="[[speakerUrl(speaker.id)]]">
                 <lazy-image
                   class="photo"
                   src="[[speaker.photoUrl]]"
@@ -120,9 +116,9 @@ export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
   private loading = loading;
 
   @property({ type: Object })
-  previousSpeakers: PreviousSpeakersState = initialPreviousSpeakersState;
+  speakersState: SpeakersState = initialSpeakersState;
   @property({ type: Array })
-  speakers: PreviousSpeaker[] = [];
+  speakers: SpeakerWithTags[] = [];
 
   @property({ type: Boolean })
   isHomePage = false;
@@ -130,29 +126,29 @@ export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   carouselConfig = previousSpeakersBlock.carousel;
 
-  @computed('previousSpeakers')
+  @computed('speakersState')
   get pending() {
-    return this.previousSpeakers instanceof Pending;
+    return this.speakersState instanceof Pending;
   }
 
-  @computed('previousSpeakers')
+  @computed('speakersState')
   get failure() {
-    return this.previousSpeakers instanceof Failure;
+    return this.speakersState instanceof Failure;
   }
 
   override stateChanged(state: RootState) {
-    this.previousSpeakers = state.previousSpeakers;
-    this.speakers = selectRandomPreviousSpeakers(state);
+    this.speakersState = state.speakers;
+    this.speakers = selectRandomPastSpeakers(state);
   }
 
   override connectedCallback() {
     super.connectedCallback();
-    if (this.previousSpeakers instanceof Initialized) {
-      store.dispatch(fetchPreviousSpeakers);
+    if (this.speakersState instanceof Initialized) {
+      store.dispatch(fetchSpeakers);
     }
   }
 
-  previousSpeakerUrl(id: string) {
-    return router.urlForName('previous-speaker-page', { id });
+  speakerUrl(id: string) {
+    return `/speakers/${id}`;
   }
 }
