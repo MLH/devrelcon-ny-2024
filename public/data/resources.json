@@ -91,6 +91,11 @@
           "newTab": false
         },
         {
+          "name": "Get Involved",
+          "url": "/get-involved",
+          "newTab": false
+        },
+        {
           "name": "Convince Your Boss",
           "url": "/convince-your-boss",
           "newTab": false
@@ -334,6 +339,23 @@
   },
   "schedule": {
     "saveSessionsSignedOut": "Sign in to save sessions"
+  },
+  "scheduleTracks": {
+    "The Craft": {
+      "title": "The Craft",
+      "description": "Hands-on DevRel and DevEx practice — advocacy, content strategy, community building, events, and documentation.",
+      "color": "#00897B"
+    },
+    "The Strategy": {
+      "title": "The Strategy",
+      "description": "Business impact, metrics, go-to-market, product marketing for developers, positioning, and organizational design.",
+      "color": "#EF6C00"
+    },
+    "The Platform": {
+      "title": "The Platform",
+      "description": "Developer experience, AI tooling, SDKs, APIs, onboarding, and building developer ecosystems at scale.",
+      "color": "#7B1FA2"
+    }
   },
   "feedback": {
     "save": "Save",

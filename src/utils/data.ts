@@ -30,9 +30,11 @@ export {
   notifications,
   offlineMessage,
   partnersBlock,
+  partnershipProposition,
   previousSpeakersBlock,
   refresh,
   schedule,
+  scheduleTracks,
   serviceWorkerAvailable,
   serviceWorkerError,
   serviceWorkerInstalled,
@@ -57,6 +59,7 @@ export {
   whyAttendBlock,
 } from '../../public/data/resources.json';
 export {
+  cfp,
   contentLoaders,
   dateFormat,
   disabledSchedule,

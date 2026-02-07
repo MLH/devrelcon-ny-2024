@@ -42,6 +42,11 @@
       "route": "neighborhood",
       "permalink": "/neighborhood",
       "label": "Neighborhood Guide"
+    },
+    {
+      "route": "getInvolved",
+      "permalink": "/get-involved",
+      "label": "Get Involved"
     }
   ],
   "heroSettings": {
@@ -74,7 +79,7 @@
     },
     "schedule": {
       "title": "Schedule",
-      "description": "We have a variety of keynotes, lightning talks, workshops, and sessions for you to check out. We also encourage all attendees to network and meet one another in our Unconference and hallway track. If any scheduled times change, we will update attendees via announcements digitally and in-person.",
+      "description": "Three tracks, 40 sessions, and hands-on workshops across two days — from DevRel craft and community to developer GTM strategy, AI tooling, and platform engineering. Filter by track to find the sessions that matter most to you.",
       "metaDescription": "Choose your sessions to visit",
       "background": {
         "color": "#fff"
@@ -108,6 +113,14 @@
     "neighborhood": {
       "title": "Neighborhood Guide",
       "metaDescription": "Learn more about the neighborhood DevRelCon is happening in",
+      "background": {
+        "color": "#fff"
+      },
+      "fontColor": "#424242"
+    },
+    "getInvolved": {
+      "title": "Get Involved with DevRelCon",
+      "metaDescription": "Speak, sponsor, volunteer, or host a side event at DevRelCon NY — the conference for teams building developer adoption.",
       "background": {
         "color": "#fff"
       },
@@ -198,5 +211,10 @@
       "itemsCount": 5
     }
   },
-  "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"]
+  "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"],
+  "cfp": {
+    "status": "closed",
+    "formUrl": "",
+    "year": "2025"
+  }
 }

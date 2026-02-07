@@ -5,6 +5,7 @@ import { html, PolymerElement } from '@polymer/polymer';
 import { RouterLocation } from '@vaadin/router';
 import { Day } from '../models/day';
 import { Filter } from '../models/filter';
+import { FilterGroupKey } from '../models/filter-group';
 import { Session } from '../models/session';
 import { Time } from '../models/time';
 import { Timeslot } from '../models/timeslot';
@@ -211,6 +212,11 @@ export class ScheduleDay extends ReduxMixin(PolymerElement) {
     return !!sessionBlock.items.length;
   }
 
+  private getSessionTrackTitle(session: Session): string {
+    const s = session as Session & { trackOverride?: string; track?: { title: string } };
+    return s.trackOverride || s.track?.title || '';
+  }
+
   private filterSessions(sessions: Session[], selectedFilters: Filter[]) {
     if (selectedFilters.length === 0) {
       return sessions;
@@ -218,7 +224,12 @@ export class ScheduleDay extends ReduxMixin(PolymerElement) {
 
     return sessions.filter((session) => {
       return selectedFilters.every((filter) => {
-        const values = session[filter.group];
+        if (filter.group === FilterGroupKey.track) {
+          const trackTitle = this.getSessionTrackTitle(session);
+          return generateClassName(trackTitle) === generateClassName(filter.tag);
+        }
+        const group = filter.group as Exclude<FilterGroupKey, FilterGroupKey.track>;
+        const values = session[group];
         if (values === undefined) {
           return false;
         } else if (typeof values === 'string') {
