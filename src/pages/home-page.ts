@@ -5,6 +5,7 @@ import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 import '../components/about-block';
 import '../components/hero/hero-block';
+import '../components/who-should-attend-block';
 import { HeroBlock } from '../components/hero/hero-block';
 import '../elements/about-organizer-block';
 import '../elements/featured-videos';
@@ -290,6 +291,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         <fork-me-block></fork-me-block>
       </template>
       <about-block></about-block>
+      <who-should-attend-block></who-should-attend-block>
 
       <speakers-block></speakers-block>
       <previous-speakers-block is-home-page></previous-speakers-block>

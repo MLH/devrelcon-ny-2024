@@ -384,6 +384,31 @@
       "title": "Open"
     }
   },
+  "whoShouldAttendBlock": {
+    "title": "Who Should Attend",
+    "segments": [
+      {
+        "title": "Developer Relations & Advocacy",
+        "description": "Sharpen your craft with sessions on content strategy, community building, event ROI, and scaling programs. Connect with peers who understand the unique challenges of developer advocacy."
+      },
+      {
+        "title": "Developer Experience & Platform Engineering",
+        "description": "Learn how leading companies design SDKs, docs, onboarding flows, and self-serve developer journeys. Take home frameworks for measuring and improving DX."
+      },
+      {
+        "title": "Product Marketing for Developer Products",
+        "description": "Positioning, messaging, launches, and competitive strategy for technical audiences. Hear from practitioners who've cracked the code on developer-focused GTM."
+      },
+      {
+        "title": "Product Management for Developer Platforms",
+        "description": "Roadmap prioritization, developer feedback loops, and the metrics that matter for platform products. Understand how DevRel, DX, and product work together."
+      },
+      {
+        "title": "GTM & Ecosystem Leaders",
+        "description": "Understand how developer-first companies build pipeline, measure community impact, and structure teams across DevRel, marketing, and product — especially in the AI era."
+      }
+    ]
+  },
   "aboutOrganizerBlock": {
     "image": "/images/jonmc.png",
     "blocks": [

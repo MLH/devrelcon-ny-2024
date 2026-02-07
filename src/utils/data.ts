@@ -52,6 +52,7 @@ export {
   title,
   image,
   viewHighlights,
+  whoShouldAttendBlock,
 } from '../../public/data/resources.json';
 export {
   contentLoaders,
