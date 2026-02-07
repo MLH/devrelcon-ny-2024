@@ -83,7 +83,7 @@ export const selectFilteredSpeakers = createSelector(
           const trackTitle = session.track?.title;
           if (!trackTitle) return false;
           const className = generateClassName(trackTitle);
-          return trackFilters.some((filter) => generateClassName(filter.tag) === className);
+          return trackFilters.some((filter) => filter.tag === className);
         });
 
       return matchesTags && matchesTracks;

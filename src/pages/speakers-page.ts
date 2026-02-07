@@ -332,6 +332,9 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
               style$="--track-color: [[track.color]]"
               active$="[[isTrackActive(selectedFilters, track.title)]]"
               on-click="onTrackClick"
+              on-keydown="onTrackKeydown"
+              role="button"
+              tabindex="0"
             >
               <div class="track-color-indicator"></div>
               <div class="track-card-content">
@@ -349,7 +352,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
             [[getTrackDisplayName(trackFilter.tag)]]
           </span>
         </template>
-        <span class="clear-track-filter" role="button" on-click="clearTrackFilters">
+        <span class="clear-track-filter" role="button" tabindex="0" on-click="clearTrackFilters" on-keydown="onClearKeydown">
           Clear track filter
         </span>
       </div>
@@ -527,6 +530,22 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
       group: FilterGroupKey.track,
       tag: generateClassName(track.title),
     });
+  }
+
+  private onTrackKeydown(
+    e: KeyboardEvent & { model: { track: { title: string; color: string; description: string } } },
+  ) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.onTrackClick(e as unknown as PointerEvent & { model: { track: { title: string; color: string; description: string } } });
+    }
+  }
+
+  private onClearKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.clearTrackFilters();
+    }
   }
 
   private clearTrackFilters() {
