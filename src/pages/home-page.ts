@@ -80,6 +80,20 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           color: inherit;
         }
 
+        .hero-subtitle {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.4;
+          margin: 16px 0 0;
+          max-width: 640px;
+          color: inherit;
+          opacity: 0.95;
+          background: rgba(255, 255, 255, 0.15);
+          padding: 12px 24px;
+          border-radius: 8px;
+          letter-spacing: 0.01em;
+        }
+
         .hero-description {
           font-size: 18px;
           line-height: 1.5;
@@ -176,6 +190,11 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             font-size: 44px;
           }
 
+          .hero-subtitle {
+            font-size: 22px;
+            padding: 14px 32px;
+          }
+
           .hero-description {
             font-size: 20px;
           }
@@ -199,6 +218,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           <div class="info-items">
             <div class="info-item">[[city]]. [[dates]]</div>
             <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
+            <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">[[heroSettings.subtitle]]</div>
             <div class="info-item hero-description">[[heroSettings.description]]</div>
           </div>
 

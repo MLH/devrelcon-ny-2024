@@ -1,6 +1,6 @@
 {
   "title": "DevRelCon NY",
-  "description": "DevRelCon is the premiere global conference for Developer Relations, Developer Experience, Developer Marketing, and Technical Community Management. This is a unique opportunity to hear talks from industry leaders, connect with your peers on best practices and challenges, and participate in hands-on workshops and discussions.<br><br>Whether you’re looking to advance your craft and career, are in-between roles, or simply want to reconnect with the wider DevRel community, DevRelCon is the place for you! Sessions will cover practical topics like metrics and ROI, managing up and down, community management, content creation, career paths, open source, improving and scaling using AI tools, and much more.",
+  "description": "DevRelCon is the premiere global conference for Developer Relations, Developer Experience, Developer Marketing, and Technical Community Management. This is a unique opportunity to hear talks from industry leaders, connect with your peers on best practices and challenges, and participate in hands-on workshops and discussions.<br><br>Whether you're looking to advance your craft and career, are in-between roles, or simply want to reconnect with the wider DevRel community, DevRelCon is the place for you! Sessions cover AI developer tooling and platform strategy, developer-first go-to-market, measuring developer adoption and activation, positioning and messaging for technical audiences, community-led growth, documentation as product, building and scaling developer ecosystems, content strategy, career paths, and more.",
   "image": "images/LinkedIn.png",
   "keywords": "event, devrel, devrelcon, developer relations",
   "dates": "July 17-18, 2025",
@@ -230,7 +230,7 @@
   },
   "subscribeBlock": {
     "callToAction": {
-      "description": "Get ongoing updates about Developer Relations events, content, and more!",
+      "description": "Get updates on DevRelCon — the conference at the intersection of developer platforms, AI tooling, and go-to-market strategy.",
       "label": "Subscribe"
     },
     "yourEmail": "Your email",

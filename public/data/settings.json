@@ -47,6 +47,7 @@
   "heroSettings": {
     "home": {
       "tagline": "The conference for teams building developer platforms, tools, and ecosystems",
+      "subtitle": "Featuring deep dives on AI developer tooling, agentic platforms, and the new developer go-to-market playbook.",
       "description": "DevRelCon is the premier conference for anyone working to grow developer adoption — from Developer Relations and Developer Experience to Product Marketing, Platform Product Management, and Go-to-Market strategy. Join practitioners and leaders from the world's top developer platforms for talks, hands-on workshops, and the conversations that shape our craft.",
       "background": {
         "color": "#673ab7",
