@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isMLHAdmin() {
+      return request.auth != null && request.auth.token.email.matches('.*@majorleaguehacking[.]com$');
+    }
+
     function validRating() {
       return request.resource.data.contentRating >= 0 && request.resource.data.contentRating <= 5 &&
         request.resource.data.styleRating >= 0 && request.resource.data.styleRating <= 5
@@ -8,18 +12,14 @@ service cloud.firestore {
     }
 
     match /blog/{post} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /config/{config} {
-      allow read, write: if false; // allow each section separately
+      allow read: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /featuredSessions/{userId} {
@@ -27,14 +27,9 @@ service cloud.firestore {
     }
 
     match /gallery/{photo} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /notificationsSubscribers/{token} {
@@ -52,31 +47,20 @@ service cloud.firestore {
     }
 
     match /partners/{groupId} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
+      allow write: if isMLHAdmin();
 
-      // Disallow writes
-      allow write: if false;
-
-      // TODO: Remove
       match /items/{itemId} {
-        // Applies to single document read requests
         allow get;
-
-        // Applies to queries and collection read requests
         allow list;
-
-        // Disallow writes
-        allow write: if false;
+        allow write: if isMLHAdmin();
       }
     }
 
     match /{path=**}/items/{itemId} {
       allow read;
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /potentialPartners/{partnerId} {
@@ -91,25 +75,15 @@ service cloud.firestore {
     }
 
     match /previousSpeakers/{speaker} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /schedule/{day} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /generatedSchedule/{day} {
@@ -124,16 +98,10 @@ service cloud.firestore {
     }
 
     match /sessions/{session} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
+      allow write: if isMLHAdmin();
 
-      // Disallow writes
-      allow write: if false;
-
-      // TODO: remove
       match /feedback/{userId} {
         allow read, delete: if request.auth.uid == userId;
         allow write: if request.auth.uid == userId && validRating();
@@ -158,14 +126,9 @@ service cloud.firestore {
     }
 
     match /speakers/{speaker} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /generatedSpeakers/{speaker} {
@@ -191,48 +154,27 @@ service cloud.firestore {
     }
 
     match /team/{teamId} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
+      allow write: if isMLHAdmin();
 
-      // Disallow writes
-      allow write: if false;
-
-      // TODO: remove
       match /members/{memberId} {
-        // Applies to single document read requests
         allow get;
-
-        // Applies to queries and collection read requests
         allow list;
-
-        // Disallow writes
-        allow write: if false;
+        allow write: if isMLHAdmin();
       }
     }
 
     match /{path=**}/members/{memberId} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     match /tickets/{ticket} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
 
     // TODO: Remove along with data
@@ -246,14 +188,9 @@ service cloud.firestore {
     }
 
     match /videos/{video} {
-      // Applies to single document read requests
       allow get;
-
-      // Applies to queries and collection read requests
       allow list;
-
-      // Disallow writes
-      allow write: if false;
+      allow write: if isMLHAdmin();
     }
   }
 }
