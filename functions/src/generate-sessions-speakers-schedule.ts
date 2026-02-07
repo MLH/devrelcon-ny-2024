@@ -74,6 +74,14 @@ async function generateAndSaveData(changedSpeaker?) {
     generatedData.speakers[changedSpeaker.id] = changedSpeaker;
   }
 
+  // Include all speakers (active and inactive) in generated output
+  // This ensures inactive/past speakers are available to the frontend
+  for (const [speakerId, speaker] of Object.entries(speakers)) {
+    if (!generatedData.speakers[speakerId]) {
+      generatedData.speakers[speakerId] = { ...(speaker as object), id: speakerId };
+    }
+  }
+
   saveGeneratedData(generatedData.sessions, 'generatedSessions');
   saveGeneratedData(generatedData.speakers, 'generatedSpeakers');
   saveGeneratedData(generatedData.schedule, 'generatedSchedule');
