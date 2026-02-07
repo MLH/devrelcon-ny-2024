@@ -2,6 +2,7 @@ import { Initialized, Success } from '@abraham/remotedata';
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState, store } from '..';
 import { Filter } from '../../models/filter';
+import { FilterGroupKey } from '../../models/filter-group';
 import { SpeakerWithTags } from '../../models/speaker';
 import { selectFilters } from '../../store/filters/selectors';
 import { generateClassName } from '../../utils/styles';
@@ -65,11 +66,27 @@ export const selectFilteredSpeakers = createSelector(
   (speakers: SpeakerWithTags[], selectedFilters: Filter[]): SpeakerWithTags[] => {
     if (selectedFilters.length === 0) return speakers;
 
+    const tagFilters = selectedFilters.filter((f) => f.group === FilterGroupKey.tags);
+    const trackFilters = selectedFilters.filter((f) => f.group === FilterGroupKey.track);
+
     return speakers.filter((speaker) => {
-      return (speaker.tags || []).some((tag) => {
-        const className = generateClassName(tag);
-        return selectedFilters.some((filter) => filter.tag === className);
-      });
+      const matchesTags =
+        tagFilters.length === 0 ||
+        (speaker.tags || []).some((tag) => {
+          const className = generateClassName(tag);
+          return tagFilters.some((filter) => filter.tag === className);
+        });
+
+      const matchesTracks =
+        trackFilters.length === 0 ||
+        (speaker.sessions || []).some((session) => {
+          const trackTitle = session.track?.title;
+          if (!trackTitle) return false;
+          const className = generateClassName(trackTitle);
+          return trackFilters.some((filter) => generateClassName(filter.tag) === className);
+        });
+
+      return matchesTags && matchesTracks;
     });
   },
 );

@@ -5,7 +5,7 @@ import '@polymer/paper-button';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 import '../components/text-truncate';
-import { Speaker } from '../models/speaker';
+import { SpeakerWithTags } from '../models/speaker';
 import { router } from '../router';
 import { RootState, store } from '../store';
 import { ReduxMixin } from '../store/mixin';
@@ -107,6 +107,14 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
           line-height: 1.1;
         }
 
+        .talk-title {
+          margin-top: 6px;
+          font-size: 12px;
+          line-height: 1.3;
+          color: var(--secondary-text-color);
+          font-style: italic;
+        }
+
         .cta-button {
           margin-top: 24px;
         }
@@ -206,6 +214,9 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
                 <text-truncate lines="1">
                   <div class="origin">[[speaker.country]]</div>
                 </text-truncate>
+                <text-truncate lines="2">
+                  <div class="talk-title" hidden$="[[!speakerTalkTitle(speaker)]]">[[speakerTalkTitle(speaker)]]</div>
+                </text-truncate>
               </div>
             </a>
           </template>
@@ -240,7 +251,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
   }
 
   @computed('speakers')
-  get featuredSpeakers(): Speaker[] {
+  get featuredSpeakers(): SpeakerWithTags[] {
     if (this.speakers instanceof Success) {
       const { data } = this.speakers;
       const activeSpeakers = data.filter((speaker) => speaker.active);
@@ -254,6 +265,15 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
 
   speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  speakerTalkTitle(speaker: SpeakerWithTags): string {
+    const sessions = speaker.sessions;
+    const firstSession = sessions?.[0];
+    if (firstSession) {
+      return firstSession.title;
+    }
+    return '';
   }
 
   _companyLogoUrl(company: string) {
