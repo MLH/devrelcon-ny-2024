@@ -82,6 +82,14 @@ async function generateAndSaveData(changedSpeaker?) {
     }
   }
 
+  // Include all sessions (including past years not on current schedule)
+  // This ensures past talk pages are accessible via direct links
+  for (const [sessionId, session] of Object.entries(sessions)) {
+    if (!generatedData.sessions[sessionId]) {
+      generatedData.sessions[sessionId] = { ...(session as object), id: sessionId };
+    }
+  }
+
   saveGeneratedData(generatedData.sessions, 'generatedSessions');
   saveGeneratedData(generatedData.speakers, 'generatedSpeakers');
   saveGeneratedData(generatedData.schedule, 'generatedSchedule');
