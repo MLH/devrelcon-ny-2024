@@ -3,6 +3,11 @@ import { customElement, state } from 'lit/decorators.js';
 import { getAuth, onAuthStateChanged, Unsubscribe, User } from 'firebase/auth';
 import { firebaseApp } from '../../firebase.js';
 import './shoelace-setup.js';
+import './admin-list.js';
+import './admin-form.js';
+import './collections/schedule-form.js';
+import './collections/config-form.js';
+import { SCHEMAS } from './schemas/index.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';
@@ -45,6 +50,10 @@ export class AdminPage extends LitElement {
   @state() private user: User | null = null;
   @state() private authChecked = false;
   @state() private currentSection = 'speakers';
+  @state() private currentView: 'list' | 'edit' | 'new' = 'list';
+  @state() private currentEditId = '';
+  @state() private parentId = '';
+  @state() private subView: 'groups' | 'items' | 'group-edit' | 'group-new' | 'item-edit' | 'item-new' = 'groups';
   private unsubAuth: Unsubscribe | null = null;
 
   static override styles = css`
@@ -204,7 +213,7 @@ export class AdminPage extends LitElement {
           <div class="user-info">${this.user.email}</div>
         </nav>
         <div class="main">
-          <slot></slot>
+          ${this.renderContent()}
         </div>
       </div>
     `;
@@ -212,7 +221,141 @@ export class AdminPage extends LitElement {
 
   private navigate(path: string) {
     this.currentSection = path;
+    this.currentView = 'list';
+    this.currentEditId = '';
+    this.parentId = '';
+    this.subView = 'groups';
     window.history.pushState({}, '', `/admin/${path}`);
-    this.dispatchEvent(new CustomEvent('admin-navigate', { detail: { path }, bubbles: true, composed: true }));
+  }
+
+  private handleAction(e: CustomEvent) {
+    const { action, id } = e.detail;
+    switch (action) {
+      case 'new':
+        this.currentView = 'new';
+        this.currentEditId = '';
+        break;
+      case 'edit':
+        this.currentView = 'edit';
+        this.currentEditId = id;
+        break;
+      case 'back':
+        this.currentView = 'list';
+        this.currentEditId = '';
+        break;
+    }
+  }
+
+  private sectionToSchemaKey(section: string): string {
+    return section;
+  }
+
+  private renderContent() {
+    // Schedule uses its own custom form
+    if (this.currentSection === 'schedule') {
+      if (this.currentView === 'list') {
+        return html`<admin-list .schema=${SCHEMAS['schedule']} @admin-action=${this.handleAction}></admin-list>`;
+      }
+      return html`<schedule-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></schedule-form>`;
+    }
+
+    // Config uses its own custom form
+    if (this.currentSection === 'config') {
+      if (this.currentView === 'list') {
+        return html`<admin-list .schema=${SCHEMAS['config']} @admin-action=${this.handleAction}></admin-list>`;
+      }
+      return html`<config-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></config-form>`;
+    }
+
+    // Partners and team have subcollection navigation
+    if (this.currentSection === 'partners') {
+      return this.renderSubcollectionSection('partner-groups', 'partner-items', 'items');
+    }
+    if (this.currentSection === 'team') {
+      return this.renderSubcollectionSection('team-groups', 'team-members', 'members');
+    }
+
+    // All other collections use generic list + form
+    const schemaKey = this.sectionToSchemaKey(this.currentSection);
+    const schema = SCHEMAS[schemaKey];
+    if (!schema) return html`<p>Unknown section.</p>`;
+
+    if (this.currentView === 'list') {
+      return html`<admin-list .schema=${schema} @admin-action=${this.handleAction}></admin-list>`;
+    }
+    return html`<admin-form
+      .schema=${schema}
+      editId="${this.currentEditId}"
+      @admin-action=${this.handleAction}
+    ></admin-form>`;
+  }
+
+  private renderSubcollectionSection(groupSchemaKey: string, itemSchemaKey: string, subcollectionName: string) {
+    const groupSchema = SCHEMAS[groupSchemaKey];
+    const itemSchema = SCHEMAS[itemSchemaKey];
+    if (!groupSchema || !itemSchema) return html`<p>Unknown section.</p>`;
+
+    switch (this.subView) {
+      case 'groups':
+        return html`
+          <admin-list
+            .schema=${groupSchema}
+            @admin-action=${(e: CustomEvent) => {
+              const { action, id } = e.detail;
+              if (action === 'new') { this.subView = 'group-new'; }
+              else if (action === 'edit') { this.parentId = id; this.subView = 'items'; }
+            }}
+          ></admin-list>
+        `;
+      case 'group-new':
+        return html`
+          <admin-form
+            .schema=${groupSchema}
+            @admin-action=${(e: CustomEvent) => {
+              if (e.detail.action === 'back') this.subView = 'groups';
+            }}
+          ></admin-form>
+        `;
+      case 'items':
+        return html`
+          <sl-button variant="text" @click=${() => { this.subView = 'groups'; this.parentId = ''; }}>
+            <sl-icon name="arrow-left"></sl-icon> Back to ${groupSchema.displayName}
+          </sl-button>
+          <admin-list
+            .schema=${itemSchema}
+            parentPath="${groupSchema.collectionPath}"
+            parentId="${this.parentId}"
+            subcollection="${subcollectionName}"
+            @admin-action=${(e: CustomEvent) => {
+              const { action, id } = e.detail;
+              if (action === 'new') this.subView = 'item-new';
+              else if (action === 'edit') { this.currentEditId = id; this.subView = 'item-edit'; }
+            }}
+          ></admin-list>
+        `;
+      case 'item-new':
+        return html`
+          <admin-form
+            .schema=${itemSchema}
+            collectionPath="${groupSchema.collectionPath}/${this.parentId}/${subcollectionName}"
+            @admin-action=${(e: CustomEvent) => {
+              if (e.detail.action === 'back') this.subView = 'items';
+            }}
+          ></admin-form>
+        `;
+      case 'item-edit':
+        return html`
+          <admin-form
+            .schema=${itemSchema}
+            editId="${this.currentEditId}"
+            collectionPath="${groupSchema.collectionPath}/${this.parentId}/${subcollectionName}"
+            @admin-action=${(e: CustomEvent) => {
+              if (e.detail.action === 'back') this.subView = 'items';
+            }}
+          ></admin-form>
+        `;
+      default:
+        return html`<p>Unknown view.</p>`;
+    }
   }
 }
