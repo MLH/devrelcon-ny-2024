@@ -12,6 +12,7 @@
     "clean": "rm -rf dist",
     "deploy": "npm run build && NODE_ENV=production firebase deploy",
     "firestore:copy": "ts-node-script ./scripts/firestore-copy",
+    "firestore:activate-speakers": "ts-node-script ./scripts/activate-speakers",
     "firestore:archive-speakers": "ts-node-script ./scripts/archive-speakers",
     "firestore:init": "ts-node-script ./scripts/firestore-init",
     "firestore:migrate-speakers": "ts-node-script ./scripts/migrate-previous-speakers",
