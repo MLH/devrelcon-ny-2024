@@ -236,10 +236,10 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
             on-click="toggleFeaturedSession"
           ></paper-fab>
         </div>
-        <h3 class="meta-info" hidden$="[[disabledSchedule]]">
+        <h3 class="meta-info" hidden$="[[_hideScheduleInfo(disabledSchedule, session.dateReadable)]]">
           [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
         </h3>
-        <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[getTrackTitle(session.track, session.trackOverride)]]</h3>
+        <h3 class="meta-info" hidden$="[[_hideScheduleInfo(disabledSchedule, session.track)]]">[[getTrackTitle(session.track, session.trackOverride)]]</h3>
         <h3 class="meta-info" hidden$="[[!session.complexity]]">
           [[sessionDetails.contentLevel]]: [[session.complexity]]
         </h3>
@@ -458,5 +458,9 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
 
   private speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  private _hideScheduleInfo(disabledSchedule: boolean, value: unknown) {
+    return disabledSchedule || !value;
   }
 }

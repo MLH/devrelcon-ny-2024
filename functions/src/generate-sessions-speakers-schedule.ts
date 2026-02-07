@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 import * as functions from 'firebase-functions';
 import { sessionsSpeakersMap } from './schedule-generator/speakers-sessions-map.js';
 import { sessionsSpeakersScheduleMap } from './schedule-generator/speakers-sessions-schedule-map.js';
-import { isEmpty, ScheduleMap, SessionMap, snapshotToObject, SpeakerMap } from './utils.js';
+import { isEmpty, pickMainTag, ScheduleMap, SessionMap, snapshotToObject, SpeakerMap } from './utils.js';
 
 const isScheduleEnabled = async (): Promise<boolean> => {
   const doc = await getFirestore().collection('config').doc('schedule').get();
@@ -83,10 +83,21 @@ async function generateAndSaveData(changedSpeaker?) {
   }
 
   // Include all sessions (including past years not on current schedule)
-  // This ensures past talk pages are accessible via direct links
+  // Enrich with resolved speaker objects so session pages render correctly
   for (const [sessionId, session] of Object.entries(sessions)) {
     if (!generatedData.sessions[sessionId]) {
-      generatedData.sessions[sessionId] = { ...(session as object), id: sessionId };
+      const raw = session as { speakers?: string[]; tags?: string[]; [key: string]: unknown };
+      const resolvedSpeakers = (raw.speakers || []).map((speakerId: string) => ({
+        id: speakerId,
+        ...(speakers[speakerId] || {}),
+        sessions: null,
+      }));
+      generatedData.sessions[sessionId] = {
+        ...raw,
+        id: sessionId,
+        mainTag: pickMainTag(raw.tags),
+        speakers: resolvedSpeakers,
+      };
     }
   }
 
