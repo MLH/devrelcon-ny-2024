@@ -7,12 +7,10 @@ import {
   footerRelBlock,
   footer,
   followOur,
-  followUs,
   emailUs,
   mailto,
   organizer,
   socialNetwork,
-  subscribeBlock,
 } from '../utils/data';
 import '../utils/icons';
 import './subscribe-form-footer';
@@ -198,7 +196,7 @@ export class FooterRel extends PolymerElement {
         <subscribe-form-footer></subscribe-form-footer>
         <div class="social-icons">
           <template is="dom-repeat" items="[[socialNetwork.follow]]" as="socFollow">
-            <a href="[[socFollow.url]]" target="_blank" rel="noopener noreferrer">
+            <a href="[[socFollow.url]]" target="_blank" rel="noopener noreferrer" aria-label$="Follow us on [[socFollow.name]]">
               <paper-icon-button icon="hoverboard:[[socFollow.name]]"></paper-icon-button>
             </a>
           </template>
@@ -244,13 +242,9 @@ export class FooterRel extends PolymerElement {
   @property()
   private followOur = followOur;
   @property()
-  private followUs = followUs;
-  @property()
   private emailUs = emailUs;
   @property()
   private mailto = mailto;
-  @property({ type: Object })
-  private subscribeBlock = subscribeBlock;
 
   _computeBlogTarget(blogUrl: string): string {
     return blogUrl && blogUrl.startsWith('http') ? '_blank' : '';
