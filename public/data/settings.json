@@ -113,6 +113,14 @@
       },
       "fontColor": "#424242"
     },
+    "convinceYourBoss": {
+      "title": "Make the Case for DevRelCon",
+      "metaDescription": "Everything you need to convince your manager to send you to DevRelCon NYC — including a ready-to-send email template.",
+      "background": {
+        "color": "#fff"
+      },
+      "fontColor": "#424242"
+    },
     "notFound": {
       "title": "Not Found",
       "metaDescription": "Page not found",

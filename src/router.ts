@@ -144,6 +144,13 @@ const ROUTES: Route[] = [
       await import('./pages/neighborhood-page.js');
     },
   },
+  {
+    path: '/convince-your-boss',
+    component: 'convince-your-boss-page',
+    action: async () => {
+      await import('./pages/convince-your-boss-page.js');
+    },
+  },
   // {
   //   path: '/coc',
   //   component: 'coc-page',

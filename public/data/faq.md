@@ -25,6 +25,10 @@ We want to make sure that DevRelCon North America creates a safe and welcoming e
 
 There are ramps, elevators, and curbside dropoff spots available in both buildings we will be using for DevRelCon. There are also handicap-accessible bathrooms in both buildings. Please contact devrelcon@mlh.io if you require specific accommodations.
 
+### How do I get my company to pay for DevRelCon?
+
+We've put together a [Convince Your Boss](/convince-your-boss) page with everything you need to make the case to your manager, including a breakdown of what's included, who attends, and a ready-to-send email template you can customize.
+
 ## Attendance
 
 ### I’m a speaker, do I still need to buy a ticket?

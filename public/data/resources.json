@@ -91,6 +91,11 @@
           "newTab": false
         },
         {
+          "name": "Convince Your Boss",
+          "url": "/convince-your-boss",
+          "newTab": false
+        },
+        {
           "name": "Buy Ticket",
           "url": "/#tickets-block",
           "newTab": false
