@@ -9,7 +9,6 @@ import '../components/hero/simple-hero';
 import '../components/text-truncate';
 import '../elements/content-loader';
 import '../elements/filter-menu';
-import '../elements/previous-speakers-block';
 import '../elements/shared-styles';
 import { Filter } from '../models/filter';
 import { FilterGroup, FilterGroupKey } from '../models/filter-group';
@@ -20,7 +19,7 @@ import { selectFilters } from '../store/filters/selectors';
 import { ReduxMixin } from '../store/mixin';
 import { selectFilterGroups } from '../store/sessions/selectors';
 import { fetchSpeakers } from '../store/speakers/actions';
-import { selectFilteredSpeakers } from '../store/speakers/selectors';
+import { selectFilteredSpeakers, selectPastSpeakers } from '../store/speakers/selectors';
 import { initialSpeakersState } from '../store/speakers/state';
 import { contentLoaders, heroSettings } from '../utils/data';
 import '../utils/icons';
@@ -247,7 +246,24 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
         </template>
       </div>
 
-      <previous-speakers-block></previous-speakers-block>
+      <div class="container" hidden$="[[!pastSpeakers.length]]">
+        <h1 class="container-title" style="grid-column: 1 / -1; text-align: center; margin-top: 32px;">Past Speakers</h1>
+        <template is="dom-repeat" items="[[pastSpeakers]]" as="speaker">
+          <a class="speaker card" href$="[[speakerUrl(speaker.id)]]">
+            <div relative>
+              <lazy-image
+                class="photo"
+                src="[[speaker.photoUrl]]"
+                alt="[[speaker.name]]"
+              ></lazy-image>
+            </div>
+            <div class="description">
+              <h2 class="name">[[speaker.name]]</h2>
+              <div class="origin">[[speaker.company]]</div>
+            </div>
+          </a>
+        </template>
+      </div>
 
       <footer-block></footer-block>
     `;
@@ -265,6 +281,8 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
   private selectedFilters: Filter[] = [];
   @property({ type: Array })
   private speakersToRender: SpeakerWithTags[] = [];
+  @property({ type: Array })
+  private pastSpeakers: SpeakerWithTags[] = [];
 
   override connectedCallback() {
     super.connectedCallback();
@@ -281,6 +299,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
     this.filterGroups = selectFilterGroups(state, [FilterGroupKey.tags]);
     this.selectedFilters = selectFilters(state);
     this.speakersToRender = selectFilteredSpeakers(state);
+    this.pastSpeakers = selectPastSpeakers(state);
   }
 
   @computed('speakers')
