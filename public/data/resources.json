@@ -409,6 +409,31 @@
       }
     ]
   },
+  "whyAttendBlock": {
+    "title": "Why DevRelCon",
+    "valueProps": [
+      {
+        "icon": "mic",
+        "title": "Learn from practitioners, not just thought leaders",
+        "description": "Every speaker has done the work. Sessions focus on real strategies, real numbers, and lessons from real programs — not aspirational frameworks."
+      },
+      {
+        "icon": "rocket",
+        "title": "Actionable takeaways you can use Monday morning",
+        "description": "Walk away with templates, frameworks, and playbooks you can put to work immediately — whether you're scaling a DevRel program, launching a developer product, or building an AI platform ecosystem."
+      },
+      {
+        "icon": "people",
+        "title": "The right-sized room",
+        "description": "300 practitioners who actually understand your challenges. Not 10,000 people where you're lost — intimate enough for real conversations, big enough for diverse perspectives."
+      },
+      {
+        "icon": "crossfunctional",
+        "title": "Cross-functional perspective",
+        "description": "The only conference where DevRel, developer marketing, product, and GTM leaders are in the same room solving the same problems together. Break out of your silo."
+      }
+    ]
+  },
   "aboutOrganizerBlock": {
     "image": "/images/jonmc.png",
     "blocks": [

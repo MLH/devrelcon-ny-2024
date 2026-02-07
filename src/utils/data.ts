@@ -53,6 +53,7 @@ export {
   image,
   viewHighlights,
   whoShouldAttendBlock,
+  whyAttendBlock,
 } from '../../public/data/resources.json';
 export {
   contentLoaders,

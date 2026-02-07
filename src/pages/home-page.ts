@@ -6,6 +6,7 @@ import '@power-elements/lazy-image';
 import '../components/about-block';
 import '../components/hero/hero-block';
 import '../components/who-should-attend-block';
+import '../components/why-attend-block';
 import { HeroBlock } from '../components/hero/hero-block';
 import '../elements/about-organizer-block';
 import '../elements/featured-videos';
@@ -219,7 +220,9 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           <div class="info-items">
             <div class="info-item">[[city]]. [[dates]]</div>
             <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
-            <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">[[heroSettings.subtitle]]</div>
+            <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
+              [[heroSettings.subtitle]]
+            </div>
             <div class="info-item hero-description">[[heroSettings.description]]</div>
           </div>
 
@@ -292,6 +295,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       </template>
       <about-block></about-block>
       <who-should-attend-block></who-should-attend-block>
+      <why-attend-block></why-attend-block>
 
       <speakers-block></speakers-block>
       <previous-speakers-block is-home-page></previous-speakers-block>
