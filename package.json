@@ -15,6 +15,8 @@
     "firestore:activate-speakers": "ts-node-script ./scripts/activate-speakers",
     "firestore:archive-speakers": "ts-node-script ./scripts/archive-speakers",
     "firestore:cleanup-history": "ts-node-script ./scripts/cleanup-history",
+    "firestore:merge-speakers": "ts-node-script ./scripts/merge-speakers",
+    "firestore:rehost-images": "ts-node-script ./scripts/rehost-speaker-images",
     "firestore:init": "ts-node-script ./scripts/firestore-init",
     "firestore:migrate-speakers": "ts-node-script ./scripts/migrate-previous-speakers",
     "fix": "concurrently npm:fix:*",

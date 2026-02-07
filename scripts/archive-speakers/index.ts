@@ -136,9 +136,10 @@ async function main() {
     const session = sessionDoc.data() as SessionDoc;
     if (!session.speakers) continue;
     for (const speakerId of session.speakers) {
-      const existing = speakerSessions.get(speakerId) ?? [];
+      const normalizedId = speakerId.toLowerCase();
+      const existing = speakerSessions.get(normalizedId) ?? [];
       existing.push(session);
-      speakerSessions.set(speakerId, existing);
+      speakerSessions.set(normalizedId, existing);
     }
   }
   console.log(`  ${speakerSessions.size} speakers with scheduled talks`);

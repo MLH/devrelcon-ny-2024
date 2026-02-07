@@ -23,6 +23,7 @@ import { selectFilteredSpeakers, selectPastSpeakers } from '../store/speakers/se
 import { initialSpeakersState } from '../store/speakers/state';
 import { contentLoaders, heroSettings } from '../utils/data';
 import '../utils/icons';
+import { companyLogoUrl } from '../utils/logos';
 import { updateMetadata } from '../utils/metadata';
 
 @customElement('speakers-page')
@@ -219,7 +220,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
             <lazy-image
               class="company-logo"
-              src="[[speaker.companyLogoUrl]]"
+              src="[[_companyLogoUrl(speaker.company)]]"
               alt="[[speaker.company]]"
             ></lazy-image>
 
@@ -309,5 +310,9 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
   speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  _companyLogoUrl(company: string) {
+    return companyLogoUrl(company);
   }
 }

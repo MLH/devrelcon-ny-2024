@@ -17,13 +17,13 @@ async function main() {
   const sessionsSnapshot = await firestore.collection('sessions').get();
   console.log(`  Found ${sessionsSnapshot.size} sessions`);
 
-  // Collect all speaker IDs referenced in sessions
+  // Collect all speaker IDs referenced in sessions (normalized to lowercase)
   const activeSpeakerIds = new Set<string>();
   sessionsSnapshot.forEach((doc) => {
     const speakers = doc.data()['speakers'] as string[] | undefined;
     if (speakers) {
       for (const id of speakers) {
-        activeSpeakerIds.add(id);
+        activeSpeakerIds.add(id.toLowerCase());
       }
     }
   });

@@ -79,10 +79,11 @@ async function main() {
     if (data['videoId']) talk.videoId = data['videoId'] as string;
 
     for (const id of speakers) {
-      scheduledSpeakerIds.add(id);
-      const existing = speakerTalks.get(id) ?? [];
+      const normalizedId = id.toLowerCase();
+      scheduledSpeakerIds.add(normalizedId);
+      const existing = speakerTalks.get(normalizedId) ?? [];
       existing.push(talk);
-      speakerTalks.set(id, existing);
+      speakerTalks.set(normalizedId, existing);
     }
   }
   console.log(`  ${scheduledSpeakerIds.size} unique speaker IDs on the ${year} schedule\n`);
