@@ -7,6 +7,7 @@ import './admin-list.js';
 import './admin-form.js';
 import './collections/schedule-form.js';
 import './collections/config-form.js';
+import './collections/previous-speakers-form.js';
 import { SCHEMAS } from './schemas/index.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
@@ -275,6 +276,14 @@ export class AdminPage extends LitElement {
         return html`<admin-list .schema=${SCHEMAS['config']} @admin-action=${this.handleAction}></admin-list>`;
       }
       return html`<config-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></config-form>`;
+    }
+
+    // Previous speakers uses its own custom form for sessions-by-year
+    if (this.currentSection === 'previous-speakers') {
+      if (this.currentView === 'list') {
+        return html`<admin-list .schema=${SCHEMAS['previous-speakers']} @admin-action=${this.handleAction}></admin-list>`;
+      }
+      return html`<previous-speakers-form editId="${this.currentEditId}" @admin-action=${this.handleAction}></previous-speakers-form>`;
     }
 
     // Partners and team have subcollection navigation
