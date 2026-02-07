@@ -103,20 +103,37 @@ async function main() {
   });
   console.log(`  Found ${activeSpeakers.length} active speakers (${speakersSnapshot.size} total)`);
 
-  console.log('Fetching sessions...');
-  const sessionsSnapshot = await firestore.collection('sessions').get();
-  const sessions = new Map<string, SessionDoc>();
-  sessionsSnapshot.forEach((doc) => sessions.set(doc.id, doc.data() as SessionDoc));
-  console.log(`  Found ${sessions.size} sessions`);
-
   if (activeSpeakers.length === 0) {
     console.log('\nNo active speakers to archive. Exiting.');
     process.exit(0);
   }
 
-  // 2. Build speaker -> sessions map
+  // 2. Walk the schedule to find session IDs for this year only
+  console.log('Fetching schedule...');
+  const scheduleSnapshot = await firestore.collection('schedule').get();
+  const scheduledSessionIds = new Set<string>();
+  scheduleSnapshot.forEach((doc) => {
+    const timeslots = doc.data()['timeslots'] as Array<{ sessions: Array<{ items: string[] }> }> | undefined;
+    if (!timeslots) return;
+    for (const slot of timeslots) {
+      if (!slot.sessions) continue;
+      for (const session of slot.sessions) {
+        if (!session.items) continue;
+        for (const sessionId of session.items) {
+          scheduledSessionIds.add(sessionId);
+        }
+      }
+    }
+  });
+  console.log(`  Found ${scheduleSnapshot.size} schedule days, ${scheduledSessionIds.size} scheduled sessions`);
+
+  // 3. Fetch only scheduled sessions and build speaker -> sessions map
+  console.log('Fetching scheduled sessions...');
   const speakerSessions = new Map<string, SessionDoc[]>();
-  for (const [, session] of sessions) {
+  for (const sessionId of scheduledSessionIds) {
+    const sessionDoc = await firestore.collection('sessions').doc(sessionId).get();
+    if (!sessionDoc.exists) continue;
+    const session = sessionDoc.data() as SessionDoc;
     if (!session.speakers) continue;
     for (const speakerId of session.speakers) {
       const existing = speakerSessions.get(speakerId) ?? [];
@@ -124,8 +141,9 @@ async function main() {
       speakerSessions.set(speakerId, existing);
     }
   }
+  console.log(`  ${speakerSessions.size} speakers with scheduled talks`);
 
-  // 3. Archive each active speaker
+  // 4. Archive each active speaker
   console.log(`\nArchiving ${activeSpeakers.length} speakers under year "${year}":\n`);
   const batch = firestore.batch();
   let ops = 0;

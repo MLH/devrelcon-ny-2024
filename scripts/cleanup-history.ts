@@ -1,5 +1,8 @@
 /**
- * Remove history entries for a given year from speakers who are NOT on the schedule.
+ * Clean up history entries for a given year:
+ *   - Remove history.<year> from speakers NOT on the schedule
+ *   - Rebuild history.<year>.talks for speakers who ARE on the schedule,
+ *     using only sessions that appear in the schedule (not all sessions)
  *
  * Usage:
  *   npx ts-node-script scripts/cleanup-history --year 2025 --dry-run
@@ -56,61 +59,92 @@ async function main() {
   console.log(`  Found ${scheduleSnapshot.size} schedule days`);
   console.log(`  ${scheduledSessionIds.size} session IDs on the schedule`);
 
-  // 2. Look up those sessions to collect speaker IDs
-  console.log('Fetching sessions...');
+  // 2. Look up those sessions to build speaker → talks map
+  console.log('Fetching scheduled sessions...');
   const scheduledSpeakerIds = new Set<string>();
+  const speakerTalks = new Map<string, Array<{ title: string; tags: string[]; presentation?: string; videoId?: string }>>();
+
   for (const sessionId of scheduledSessionIds) {
     const sessionDoc = await firestore.collection('sessions').doc(sessionId).get();
     if (!sessionDoc.exists) continue;
-    const speakers = sessionDoc.data()!['speakers'] as string[] | undefined;
-    if (speakers) {
-      for (const id of speakers) {
-        scheduledSpeakerIds.add(id);
-      }
+    const data = sessionDoc.data()!;
+    const speakers = data['speakers'] as string[] | undefined;
+    if (!speakers) continue;
+
+    const talk: { title: string; tags: string[]; presentation?: string; videoId?: string } = {
+      title: data['title'] as string,
+      tags: (data['tags'] as string[]) ?? [],
+    };
+    if (data['presentation']) talk.presentation = data['presentation'] as string;
+    if (data['videoId']) talk.videoId = data['videoId'] as string;
+
+    for (const id of speakers) {
+      scheduledSpeakerIds.add(id);
+      const existing = speakerTalks.get(id) ?? [];
+      existing.push(talk);
+      speakerTalks.set(id, existing);
     }
   }
   console.log(`  ${scheduledSpeakerIds.size} unique speaker IDs on the ${year} schedule\n`);
 
-  // 2. Find speakers with a history entry for this year who are NOT on the schedule
+  // 3. Fix speakers: remove bogus history or rebuild talks from schedule only
   console.log('Fetching speakers...');
   const speakersSnapshot = await firestore.collection('speakers').get();
   console.log(`  Found ${speakersSnapshot.size} speakers\n`);
 
   const batch = firestore.batch();
-  let ops = 0;
-  let skipped = 0;
+  let removed = 0;
+  let rebuilt = 0;
+  let unchanged = 0;
 
   speakersSnapshot.forEach((doc) => {
     const data = doc.data();
-    const history = data['history'] as Record<string, unknown> | undefined;
+    const history = data['history'] as Record<string, { talks?: Array<{ title: string }> }> | undefined;
 
     if (!history || !history[year]) {
       return; // No history entry for this year — nothing to clean
     }
 
-    if (scheduledSpeakerIds.has(doc.id)) {
-      skipped++;
-      console.log(`  [keep]   ${data['name']} — on the schedule`);
+    if (!scheduledSpeakerIds.has(doc.id)) {
+      console.log(`  [remove]  ${data['name']} — NOT on the schedule, removing history.${year}`);
+      if (!dryRun) {
+        batch.update(doc.ref, {
+          [`history.${year}`]: FieldValue.delete(),
+        });
+      }
+      removed++;
       return;
     }
 
-    console.log(`  [remove] ${data['name']} — NOT on the schedule, removing history.${year}`);
+    // Speaker IS on the schedule — rebuild talks from schedule data only
+    const correctTalks = speakerTalks.get(doc.id) ?? [];
+    const currentTalks = history[year]?.talks ?? [];
+    const currentTitles = currentTalks.map((t) => t.title).sort().join('|');
+    const correctTitles = correctTalks.map((t) => t.title).sort().join('|');
+
+    if (currentTitles === correctTitles) {
+      unchanged++;
+      return;
+    }
+
+    console.log(`  [rebuild] ${data['name']} — talks: ${currentTalks.length} → ${correctTalks.length}`);
     if (!dryRun) {
       batch.update(doc.ref, {
-        [`history.${year}`]: FieldValue.delete(),
+        [`history.${year}.talks`]: correctTalks,
       });
-      ops++;
     }
+    rebuilt++;
   });
 
-  console.log(`\nSummary: ${ops} to remove, ${skipped} to keep`);
+  console.log(`\nSummary: ${removed} removed, ${rebuilt} rebuilt, ${unchanged} unchanged`);
 
-  if (!dryRun && ops > 0) {
-    console.log(`\nCommitting ${ops} updates...`);
+  const totalOps = removed + rebuilt;
+  if (!dryRun && totalOps > 0) {
+    console.log(`\nCommitting ${totalOps} updates...`);
     await batch.commit();
     console.log('Done!');
   } else if (dryRun) {
-    console.log(`\n[dry-run] Would remove history.${year} from ${ops} speakers.`);
+    console.log(`\n[dry-run] Would update ${totalOps} speakers.`);
   } else {
     console.log('\nNo changes needed.');
   }
