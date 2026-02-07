@@ -14,6 +14,16 @@ import '@shoelace-style/shoelace/dist/components/alert/alert.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import '@shoelace-style/shoelace/dist/components/divider/divider.js';
 
+// Inject Shoelace light theme CSS at document level for design tokens
+const SHOELACE_THEME_URL = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css';
+
+if (!document.querySelector(`link[href="${SHOELACE_THEME_URL}"]`)) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = SHOELACE_THEME_URL;
+  document.head.appendChild(link);
+}
+
 const auth = getAuth(firebaseApp);
 
 const NAV_SECTIONS = [
