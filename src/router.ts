@@ -145,6 +145,13 @@ const ROUTES: Route[] = [
     },
   },
   {
+    path: '/get-involved',
+    component: 'get-involved-page',
+    action: async () => {
+      await import('./pages/get-involved-page.js');
+    },
+  },
+  {
     path: '/convince-your-boss',
     component: 'convince-your-boss-page',
     action: async () => {

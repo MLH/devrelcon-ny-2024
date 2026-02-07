@@ -11,6 +11,7 @@ type SimpleHeroKeys = Extract<
   | 'blog'
   | 'convinceYourBoss'
   | 'faq'
+  | 'getInvolved'
   | 'notFound'
   | 'schedule'
   | 'speakers'

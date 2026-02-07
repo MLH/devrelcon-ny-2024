@@ -44,6 +44,29 @@ export class AboutBlock extends ThemedElement {
           margin-top: 4px;
         }
 
+        .get-involved-cta {
+          margin-top: 32px;
+          text-align: center;
+        }
+
+        .get-involved-cta p {
+          font-size: 16px;
+          color: var(--primary-text-color);
+          margin: 0 0 12px;
+        }
+
+        .get-involved-cta a {
+          text-decoration: none;
+        }
+
+        .get-involved-cta paper-button {
+          background-color: var(--default-primary-color);
+          color: var(--text-primary-color);
+          font-size: 14px;
+          font-weight: 500;
+          padding: 8px 24px;
+        }
+
         @media (min-width: 640px) {
           .content {
             grid-gap: 64px;
@@ -106,6 +129,16 @@ export class AboutBlock extends ThemedElement {
             <div class="numbers">${aboutBlock.statisticsBlock.tracks.number}</div>
             <div class="label">${aboutBlock.statisticsBlock.tracks.label}</div>
           </div>
+        </div>
+
+        <div class="get-involved-cta">
+          <p>Want to speak, volunteer, or sponsor?</p>
+          <a href="/get-involved">
+            <paper-button class="animated icon-right">
+              <span>Get Involved</span>
+              <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
+            </paper-button>
+          </a>
         </div>
       </div>
     `;
