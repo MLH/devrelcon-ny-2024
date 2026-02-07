@@ -46,7 +46,8 @@
   ],
   "heroSettings": {
     "home": {
-      "description": "DevRelCon is the premiere global conference for Developer Relations, Developer Experience, Developer Marketing, and Technical Community Management. This is a unique opportunity to hear talks from industry leaders, connect with your peers on best practices and challenges, and participate in hands-on workshops and discussions.",
+      "tagline": "The conference for teams building developer platforms, tools, and ecosystems",
+      "description": "DevRelCon is the premier conference for anyone working to grow developer adoption — from Developer Relations and Developer Experience to Product Marketing, Platform Product Management, and Go-to-Market strategy. Join practitioners and leaders from the world's top developer platforms for talks, hands-on workshops, and the conversations that shape our craft.",
       "background": {
         "color": "#673ab7",
         "image": "/images/backgrounds/home.jpg"
@@ -169,9 +170,7 @@
         "url": "https://accounts.google.com"
       }
     ],
-    "allowedProvidersUrl": [
-      "https://accounts.google.com"
-    ]
+    "allowedProvidersUrl": ["https://accounts.google.com"]
   },
   "contentLoaders": {
     "schedule": {

@@ -71,6 +71,22 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           margin-top: 34px;
         }
 
+        .hero-tagline {
+          font-size: 32px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin: 24px 0 0;
+          max-width: 700px;
+          color: inherit;
+        }
+
+        .hero-description {
+          font-size: 18px;
+          line-height: 1.5;
+          max-width: 700px;
+          opacity: 0.9;
+        }
+
         .action-buttons {
           margin: 0 -8px;
           font-size: 14px;
@@ -155,6 +171,14 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             font-size: 28px;
             line-height: 1.1;
           }
+
+          .hero-tagline {
+            font-size: 44px;
+          }
+
+          .hero-description {
+            font-size: 20px;
+          }
         }
       </style>
 
@@ -166,11 +190,16 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         hide-logo
       >
         <div class="home-content" layout vertical center>
-          <lazy-image class="hero-logo" src="/images/devrelcon25.png" alt="[[siteTitle]]"></lazy-image>
+          <lazy-image
+            class="hero-logo"
+            src="/images/devrelcon25.png"
+            alt="[[siteTitle]]"
+          ></lazy-image>
 
           <div class="info-items">
             <div class="info-item">[[city]]. [[dates]]</div>
-            <div class="info-item">[[heroSettings.description]]</div>
+            <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
+            <div class="info-item hero-description">[[heroSettings.description]]</div>
           </div>
 
           <div class="scroll-down" on-click="scrollNextBlock">
