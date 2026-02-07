@@ -247,36 +247,42 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
             <div class="year-title">[[yearData.year]]</div>
             <div class="year-meta">[[yearData.snapshot.title]], [[yearData.snapshot.company]]</div>
             <template is="dom-repeat" items="[[yearData.snapshot.talks]]" as="talk">
-              <div class="section" style="cursor: default;">
+              <a class="section" href$="[[sessionUrl(talk.sessionId)]]" hidden$="[[!talk.sessionId]]">
+                <div layout horizontal center>
+                  <div class="section-details" flex>
+                    <div class="section-primary-text">[[talk.title]]</div>
+                    <div class="tags" hidden$="[[!talk.tags.length]]">
+                      <template is="dom-repeat" items="[[talk.tags]]" as="tag">
+                        <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
+                      </template>
+                    </div>
+                    <div class="actions" layout horizontal>
+                      <span
+                        class="action"
+                        hidden$="[[!talk.videoId]]"
+                        layout horizontal center
+                      >
+                        <iron-icon icon="hoverboard:video"></iron-icon>
+                        <span>Video</span>
+                      </span>
+                      <span
+                        class="action"
+                        hidden$="[[!talk.presentation]]"
+                        layout horizontal center
+                      >
+                        <iron-icon icon="hoverboard:presentation"></iron-icon>
+                        <span>Slides</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <div class="section" style="cursor: default;" hidden$="[[talk.sessionId]]">
                 <div class="section-primary-text">[[talk.title]]</div>
                 <div class="tags" hidden$="[[!talk.tags.length]]">
                   <template is="dom-repeat" items="[[talk.tags]]" as="tag">
                     <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
                   </template>
-                </div>
-                <div class="actions" layout horizontal>
-                  <a
-                    class="action"
-                    href$="https://www.youtube.com/watch?v=[[talk.videoId]]"
-                    hidden$="[[!talk.videoId]]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    layout horizontal center
-                  >
-                    <iron-icon icon="hoverboard:video"></iron-icon>
-                    <span>Video</span>
-                  </a>
-                  <a
-                    class="action"
-                    href$="[[talk.presentation]]"
-                    hidden$="[[!talk.presentation]]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    layout horizontal center
-                  >
-                    <iron-icon icon="hoverboard:presentation"></iron-icon>
-                    <span>Slides</span>
-                  </a>
                 </div>
               </div>
             </template>

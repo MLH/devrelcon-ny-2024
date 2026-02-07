@@ -129,7 +129,7 @@ async function main() {
 
   // 3. Fetch only scheduled sessions and build speaker -> sessions map
   console.log('Fetching scheduled sessions...');
-  const speakerSessions = new Map<string, SessionDoc[]>();
+  const speakerSessions = new Map<string, Array<{ id: string; data: SessionDoc }>>();
   for (const sessionId of scheduledSessionIds) {
     const sessionDoc = await firestore.collection('sessions').doc(sessionId).get();
     if (!sessionDoc.exists) continue;
@@ -138,7 +138,7 @@ async function main() {
     for (const speakerId of session.speakers) {
       const normalizedId = speakerId.toLowerCase();
       const existing = speakerSessions.get(normalizedId) ?? [];
-      existing.push(session);
+      existing.push({ id: sessionId, data: session });
       speakerSessions.set(normalizedId, existing);
     }
   }
@@ -150,8 +150,10 @@ async function main() {
   let ops = 0;
 
   for (const { id, data } of activeSpeakers) {
-    const talks = (speakerSessions.get(id) ?? []).map((s) => {
-      const talk: { title: string; tags: string[]; presentation?: string; videoId?: string } = {
+    const talks = (speakerSessions.get(id) ?? []).map((entry) => {
+      const s = entry.data;
+      const talk: { sessionId: string; title: string; tags: string[]; presentation?: string; videoId?: string } = {
+        sessionId: entry.id,
         title: s.title,
         tags: s.tags ?? [],
       };

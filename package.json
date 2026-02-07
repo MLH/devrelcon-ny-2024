@@ -14,6 +14,7 @@
     "firestore:copy": "ts-node-script ./scripts/firestore-copy",
     "firestore:activate-speakers": "ts-node-script ./scripts/activate-speakers",
     "firestore:archive-speakers": "ts-node-script ./scripts/archive-speakers",
+    "firestore:backfill-session-ids": "ts-node-script ./scripts/backfill-session-ids",
     "firestore:cleanup-history": "ts-node-script ./scripts/cleanup-history",
     "firestore:merge-speakers": "ts-node-script ./scripts/merge-speakers",
     "firestore:regenerate-speakers": "ts-node-script ./scripts/regenerate-speakers",

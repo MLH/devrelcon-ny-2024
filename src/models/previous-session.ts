@@ -1,5 +1,6 @@
 export interface PreviousSession {
   presentation?: string;
+  sessionId?: string;
   tags: string[];
   title: string;
   videoId?: string;
