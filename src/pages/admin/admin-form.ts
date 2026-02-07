@@ -40,6 +40,7 @@ export class AdminForm extends LitElement {
   @state() private message: { type: 'success' | 'danger'; text: string } | null = null;
   @state() private docId = '';
   @state() private speakerOptions: { value: string; label: string }[] = [];
+  @state() private tagOptions: { value: string; label: string }[] = [];
   @state() private existingIds: string[] = [];
 
   static override styles = css`
@@ -121,6 +122,21 @@ export class AdminForm extends LitElement {
         }));
       } catch {
         this.speakerOptions = [];
+      }
+    }
+
+    // Load tag options for sessions
+    if (this.schema.fields.some((f) => f.name === 'tags' && f.type === 'multiselect')) {
+      try {
+        const allSessions = await fetchCollection('sessions', 'title');
+        const tagSet = new Set<string>();
+        allSessions.forEach((s) => {
+          const tags = s['tags'] as string[] | undefined;
+          if (tags) tags.forEach((t) => tagSet.add(t));
+        });
+        this.tagOptions = Array.from(tagSet).sort().map((t) => ({ value: t, label: t }));
+      } catch {
+        this.tagOptions = [];
       }
     }
 
@@ -345,9 +361,13 @@ export class AdminForm extends LitElement {
                 ? this.speakerOptions.map(
                     (opt) => html`<sl-option value="${opt.value}">${opt.label}</sl-option>`,
                   )
-                : (field.options || []).map(
-                    (opt) => html`<sl-option value="${opt.value}">${opt.label}</sl-option>`,
-                  )}
+                : field.name === 'tags'
+                  ? this.tagOptions.map(
+                      (opt) => html`<sl-option value="${opt.value}">${opt.label}</sl-option>`,
+                    )
+                  : (field.options || []).map(
+                      (opt) => html`<sl-option value="${opt.value}">${opt.label}</sl-option>`,
+                    )}
             </sl-select>
           </div>
         `;
