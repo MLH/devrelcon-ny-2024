@@ -19,6 +19,8 @@ export {
   followOur,
   followUs,
   footer,
+  footerNewsletter,
+  footerOrganizer,
   footerRelBlock,
   galleryBlock,
   latestPostsBlock,

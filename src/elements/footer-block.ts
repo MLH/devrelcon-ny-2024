@@ -5,7 +5,6 @@ import '../utils/icons';
 import { scrollToTop } from '../utils/scrolling';
 import './footer-nav';
 import './footer-rel';
-import './footer-social';
 
 @customElement('footer-block')
 export class FooterBlock extends PolymerElement {
@@ -56,7 +55,6 @@ export class FooterBlock extends PolymerElement {
         <div class="fab">
           <paper-fab class="back-to-top" icon="hoverboard:up" on-click="backToTop"></paper-fab>
         </div>
-        <footer-social layout flex flex-auto horizontal wrap></footer-social>
         <footer-rel></footer-rel>
         <footer-nav layout horizontal wrap justified center></footer-nav>
       </div>

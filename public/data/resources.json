@@ -43,27 +43,67 @@
   },
   "footerRelBlock": [
     {
-      "title": "About",
+      "title": "DevRelCon",
       "links": [
         {
-          "name": "Major League Hacking",
-          "url": "https://sponsor.mlh.io/",
+          "name": "What is DevRelCon?",
+          "url": "/#about",
+          "newTab": false
+        },
+        {
+          "name": "Past Events",
+          "url": "https://developerrelations.com/devrelcon",
           "newTab": true
         },
         {
-          "name": "Hoopy",
-          "url": "https://hoopy.io/",
-          "newTab": true
+          "name": "Code of Conduct",
+          "url": "/coc",
+          "newTab": false
         },
         {
-          "name": "Developer Relations",
-          "url": "https://developerrelations.com/",
+          "name": "Contact Us",
+          "url": "mailto:devrelcon@mlh.io",
+          "newTab": false
+        }
+      ]
+    },
+    {
+      "title": "This Event",
+      "links": [
+        {
+          "name": "Schedule",
+          "url": "/schedule",
+          "newTab": false
+        },
+        {
+          "name": "Speakers",
+          "url": "/speakers",
+          "newTab": false
+        },
+        {
+          "name": "FAQ",
+          "url": "/faq",
+          "newTab": false
+        },
+        {
+          "name": "Neighborhood Guide",
+          "url": "/neighborhood",
+          "newTab": false
+        },
+        {
+          "name": "Buy Ticket",
+          "url": "/#tickets-block",
+          "newTab": false
+        },
+        {
+          "name": "Sponsor DevRelCon",
+          "url": "https://majorleaguehacking.typeform.com/to/lVvRM8eO",
           "newTab": true
         }
       ]
     },
     {
-      "title": "Explore Past DevRelCon Events",
+      "title": "Past Events",
       "links": [
         {
           "name": "New York 2024",
@@ -81,38 +121,33 @@
           "newTab": true
         },
         {
-          "name": "LATAM 2023",
-          "url": "https://developerrelations.com/event/devrelcon-latam-2023",
-          "newTab": true
-        },
-        {
           "name": "San Francisco 2019",
           "url": "https://developerrelations.com/event/devrelcon-san-francisco-2019",
           "newTab": true
         }
       ]
-    },
-    {
-      "title": "Event Resources",
-      "links": [
-        {
-          "name": "Sponsor DevRelCon",
-          "url": "https://majorleaguehacking.typeform.com/to/lVvRM8eO",
-          "newTab": true
-        },
-        {
-          "name": "FAQs",
-          "url": "/faq",
-          "newTab": false
-        },
-        {
-          "name": "Neighborhood Guide",
-          "url": "/neighborhood",
-          "newTab": false
-        }
-      ]
     }
   ],
+  "footerNewsletter": {
+    "title": "Stay Connected",
+    "subtitle": "Get updates on DevRelCon events, speakers, and content."
+  },
+  "footerOrganizer": {
+    "title": "Organized By",
+    "brandContext": "Part of the DevRelCon global series since 2015",
+    "organizers": [
+      {
+        "name": "Major League Hacking",
+        "url": "https://sponsor.mlh.io/",
+        "logo": ""
+      },
+      {
+        "name": "Hoopy",
+        "url": "https://hoopy.io/",
+        "logo": ""
+      }
+    ]
+  },
   "subscribeNote": "No spam, only the latest news and updates!",
   "codeOfConduct": "Code of Conduct",
   "codeOfConductBlock": {
