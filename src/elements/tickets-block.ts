@@ -367,14 +367,14 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
           </table>
         </div>
 
-        <div class="ticket-ctas">
-          <div class="convince-boss">
+        <div class="ticket-ctas" hidden$="[[_hideCtas(ticketsBlock)]]">
+          <div class="convince-boss" hidden$="[[!ticketsBlock.convinceBossLink]]">
             [[ticketsBlock.convinceBoss]]
             <a href$="[[ticketsBlock.convinceBossLink]]">[[ticketsBlock.convinceBossLabel]]</a>
           </div>
-          <div class="group-discount">
+          <div class="group-discount" hidden$="[[!ticketsBlock.groupDiscountEmail]]">
             [[ticketsBlock.groupDiscountPrefix]]
-            <a href="mailto:devrelcon@mlh.io">[[ticketsBlock.groupDiscountEmail]]</a>
+            <a href$="mailto:[[ticketsBlock.groupDiscountEmail]]">[[ticketsBlock.groupDiscountEmail]]</a>
             [[ticketsBlock.groupDiscountSuffix]]
           </div>
         </div>
@@ -442,5 +442,9 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
 
   private getExclusiveRowClass(feature: { name: string; tiers: string[] }): string {
     return feature.tiers.length === 1 ? 'exclusive-row' : '';
+  }
+
+  private _hideCtas(block: typeof ticketsBlock): boolean {
+    return !block.convinceBossLink && !block.groupDiscountEmail;
   }
 }
