@@ -155,10 +155,53 @@
   },
   "ticketsBlock": {
     "title": "Tickets",
-    "ticketsDetails": "Tickets grant access to all conference sessions, coffee breaks, breakfast, lunch and party. Travel and accommodations are NOT included in the ticket price.",
+    "ticketsDetails": "All tickets include full access to conference sessions across all 3 tracks, workshops, unconference, breakfast, lunch, coffee breaks, and the Day 1 evening reception. Travel and accommodations are not included.",
+    "neighborhoodLinkPrefix": "See our",
+    "neighborhoodLinkLabel": "Neighborhood Guide",
+    "neighborhoodLinkSuffix": "for venue and hotel recommendations.",
     "soldOut": "You missed it!",
     "notAvailableYet": "Not available yet",
-    "save": "Save ${discount}% today"
+    "save": "Save ${discount}% today",
+    "urgencyMessage": "Early Bird sold out — Regular pricing available",
+    "convinceBoss": "Need help justifying the trip?",
+    "convinceBossLink": "/convince-your-boss",
+    "convinceBossLabel": "Make the case to your manager",
+    "groupDiscountPrefix": "Bringing your team? Email",
+    "groupDiscountEmail": "devrelcon@mlh.io",
+    "groupDiscountSuffix": "for group pricing.",
+    "featureComparison": {
+      "title": "What's included",
+      "features": [
+        {
+          "name": "All sessions (3 tracks, 40+ sessions)",
+          "tiers": ["scholarship", "earlybird", "regular", "supporter"]
+        },
+        {
+          "name": "Workshops & unconference",
+          "tiers": ["scholarship", "earlybird", "regular", "supporter"]
+        },
+        {
+          "name": "Breakfast & lunch both days",
+          "tiers": ["scholarship", "earlybird", "regular", "supporter"]
+        },
+        {
+          "name": "Evening reception (Day 1)",
+          "tiers": ["scholarship", "earlybird", "regular", "supporter"]
+        },
+        {
+          "name": "Coffee & snacks",
+          "tiers": ["scholarship", "earlybird", "regular", "supporter"]
+        },
+        { "name": "Speaker/sponsor mixer", "tiers": ["supporter"] },
+        { "name": "On-stage thank you", "tiers": ["supporter"] }
+      ],
+      "tierLabels": {
+        "scholarship": "Scholarship",
+        "earlybird": "Early Bird",
+        "regular": "Regular",
+        "supporter": "Supporter"
+      }
+    }
   },
   "partnersBlock": {
     "title": "Partners",

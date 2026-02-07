@@ -98,9 +98,15 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
 
         .additional-info {
           margin: 16px auto 0;
-          max-width: 480px;
+          max-width: 640px;
           font-size: 14px;
           color: var(--secondary-text-color);
+          line-height: 1.5;
+        }
+
+        .additional-info a {
+          color: var(--default-primary-color);
+          text-decoration: underline;
         }
 
         .actions {
@@ -118,6 +124,119 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
           font-size: 12px;
         }
 
+        /* Urgency indicator */
+        .urgency-banner {
+          margin: 0 auto 8px;
+          padding: 8px 16px;
+          background-color: var(--primary-color-transparent);
+          border-left: 3px solid var(--default-primary-color);
+          border-radius: var(--border-radius);
+          font-size: 14px;
+          color: var(--primary-text-color);
+          font-weight: 500;
+          display: inline-block;
+        }
+
+        /* Feature comparison table */
+        .feature-comparison {
+          margin: 32px auto 0;
+          max-width: 720px;
+          text-align: left;
+        }
+
+        .feature-comparison h3 {
+          font-size: 20px;
+          font-weight: 500;
+          margin-bottom: 16px;
+          text-align: center;
+          color: var(--primary-text-color);
+        }
+
+        .comparison-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 14px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+          padding: 10px 8px;
+          border-bottom: 1px solid var(--divider-color);
+          text-align: center;
+        }
+
+        .comparison-table th {
+          font-weight: 600;
+          color: var(--primary-text-color);
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          background-color: var(--secondary-background-color);
+        }
+
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+          text-align: left;
+          font-weight: 500;
+        }
+
+        .comparison-table td:first-child {
+          color: var(--primary-text-color);
+        }
+
+        .comparison-table .check {
+          color: var(--default-primary-color);
+          font-size: 18px;
+          font-weight: 700;
+        }
+
+        .comparison-table .supporter-col {
+          background-color: var(--primary-color-transparent);
+        }
+
+        .comparison-table .exclusive-row td {
+          font-weight: 600;
+        }
+
+        /* Convince your boss + group discount */
+        .ticket-ctas {
+          margin: 24px auto 0;
+          max-width: 640px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .convince-boss {
+          font-size: 15px;
+          color: var(--primary-text-color);
+        }
+
+        .convince-boss a {
+          color: var(--default-primary-color);
+          font-weight: 500;
+          text-decoration: none;
+        }
+
+        .convince-boss a:hover {
+          text-decoration: underline;
+        }
+
+        .convince-boss a::after {
+          content: ' \\2192';
+        }
+
+        .group-discount {
+          font-size: 14px;
+          color: var(--secondary-text-color);
+        }
+
+        .group-discount a {
+          color: var(--default-primary-color);
+          text-decoration: underline;
+        }
+
         @media (min-width: 640px) {
           .tickets-placeholder {
             grid-template-columns: repeat(auto-fill, 200px);
@@ -131,10 +250,35 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
             transform: scale(1.15);
           }
         }
+
+        /* Mobile responsive comparison table */
+        @media (max-width: 480px) {
+          .comparison-table {
+            font-size: 12px;
+          }
+
+          .comparison-table th,
+          .comparison-table td {
+            padding: 8px 4px;
+          }
+
+          .comparison-table th {
+            font-size: 10px;
+          }
+
+          .feature-comparison {
+            margin: 24px 0 0;
+          }
+        }
       </style>
 
       <div class="tickets-wrapper container">
         <h1 class="container-title">[[ticketsBlock.title]]</h1>
+
+        <div class="urgency-banner" hidden$="[[!ticketsBlock.urgencyMessage]]">
+          [[ticketsBlock.urgencyMessage]]
+        </div>
+
         <content-loader
           class="tickets-placeholder"
           card-padding="24px"
@@ -195,7 +339,54 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
           </template>
         </div>
 
-        <div class="additional-info">*[[ticketsBlock.ticketsDetails]]</div>
+        <div class="feature-comparison" hidden$="[[pending]]">
+          <h3>[[ticketsBlock.featureComparison.title]]</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>[[ticketsBlock.featureComparison.tierLabels.scholarship]]</th>
+                <th>[[ticketsBlock.featureComparison.tierLabels.earlybird]]</th>
+                <th>[[ticketsBlock.featureComparison.tierLabels.regular]]</th>
+                <th class="supporter-col">[[ticketsBlock.featureComparison.tierLabels.supporter]]</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template is="dom-repeat" items="[[ticketsBlock.featureComparison.features]]" as="feature">
+                <tr class$="[[getExclusiveRowClass(feature)]]">
+                  <td>[[feature.name]]</td>
+                  <td><span class="check" hidden$="[[!hasTier(feature, 'scholarship')]]">&#10003;</span></td>
+                  <td><span class="check" hidden$="[[!hasTier(feature, 'earlybird')]]">&#10003;</span></td>
+                  <td><span class="check" hidden$="[[!hasTier(feature, 'regular')]]">&#10003;</span></td>
+                  <td class="supporter-col">
+                    <span class="check" hidden$="[[!hasTier(feature, 'supporter')]]">&#10003;</span>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ticket-ctas">
+          <div class="convince-boss">
+            [[ticketsBlock.convinceBoss]]
+            <a href$="[[ticketsBlock.convinceBossLink]]">[[ticketsBlock.convinceBossLabel]]</a>
+          </div>
+          <div class="group-discount">
+            [[ticketsBlock.groupDiscountPrefix]]
+            <a href="mailto:devrelcon@mlh.io">[[ticketsBlock.groupDiscountEmail]]</a>
+            [[ticketsBlock.groupDiscountSuffix]]
+          </div>
+        </div>
+
+        <div class="additional-info">
+          <div>*[[ticketsBlock.ticketsDetails]]</div>
+          <div>
+            [[ticketsBlock.neighborhoodLinkPrefix]]
+            <a href="/neighborhood">[[ticketsBlock.neighborhoodLinkLabel]]</a>
+            [[ticketsBlock.neighborhoodLinkSuffix]]
+          </div>
+        </div>
       </div>
     `;
   }
@@ -240,5 +431,16 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
 
   private getButtonText(available: boolean, scholarship: boolean) {
     return scholarship ? scholarshipTicket : (available ? buyTicket : this.ticketsBlock.notAvailableYet);
+  }
+
+  private hasTier(
+    feature: { name: string; tiers: string[] },
+    tier: string
+  ): boolean {
+    return feature.tiers.includes(tier);
+  }
+
+  private getExclusiveRowClass(feature: { name: string; tiers: string[] }): string {
+    return feature.tiers.length === 1 ? 'exclusive-row' : '';
   }
 }
