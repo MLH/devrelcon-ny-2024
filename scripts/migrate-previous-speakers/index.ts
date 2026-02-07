@@ -47,7 +47,14 @@ async function main() {
   console.log('Fetching speakers...');
   const speakersSnapshot = await firestore.collection('speakers').get();
   const speakersById = new Map<string, FirebaseFirestore.DocumentData>();
-  speakersSnapshot.forEach((doc) => speakersById.set(doc.id, doc.data()));
+  const speakersBySlug = new Map<string, { id: string; data: FirebaseFirestore.DocumentData }>();
+  speakersSnapshot.forEach((doc) => {
+    speakersById.set(doc.id, doc.data());
+    const name = doc.data()['name'] as string | undefined;
+    if (name) {
+      speakersBySlug.set(toSlug(name), { id: doc.id, data: doc.data() });
+    }
+  });
   console.log(`  Found ${speakersById.size} current speakers`);
 
   // 2. Process each previous speaker
@@ -61,13 +68,11 @@ async function main() {
     const prevId = doc.id;
     const slug = toSlug(prev['name'] || '');
 
-    // Check for existing speaker match
-    const existingSpeaker = speakersById.get(prevId) ?? speakersById.get(slug);
-    const targetId = speakersById.has(prevId)
-      ? prevId
-      : speakersById.has(slug)
-        ? slug
-        : prevId;
+    // Check for existing speaker match (case-insensitive via slug)
+    const byId = speakersById.get(prevId);
+    const bySlug = speakersBySlug.get(slug);
+    const existingSpeaker = byId ?? bySlug?.data;
+    const targetId = byId ? prevId : bySlug ? bySlug.id : prevId;
 
     // Convert previousSpeakers sessions format { [year]: PreviousSession[] }
     // to history format { [year]: YearSnapshot }
