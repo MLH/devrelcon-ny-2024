@@ -24,10 +24,6 @@ export const selectRouteName = (pathname: string): string => {
     case 'sessions':
       part = 'schedule';
       break;
-
-    case 'previous-speakers':
-      part = 'speakers';
-      break;
   }
 
   return part || 'home';
@@ -121,22 +117,11 @@ const ROUTES: Route[] = [
   },
   {
     path: '/previous-speakers',
-    children: [
-      {
-        path: '',
-        component: 'previous-speakers-page',
-        action: async () => {
-          await import('./pages/previous-speakers-page.js');
-        },
-      },
-      {
-        path: '/:id',
-        component: 'previous-speaker-page',
-        action: async () => {
-          await import('./pages/previous-speaker-page.js');
-        },
-      },
-    ],
+    redirect: '/speakers',
+  },
+  {
+    path: '/previous-speakers/:id',
+    redirect: '/speakers/:id',
   },
   {
     path: '/team',
