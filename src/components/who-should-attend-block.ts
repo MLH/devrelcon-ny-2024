@@ -23,13 +23,6 @@ export class WhoShouldAttendBlock extends ThemedElement {
           margin-bottom: 8px;
         }
 
-        .subtitle {
-          color: var(--secondary-text-color);
-          font-size: 16px;
-          margin-bottom: 32px;
-          padding: 0 0 0 14px;
-        }
-
         .segments-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -72,9 +65,6 @@ export class WhoShouldAttendBlock extends ThemedElement {
             grid-template-columns: repeat(2, 1fr);
           }
 
-          .subtitle {
-            font-size: 17px;
-          }
         }
 
         @media (min-width: 960px) {
