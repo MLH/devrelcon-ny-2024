@@ -256,24 +256,6 @@ export class SpeakerPage extends ReduxMixin(PolymerElement) {
                         <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
                       </template>
                     </div>
-                    <div class="actions" layout horizontal>
-                      <span
-                        class="action"
-                        hidden$="[[!talk.videoId]]"
-                        layout horizontal center
-                      >
-                        <iron-icon icon="hoverboard:video"></iron-icon>
-                        <span>Video</span>
-                      </span>
-                      <span
-                        class="action"
-                        hidden$="[[!talk.presentation]]"
-                        layout horizontal center
-                      >
-                        <iron-icon icon="hoverboard:presentation"></iron-icon>
-                        <span>Slides</span>
-                      </span>
-                    </div>
                   </div>
                 </div>
               </a>
