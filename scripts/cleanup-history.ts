@@ -36,20 +36,40 @@ async function main() {
   const { year, dryRun } = parseArgs();
   if (dryRun) console.log('=== DRY RUN ===\n');
 
-  // 1. Collect speaker IDs that are actually assigned to sessions
+  // 1. Walk the schedule to find session IDs for this year only
+  console.log('Fetching schedule...');
+  const scheduleSnapshot = await firestore.collection('schedule').get();
+  const scheduledSessionIds = new Set<string>();
+  scheduleSnapshot.forEach((doc) => {
+    const timeslots = doc.data()['timeslots'] as Array<{ sessions: Array<{ items: string[] }> }> | undefined;
+    if (!timeslots) return;
+    for (const slot of timeslots) {
+      if (!slot.sessions) continue;
+      for (const session of slot.sessions) {
+        if (!session.items) continue;
+        for (const sessionId of session.items) {
+          scheduledSessionIds.add(sessionId);
+        }
+      }
+    }
+  });
+  console.log(`  Found ${scheduleSnapshot.size} schedule days`);
+  console.log(`  ${scheduledSessionIds.size} session IDs on the schedule`);
+
+  // 2. Look up those sessions to collect speaker IDs
   console.log('Fetching sessions...');
-  const sessionsSnapshot = await firestore.collection('sessions').get();
   const scheduledSpeakerIds = new Set<string>();
-  sessionsSnapshot.forEach((doc) => {
-    const speakers = doc.data()['speakers'] as string[] | undefined;
+  for (const sessionId of scheduledSessionIds) {
+    const sessionDoc = await firestore.collection('sessions').doc(sessionId).get();
+    if (!sessionDoc.exists) continue;
+    const speakers = sessionDoc.data()!['speakers'] as string[] | undefined;
     if (speakers) {
       for (const id of speakers) {
         scheduledSpeakerIds.add(id);
       }
     }
-  });
-  console.log(`  Found ${sessionsSnapshot.size} sessions`);
-  console.log(`  ${scheduledSpeakerIds.size} unique speaker IDs on the schedule\n`);
+  }
+  console.log(`  ${scheduledSpeakerIds.size} unique speaker IDs on the ${year} schedule\n`);
 
   // 2. Find speakers with a history entry for this year who are NOT on the schedule
   console.log('Fetching speakers...');
