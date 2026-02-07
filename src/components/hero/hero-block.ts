@@ -33,7 +33,6 @@ export class HeroBlock extends ThemedElement {
           height: 100%;
           position: relative;
           color: inherit;
-          color: redddd:
         }
 
         .hero-overlay {
@@ -41,6 +40,7 @@ export class HeroBlock extends ThemedElement {
           opacity: 0;
           transition: opacity 0.3s;
           position: absolute;
+          z-index: 1;
         }
 
         .hero-overlay[show] {
@@ -80,7 +80,7 @@ export class HeroBlock extends ThemedElement {
           padding: 0;
           width: 100%;
           height: unset;
-          z-index: 0;
+          z-index: 2;
           position: unset;
         }
 
@@ -156,6 +156,7 @@ export class HeroBlock extends ThemedElement {
         class="hero-video"
         src="${this.backgroundVideo}"
         poster="${this.backgroundImage}"
+        preload="none"
         autoplay
         muted
         loop
