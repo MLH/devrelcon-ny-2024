@@ -24,9 +24,9 @@
       "label": "Home"
     },
     {
-      "route": "previous-speakers",
-      "permalink": "/previous-speakers",
-      "label": "Previous Speakers"
+      "route": "speakers",
+      "permalink": "/speakers",
+      "label": "Speakers"
     },
     {
       "route": "schedule",
@@ -65,14 +65,6 @@
       "title": "Speakers",
       "metaDescription": "Learn how to evolve your team's DevRel strategy and tactics from our exciting lineup of Developer Relations leaders, practitioners, and community members.",
       "description": "Learn how to evolve your team's DevRel strategy and tactics from our exciting lineup of Developer Relations leaders, practitioners, and community members.",
-      "background": {
-        "color": "#FFF"
-      },
-      "fontColor": "#424242"
-    },
-    "previousSpeakers": {
-      "title": "Previous Speakers",
-      "metaDescription": "Check out some of our previous speakers",
       "background": {
         "color": "#FFF"
       },

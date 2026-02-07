@@ -242,8 +242,9 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
   get featuredSpeakers(): Speaker[] {
     if (this.speakers instanceof Success) {
       const { data } = this.speakers;
-      const filteredSpeakers = data.filter((speaker) => speaker.featured);
-      const randomSpeakers = randomOrder(filteredSpeakers.length ? filteredSpeakers : data);
+      const activeSpeakers = data.filter((speaker) => speaker.active);
+      const filteredSpeakers = activeSpeakers.filter((speaker) => speaker.featured);
+      const randomSpeakers = randomOrder(filteredSpeakers.length ? filteredSpeakers : activeSpeakers);
       return randomSpeakers.slice(0, 4);
     } else {
       return [];

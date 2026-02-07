@@ -203,7 +203,7 @@
         "title": "Previous Speakers",
         "callToAction": {
             "label": "View Last Year's Speakers",
-            "link": "/previous-speakers"
+            "link": "/speakers"
         },
         "carousel": {
             "speakersPerSlide": 4,
