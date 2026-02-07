@@ -12,7 +12,6 @@ import { notificationsSubscribersReducer } from './notifications-subscribers/red
 import { notificationsUsersReducer } from './notifications-users/reducers';
 import partners from './partners';
 import { potentialPartnersReducer } from './potential-partners/reducers';
-import { previousSpeakersReducer } from './previous-speakers/reducers';
 import { scheduleReducer } from './schedule/reducers';
 import { sessionsReducer } from './sessions/reducers';
 import snackbars from './snackbars';
@@ -40,7 +39,6 @@ export const reducers = combineReducers({
   notificationsUsers: notificationsUsersReducer,
   partners,
   potentialPartners: potentialPartnersReducer,
-  previousSpeakers: previousSpeakersReducer,
   schedule: scheduleReducer,
   sessions: sessionsReducer,
   snackbars,
