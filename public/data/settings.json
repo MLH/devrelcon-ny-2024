@@ -56,7 +56,8 @@
       "description": "DevRelCon is the premier conference for anyone working to grow developer adoption — from Developer Relations and Developer Experience to Product Marketing, Platform Product Management, and Go-to-Market strategy. Join practitioners and leaders from the world's top developer platforms for talks, hands-on workshops, and the conversations that shape our craft.",
       "background": {
         "color": "#673ab7",
-        "image": "/images/backgrounds/home.jpg"
+        "image": "/images/backgrounds/home.jpg",
+        "video": "/videos/devrelcon-highlight.mp4"
       },
       "fontColor": "#FFF"
     },

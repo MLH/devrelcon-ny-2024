@@ -16,6 +16,8 @@ export class HeroBlock extends ThemedElement {
   fontColor = '#000';
   @property({ type: Boolean, attribute: 'hide-logo' })
   hideLogo = false;
+  @property({ type: String, attribute: 'background-video' })
+  backgroundVideo = '';
 
   static override get styles() {
     return [
@@ -49,6 +51,29 @@ export class HeroBlock extends ThemedElement {
           transition: background-color 0.3s;
           position: absolute;
           --lazy-image-fit: cover;
+        }
+
+        .hero-video {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
+
+        @media (min-width: 812px) {
+          .hero-video {
+            display: block;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-video {
+            display: none;
+          }
         }
 
         .container {
@@ -98,8 +123,12 @@ export class HeroBlock extends ThemedElement {
         vertical
         center-justified
       >
-        ${this.backgroundImage && this.image}
-        <div class="hero-overlay" ?show="${!!this.backgroundImage}" fit></div>
+        ${this.backgroundImage && this.image} ${this.backgroundVideo && this.video}
+        <div
+          class="hero-overlay"
+          ?show="${!!(this.backgroundImage || this.backgroundVideo)}"
+          fit
+        ></div>
         <div class="container">
           <div class="hero-content">
             <slot></slot>
@@ -118,6 +147,20 @@ export class HeroBlock extends ThemedElement {
         style="${styleMap({ backgroundColor: this.backgroundColor })}"
         fit
       ></lazy-image>
+    `;
+  }
+
+  private get video() {
+    return html`
+      <video
+        class="hero-video"
+        src="${this.backgroundVideo}"
+        poster="${this.backgroundImage}"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
     `;
   }
 

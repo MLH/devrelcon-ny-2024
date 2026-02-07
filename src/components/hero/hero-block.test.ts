@@ -26,8 +26,10 @@ describe('hero-block', () => {
     expect(element.backgroundColor).toBe('#fff');
     expect(element.fontColor).toBe('#000');
     expect(element.hideLogo).toBe(false);
+    expect(element.backgroundVideo).toBe('');
     expect(shadowRoot.querySelector<HTMLDivElement>('.hero-overlay')).not.toHaveAttribute('show');
     expect(shadowRoot.querySelector<HTMLDivElement>('.hero-image')).toBeNull();
+    expect(shadowRoot.querySelector<HTMLVideoElement>('.hero-video')).toBeNull();
   });
 
   it('accepts values', async () => {
@@ -80,5 +82,36 @@ describe('hero-block', () => {
       fontColor: '#000',
       hideLogo: false,
     });
+  });
+
+  it('renders a video element when background-video is set', async () => {
+    const { shadowRoot } = await fixture<HeroBlock>(
+      html`<hero-block
+        background-video="/videos/test.mp4"
+        background-image="/example.jpg"
+      ></hero-block>`,
+    );
+    const video = shadowRoot.querySelector<HTMLVideoElement>('.hero-video');
+    expect(video).not.toBeNull();
+    expect(video).toHaveAttribute('src', '/videos/test.mp4');
+    expect(video).toHaveAttribute('poster', '/example.jpg');
+    expect(video).toHaveAttribute('autoplay');
+    expect(video).toHaveAttribute('muted');
+    expect(video).toHaveAttribute('loop');
+    expect(video).toHaveAttribute('playsinline');
+  });
+
+  it('does not render video when background-video is not set', async () => {
+    const { shadowRoot } = await fixture<HeroBlock>(
+      html`<hero-block background-image="/example.jpg"></hero-block>`,
+    );
+    expect(shadowRoot.querySelector<HTMLVideoElement>('.hero-video')).toBeNull();
+  });
+
+  it('shows overlay when only background-video is set', async () => {
+    const { shadowRoot } = await fixture<HeroBlock>(
+      html`<hero-block background-video="/videos/test.mp4"></hero-block>`,
+    );
+    expect(shadowRoot.querySelector<HTMLDivElement>('.hero-overlay')).toHaveAttribute('show');
   });
 });

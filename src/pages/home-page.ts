@@ -207,6 +207,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       <hero-block
         id="hero"
         background-image="[[heroSettings.background.image]]"
+        background-video="[[heroSettings.background.video]]"
         background-color="[[heroSettings.background.color]]"
         font-color="[[heroSettings.fontColor]]"
         hide-logo
