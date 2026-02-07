@@ -22,7 +22,7 @@ import * as path from 'path';
 import serviceAccount from '../serviceAccount.json';
 
 const credential = cert(serviceAccount as ServiceAccount);
-const app = initializeApp({ credential, storageBucket: 'devrelcon-ny-2024.firebasestorage.app' }, 'rehost');
+const app = initializeApp({ credential, storageBucket: 'devrelcon-ny-2024.appspot.com' }, 'rehost');
 const firestore = getFirestore(app);
 const bucket = getStorage(app).bucket();
 
