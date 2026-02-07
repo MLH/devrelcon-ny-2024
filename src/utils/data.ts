@@ -52,6 +52,7 @@ export {
   title,
   image,
   viewHighlights,
+  testimonialsBlock,
   whoShouldAttendBlock,
   whyAttendBlock,
 } from '../../public/data/resources.json';

@@ -483,5 +483,45 @@
   },
   "addToHomeScreen": {
     "cta": "Add to Home Screen"
+  },
+  "testimonialsBlock": {
+    "title": "What Attendees Say",
+    "testimonials": [
+      {
+        "quote": "DevRelCon is the one conference where I don't have to explain what I do. Everyone here gets it — and the conversations are immediately actionable.",
+        "name": "[Name]",
+        "title": "Developer Advocate",
+        "company": "[Company]",
+        "photoUrl": ""
+      },
+      {
+        "quote": "I came as a product marketer at a developer tools company, not sure if this was for me. I left with a completely new GTM framework and a network I still lean on.",
+        "name": "[Name]",
+        "title": "Head of Product Marketing",
+        "company": "[Company]",
+        "photoUrl": ""
+      },
+      {
+        "quote": "The sessions on measuring developer adoption changed how our entire team thinks about success metrics. Worth the trip every year.",
+        "name": "[Name]",
+        "title": "VP Developer Experience",
+        "company": "[Company]",
+        "photoUrl": ""
+      },
+      {
+        "quote": "What sets DevRelCon apart is the mix of practitioners and leaders. You get tactical advice and strategic perspective in the same room.",
+        "name": "[Name]",
+        "title": "Director of Developer Relations",
+        "company": "[Company]",
+        "photoUrl": ""
+      },
+      {
+        "quote": "The AI and developer tooling sessions were exactly what our team needed as we figure out how to bring our AI platform to developers.",
+        "name": "[Name]",
+        "title": "Developer Platform Lead",
+        "company": "[Company]",
+        "photoUrl": ""
+      }
+    ]
   }
 }
