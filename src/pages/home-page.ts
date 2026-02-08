@@ -58,57 +58,68 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
         .hero-logo {
           --lazy-image-width: 100%;
-          --lazy-image-height: 200px;
+          --lazy-image-height: 160px;
           width: var(--lazy-image-width);
           height: var(--lazy-image-height);
-          max-width: 400px;
-          max-height: 400px;
+          max-width: 300px;
+          max-height: 300px;
         }
 
         .info-items {
-          margin: 24px auto;
+          margin: 16px auto;
           font-size: 22px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          width: 100%;
+          max-width: 1100px;
+          padding: 0 24px;
+          box-sizing: border-box;
         }
 
-        .info-items > *:not(:first-of-type) {
-          margin-top: 20px;
+        .hero-columns {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-top: 16px;
         }
 
         .hero-tagline {
-          font-size: 32px;
+          font-size: 28px;
           font-weight: 700;
           line-height: 1.2;
-          margin: 24px 0 0;
-          max-width: 700px;
+          margin: 0;
           color: inherit;
         }
 
+        .hero-details {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 16px;
+        }
+
         .hero-subtitle {
-          font-size: 20px;
+          font-size: 17px;
           font-weight: 600;
           line-height: 1.4;
-          margin: 16px 0 0;
-          max-width: 640px;
+          margin: 0;
           color: inherit;
           opacity: 0.95;
           background: rgba(255, 255, 255, 0.15);
-          padding: 12px 24px;
+          padding: 12px 20px;
           border-radius: 8px;
           letter-spacing: 0.01em;
         }
 
         .hero-description {
-          font-size: 15px;
+          font-size: 14px;
           line-height: 1.6;
-          max-width: 600px;
-          opacity: 0.75;
-          margin: 20px 0 0;
-          padding: 0 16px;
+          opacity: 0.8;
+          margin: 14px 0 0;
+          padding: 0;
           font-weight: 400;
-          text-align: center;
         }
 
         .action-buttons {
@@ -187,22 +198,53 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           }
 
           .hero-logo {
-            max-width: 320px;
+            --lazy-image-height: 180px;
+            max-width: 280px;
           }
 
           .info-items {
-            margin: 48px auto;
-            font-size: 28px;
+            margin: 32px auto;
+            font-size: 26px;
             line-height: 1.1;
           }
 
+          .hero-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+            text-align: left;
+            margin-top: 24px;
+          }
+
           .hero-tagline {
-            font-size: 44px;
+            font-size: 40px;
+          }
+
+          .hero-details {
+            align-items: flex-start;
+            margin-top: 0;
           }
 
           .hero-subtitle {
-            font-size: 22px;
-            padding: 14px 32px;
+            font-size: 18px;
+            padding: 14px 24px;
+            text-align: left;
+          }
+
+          .hero-description {
+            font-size: 15px;
+            text-align: left;
+          }
+        }
+
+        @media (min-width: 1100px) {
+          .hero-tagline {
+            font-size: 46px;
+          }
+
+          .hero-subtitle {
+            font-size: 20px;
           }
 
           .hero-description {
@@ -228,12 +270,16 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
           <div class="info-items">
             <div class="info-item">[[city]]. [[dates]]</div>
-            <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
-            <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
-              [[heroSettings.subtitle]]
-            </div>
-            <div class="hero-description" hidden$="[[!heroSettings.description]]">
-              [[heroSettings.description]]
+            <div class="hero-columns">
+              <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
+              <div class="hero-details">
+                <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
+                  [[heroSettings.subtitle]]
+                </div>
+                <div class="hero-description" hidden$="[[!heroSettings.description]]">
+                  [[heroSettings.description]]
+                </div>
+              </div>
             </div>
           </div>
 
