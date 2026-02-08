@@ -225,7 +225,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
               [[heroSettings.subtitle]]
             </div>
-            <div class="info-item hero-description">[[heroSettings.description]]</div>
           </div>
 
           <div class="scroll-down" on-click="scrollNextBlock">

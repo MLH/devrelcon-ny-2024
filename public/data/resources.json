@@ -171,7 +171,7 @@
       "featuredSessions": {
         "description": "See recorded sessions from previous events for examples of what to expect at DevRelCon NY!",
         "label": "Watch past DevRelCon talks",
-        "link": "https://youtube.com/playlist?list=PLwOuygPowJYZnTPCmZUyNbJjvKtLFJujg&si=GjbDoG1zVqPOS-iq"
+        "link": "https://www.youtube.com/watch?v=NvcHpfdyrcs&list=PLwOuygPowJYbzUTocBtesPzzCWLmq55T1&index=18"
       },
       "howItWas": {
         "description": "DevRelCon is a global series of conferences for the people building developer adoption — spanning developer relations, developer experience, product marketing, and go-to-market for developer platforms. Whether you're a DevRel practitioner, a product marketer reaching technical audiences, or a leader scaling a developer ecosystem, DevRelCon is where you'll find your people.",
@@ -263,7 +263,7 @@
     "title": "DevRelCon featured videos",
     "callToAction": {
       "label": "See all videos",
-      "link": "https://youtube.com/playlist?list=PLwOuygPowJYZnTPCmZUyNbJjvKtLFJujg&si=GjbDoG1zVqPOS-iq"
+      "link": "https://www.youtube.com/watch?v=NvcHpfdyrcs&list=PLwOuygPowJYbzUTocBtesPzzCWLmq55T1&index=18"
     }
   },
   "blog": {
