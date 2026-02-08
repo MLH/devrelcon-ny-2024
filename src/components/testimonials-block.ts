@@ -26,7 +26,7 @@ export class TestimonialsBlock extends ThemedElement {
         }
 
         .container-title {
-          margin-bottom: 8px;
+          margin-bottom: 32px;
           color: var(--text-primary-color);
         }
 
@@ -133,6 +133,9 @@ export class TestimonialsBlock extends ThemedElement {
   }
 
   override render() {
+    if (!testimonialsBlock.enabled) {
+      return html``;
+    }
     return html`
       <div class="container">
         <h1 class="container-title">${testimonialsBlock.title}</h1>

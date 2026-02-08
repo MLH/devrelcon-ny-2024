@@ -68,10 +68,13 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         .info-items {
           margin: 24px auto;
           font-size: 22px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .info-items > *:not(:first-of-type) {
-          margin-top: 34px;
+          margin-top: 20px;
         }
 
         .hero-tagline {
@@ -98,10 +101,14 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         }
 
         .hero-description {
-          font-size: 18px;
-          line-height: 1.5;
-          max-width: 700px;
-          opacity: 0.9;
+          font-size: 15px;
+          line-height: 1.6;
+          max-width: 600px;
+          opacity: 0.75;
+          margin: 20px 0 0;
+          padding: 0 16px;
+          font-weight: 400;
+          text-align: center;
         }
 
         .action-buttons {
@@ -199,7 +206,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           }
 
           .hero-description {
-            font-size: 20px;
+            font-size: 16px;
           }
         }
       </style>
@@ -224,6 +231,9 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
             <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
               [[heroSettings.subtitle]]
+            </div>
+            <div class="hero-description" hidden$="[[!heroSettings.description]]">
+              [[heroSettings.description]]
             </div>
           </div>
 

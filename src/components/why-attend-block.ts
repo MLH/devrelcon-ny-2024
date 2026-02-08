@@ -53,7 +53,7 @@ export class WhyAttendBlock extends ThemedElement {
         }
 
         .container-title {
-          margin-bottom: 8px;
+          margin-bottom: 32px;
         }
 
         .props-grid {

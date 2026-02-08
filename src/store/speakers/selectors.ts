@@ -67,26 +67,13 @@ export const selectFilteredSpeakers = createSelector(
     if (selectedFilters.length === 0) return speakers;
 
     const tagFilters = selectedFilters.filter((f) => f.group === FilterGroupKey.tags);
-    const trackFilters = selectedFilters.filter((f) => f.group === FilterGroupKey.track);
+    if (tagFilters.length === 0) return speakers;
 
     return speakers.filter((speaker) => {
-      const matchesTags =
-        tagFilters.length === 0 ||
-        (speaker.tags || []).some((tag) => {
-          const className = generateClassName(tag);
-          return tagFilters.some((filter) => filter.tag === className);
-        });
-
-      const matchesTracks =
-        trackFilters.length === 0 ||
-        (speaker.sessions || []).some((session) => {
-          const trackTitle = session.track?.title;
-          if (!trackTitle) return false;
-          const className = generateClassName(trackTitle);
-          return trackFilters.some((filter) => filter.tag === className);
-        });
-
-      return matchesTags && matchesTracks;
+      return (speaker.tags || []).some((tag) => {
+        const className = generateClassName(tag);
+        return tagFilters.some((filter) => filter.tag === className);
+      });
     });
   },
 );

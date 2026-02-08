@@ -433,6 +433,10 @@
       {
         "title": "GTM & Ecosystem Leaders",
         "description": "Understand how developer-first companies build pipeline, measure community impact, and structure teams across DevRel, marketing, and product — especially in the AI era."
+      },
+      {
+        "title": "AI Developer Tooling & Platform Teams",
+        "description": "Building or growing an AI developer platform? Get tactical on developer onboarding for AI APIs, agent frameworks, and model ecosystems — from docs and SDKs to community and go-to-market."
       }
     ]
   },
@@ -512,6 +516,7 @@
     "cta": "Add to Home Screen"
   },
   "testimonialsBlock": {
+    "enabled": false,
     "title": "What Attendees Say",
     "testimonials": [
       {

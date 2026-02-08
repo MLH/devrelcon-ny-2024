@@ -26,6 +26,10 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
           display: block;
         }
 
+        :host([hidden]) {
+          display: none !important;
+        }
+
         .speakers-wrapper {
           margin: 40px 0 32px;
           display: grid;
@@ -171,7 +175,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
         }
       </style>
 
-      <div class="container">
+      <div class="container" hidden$="[[!featuredSpeakers.length]]">
         <h1 class="container-title">[[speakersBlock.title]]</h1>
 
         <div class="speakers-wrapper">
