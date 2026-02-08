@@ -215,7 +215,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         <div class="home-content" layout vertical center>
           <lazy-image
             class="hero-logo"
-            src="/images/devrelcon25.png"
+            src="/images/devrelcon26.png"
             alt="[[siteTitle]]"
           ></lazy-image>
 

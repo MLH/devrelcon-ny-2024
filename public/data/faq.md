@@ -2,11 +2,11 @@
 
 ### Dates and Location
 
-DevRelCon NY will take place on July 17-18, 2025 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. DevRelCon New York will be the only North American DevRelCon this year.
+DevRelCon NY will take place on July 16-17, 2026 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. DevRelCon New York will be the only North American DevRelCon this year.
 
 ### Schedule
 
-We will start the festivities on July 16th with an evening dinner for speakers and sponsors. The conference will officially kick off the morning of July 17th and wrap up by 6 PM on July 18th.
+We will start the festivities on July 15th with an evening dinner for speakers and sponsors. The conference will officially kick off the morning of July 16th and wrap up by 6 PM on July 17th.
 Check back soon for a full schedule of the event!
 
 ### Who is DevRelCon for?
@@ -37,7 +37,7 @@ Speakers get free tickets. DevRelCon sells out quickly, so make sure you buy a t
 
 ### What is included with a DevRelCon New York ticket?
 
-Tickets include conference programming, breakfast and lunch on July 17th + July 18th, and an invite to our all-conference happy hour with snacks and drinks on July 17th. They do not include travel and/or accommodations for the conference.
+Tickets include conference programming, breakfast and lunch on July 16th + July 17th, and an invite to our all-conference happy hour with snacks and drinks on July 16th. They do not include travel and/or accommodations for the conference.
 
 ### Do you have ticket scholarships?
 
@@ -45,7 +45,7 @@ You may apply for a discounted or complementary ticket scholarship to attend Dev
 
 ### Where should I stay for DevRelCon NY?
 
-We’d recommend reading the [Neighborhood Guide](/neighborhood). Our recommended group rate hotel block for 2025 attendees is at the [Even Hotel](https://www.ihg.com/redirect?path=asearch&brandCode=6C&localeCode=en&regionCode=1&hotelCode=BXYEV&checkInDate=16&checkInMonthYear=062025&checkOutDate=20&checkOutMonthYear=062025&rateCode=6CBARC&_PMID=99801505&GPC=DNY&cn=no&adjustMonth=false&showApp=true&monthIndex=00). It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team stayed last year at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
+We’d recommend reading the [Neighborhood Guide](/neighborhood). Our recommended group rate hotel block for 2026 attendees is at the [Even Hotel](https://www.ihg.com/redirect?path=asearch&brandCode=6C&localeCode=en&regionCode=1&hotelCode=BXYEV&checkInDate=16&checkInMonthYear=072026&checkOutDate=20&checkOutMonthYear=072026&rateCode=6CBARC&_PMID=99801505&GPC=DNY&cn=no&adjustMonth=false&showApp=true&monthIndex=00). It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team stayed last year at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
 
 ## Transit & Directions
 

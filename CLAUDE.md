@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DevRelCon NY conference website, built on the [Hoverboard](https://github.com/gdg-x/hoverboard) template (v3). It's a PWA for the DevRelCon NY 2025 conference at Industry City, Brooklyn. Production URL: `https://nyc.devrelcon.dev/`
+DevRelCon NY conference website, built on the [Hoverboard](https://github.com/gdg-x/hoverboard) template (v3). It's a PWA for the DevRelCon NY conference at Industry City, Brooklyn. Production URL: `https://nyc.devrelcon.dev/`
 
 ## Commands
 

@@ -10,11 +10,11 @@ import { updateMetadata } from '../utils/metadata';
 
 /* eslint-disable max-len */
 const EMAIL_TEMPLATE_LINES = [
-  'Subject: Request to attend DevRelCon NYC — July 17-18, 2025',
+  'Subject: Request to attend DevRelCon NYC — July 16-17, 2026',
   '',
   'Hi [Manager],',
   '',
-  "I'd like to attend DevRelCon NYC on July 17-18 in Brooklyn, NY. It's the leading conference for teams building developer adoption — covering developer relations, developer experience, product marketing, and go-to-market strategy for developer platforms.",
+  "I'd like to attend DevRelCon NYC on July 16-17 in Brooklyn, NY. It's the leading conference for teams building developer adoption — covering developer relations, developer experience, product marketing, and go-to-market strategy for developer platforms.",
   '',
   "Here's why I think it's worth the investment:",
   '',

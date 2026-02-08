@@ -5,8 +5,8 @@
     "blog": "https://developerrelations.com/all-content",
     "url": "https://sponsor.mlh.io"
   },
-  "startDate": "2025-07-17T09:00:00+03:00",
-  "endDate": "2025-07-18T19:00:00+03:00",
+  "startDate": "2026-07-16T09:00:00+03:00",
+  "endDate": "2026-07-17T19:00:00+03:00",
   "webapp": {
     "shortName": "DevRelCon NY",
     "themeColor": "#673AB7",
@@ -213,8 +213,8 @@
   },
   "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"],
   "cfp": {
-    "status": "closed",
-    "formUrl": "",
-    "year": "2025"
+    "status": "open",
+    "formUrl": "https://majorleaguehacking.typeform.com/to/WkalvfPw",
+    "year": "2026"
   }
 }
