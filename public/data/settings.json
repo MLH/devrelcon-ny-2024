@@ -78,7 +78,7 @@
       "fontColor": "#424242"
     },
     "schedule": {
-      "title": "Schedule",
+      "title": "Last Year's Schedule",
       "description": "Three tracks, 40 sessions, and hands-on workshops across two days — from DevRel craft and community to developer GTM strategy, AI tooling, and platform engineering. Filter by track to find the sessions that matter most to you.",
       "metaDescription": "Choose your sessions to visit",
       "background": {
