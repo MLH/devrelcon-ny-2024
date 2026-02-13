@@ -199,11 +199,11 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
       <paper-progress indeterminate hidden$="[[contentLoaderVisibility]]"></paper-progress>
 
-      <filter-menu
+      <!-- <filter-menu
         filter-groups="[[filterGroups]]"
         selected-filters="[[selectedFilters]]"
         results-count="[[speakersToRender.length]]"
-      ></filter-menu>
+      ></filter-menu> -->
 
       <content-loader
         class="container"

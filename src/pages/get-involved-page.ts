@@ -180,7 +180,7 @@ export class GetInvolvedPage extends PolymerElement {
             Help make DevRelCon happen. Volunteers help with registration, room
             management, AV support, and attendee experience. In exchange, you get
             free admission, a behind-the-scenes view of the event, and the
-            gratitude of the community.
+            gratitude of the community. To apply, shoot us an email at devrelcon@mlh.io letting us know why you're interested in volunteering and how you'd like to contribute.
           </p>
           <div class="cta-container">
             <a href="mailto:[[volunteerEmail]]">
