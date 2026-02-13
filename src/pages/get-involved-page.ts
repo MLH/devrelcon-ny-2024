@@ -158,8 +158,7 @@ export class GetInvolvedPage extends PolymerElement {
             the world's leading tech companies.
           </p>
           <p>
-            Partners in 2024 included Instruqt, Speakeasy, Brand Makers, and
-            Devpost.
+            Previous partners include Google, Common Room, Instruqt, Inkeep, Speakeasy, Brand Makers, Devpost, and more.
           </p>
           <div class="cta-container">
             <a

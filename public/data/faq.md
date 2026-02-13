@@ -2,7 +2,7 @@
 
 ### Dates and Location
 
-DevRelCon NY will take place on July 16-17, 2026 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. DevRelCon New York will be the only North American DevRelCon this year.
+DevRelCon NY will take place on July 16-17, 2026 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. There will be a speaker/sponsor reception the night before on July 15th. DevRelCon New York will be the only North American DevRelCon this year.
 
 ### Schedule
 
@@ -41,7 +41,7 @@ Tickets include conference programming, breakfast and lunch on July 16th + July 
 
 ### Do you have ticket scholarships?
 
-You may apply for a discounted or complementary ticket scholarship to attend DevRelCon [via this form](https://forms.gle/bf3DcXJ4hepH9A8x9).
+You may apply for a discounted or complimentary ticket scholarship to attend DevRelCon [via this form](https://majorleaguehacking.typeform.com/to/yEl2HVpo).
 
 ### Where should I stay for DevRelCon NY?
 

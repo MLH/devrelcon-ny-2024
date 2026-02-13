@@ -1,10 +1,10 @@
 {
   "title": "DevRelCon NY",
   "description": "DevRelCon is the premier conference for anyone working to grow developer adoption — from Developer Relations and Developer Experience to Product Marketing, Platform Product Management, and Go-to-Market strategy. Join practitioners and leaders from the world's top developer platforms for talks, hands-on workshops, and the conversations that shape our craft.<br><br>Sessions cover AI developer tooling and platform strategy, developer-first go-to-market, measuring developer adoption and activation, positioning and messaging for technical audiences, community-led growth, documentation as product, building and scaling developer ecosystems, content strategy, career paths, and more.",
-  "image": "images/LinkedIn.png",
+  "image": "images/2026socialimage.png",
   "keywords": "event, devrel, devrelcon, developer relations",
   "dates": "July 16-17, 2026",
-  "partnershipProposition": "https://majorleaguehacking.typeform.com/to/lVvRM8eO",
+  "partnershipProposition": "https://majorleaguehacking.typeform.com/to/Bn0dIvXg",
   "share": "Share",
   "followOur": "Follow our",
   "followUs": "Follow us",
@@ -46,18 +46,13 @@
       "title": "DevRelCon",
       "links": [
         {
-          "name": "What is DevRelCon?",
-          "url": "/#about",
-          "newTab": false
-        },
-        {
           "name": "Past Events",
           "url": "https://developerrelations.com/devrelcon",
           "newTab": true
         },
         {
           "name": "Code of Conduct",
-          "url": "/coc",
+          "url": "https://mlh.io/code-of-conduct",
           "newTab": false
         },
         {
@@ -101,8 +96,8 @@
           "newTab": false
         },
         {
-          "name": "Buy Ticket",
-          "url": "/#tickets-block",
+          "name": "Buy Tickets",
+          "url": "https://ti.to/mlh/devrelcon-2026",
           "newTab": false
         },
         {
@@ -115,6 +110,11 @@
     {
       "title": "Past Events",
       "links": [
+                {
+          "name": "New York 2025",
+          "url": "https://developerrelations.com/event/devrelcon-new-york-2025",
+          "newTab": true
+        },
         {
           "name": "New York 2024",
           "url": "https://developerrelations.com/event/devrelcon-new-york-2024",
@@ -432,7 +432,7 @@
       },
       {
         "title": "GTM & Ecosystem Leaders",
-        "description": "Understand how developer-first companies build pipeline, measure community impact, and structure teams across DevRel, marketing, and product — especially in the AI era."
+        "description": "Understand how developer-first companies build their pipeline, measure community impact, and structure teams across DevRel, marketing, and product — especially in the AI era."
       },
       {
         "title": "AI Developer Tooling & Platform Teams",

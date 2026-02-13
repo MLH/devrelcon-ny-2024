@@ -381,6 +381,7 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
 
         <div class="additional-info">
           <div>*[[ticketsBlock.ticketsDetails]]</div>
+          <br />
           <div>
             [[ticketsBlock.neighborhoodLinkPrefix]]
             <a href="/neighborhood">[[ticketsBlock.neighborhoodLinkLabel]]</a>
