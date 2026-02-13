@@ -357,12 +357,12 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
       <speakers-block></speakers-block>
       <previous-speakers-block is-home-page></previous-speakers-block>
-      <subscribe-block></subscribe-block>
       <tickets-block id="tickets-block"></tickets-block>
       <gallery-block></gallery-block>
       <about-organizer-block></about-organizer-block>
       <featured-videos></featured-videos>
       <map-block></map-block>
+      <subscribe-block></subscribe-block>
       <partners-block></partners-block>
       <footer-block></footer-block>
     `;
