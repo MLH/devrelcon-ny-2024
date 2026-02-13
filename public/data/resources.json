@@ -414,6 +414,10 @@
   "whoShouldAttendBlock": {
     "title": "Who Should Attend",
     "segments": [
+            {
+        "title": "AI Developer Tooling & Platform Teams",
+        "description": "Building or growing an AI developer platform? Get tactical on developer onboarding for AI APIs, agent frameworks, and model ecosystems — from docs and SDKs to community and go-to-market."
+      },
       {
         "title": "Developer Relations & Advocacy",
         "description": "Sharpen your craft with sessions on content strategy, community building, event ROI, and scaling programs. Connect with peers who understand the unique challenges of developer advocacy."
@@ -433,11 +437,8 @@
       {
         "title": "GTM & Ecosystem Leaders",
         "description": "Understand how developer-first companies build their pipeline, measure community impact, and structure teams across DevRel, marketing, and product — especially in the AI era."
-      },
-      {
-        "title": "AI Developer Tooling & Platform Teams",
-        "description": "Building or growing an AI developer platform? Get tactical on developer onboarding for AI APIs, agent frameworks, and model ecosystems — from docs and SDKs to community and go-to-market."
       }
+
     ]
   },
   "whyAttendBlock": {
