@@ -26,12 +26,12 @@
     {
       "route": "speakers",
       "permalink": "/speakers",
-      "label": "Speakers"
+      "label": "Past Speakers"
     },
     {
       "route": "schedule",
       "permalink": "/schedule",
-      "label": "Schedule"
+      "label": "Past Schedule"
     },
     {
       "route": "faq",
@@ -39,9 +39,9 @@
       "label": "FAQ"
     },
     {
-      "route": "neighborhood",
-      "permalink": "/neighborhood",
-      "label": "Neighborhood Guide"
+      "route": "convince-your-boss",
+      "permalink": "/convince-your-boss",
+      "label": "Convince Your Boss"
     },
     {
       "route": "getInvolved",
