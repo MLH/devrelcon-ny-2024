@@ -54,6 +54,11 @@ export class PartnersBlock extends ReduxMixin(PolymerElement) {
           color: var(--default-primary-color);
         }
 
+        .empty-message {
+          font-size: 16px;
+          color: var(--secondary-text-color);
+        }
+
         @media (min-width: 640px) {
           .logos-wrapper {
             grid-template-columns: repeat(4, 1fr);
@@ -75,6 +80,13 @@ export class PartnersBlock extends ReduxMixin(PolymerElement) {
         </template>
         <template is="dom-if" if="[[failure]]">
           <p>Error loading partners.</p>
+        </template>
+
+        <template is="dom-if" if="[[empty]]">
+          <p class="empty-message">
+            Interested in partnering with DevRelCon NY? We'd love to have you on board.
+            <a href="https://majorleaguehacking.typeform.com/to/Bn0dIvXg">Learn more</a>.
+          </p>
         </template>
 
         <template is="dom-repeat" items="[[partners.data]]" as="block">
@@ -127,6 +139,15 @@ export class PartnersBlock extends ReduxMixin(PolymerElement) {
   @computed('partners')
   get failure() {
     return this.partners instanceof Failure;
+  }
+
+  @computed('partners')
+  get empty() {
+    return (
+      this.partners instanceof Success &&
+      (this.partners.data.length === 0 ||
+        this.partners.data.every((group) => group.items.length === 0))
+    );
   }
 
   override stateChanged(state: RootState) {

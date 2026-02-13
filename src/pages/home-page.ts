@@ -107,7 +107,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           margin: 0;
           color: inherit;
           opacity: 0.95;
-          background: rgba(255, 255, 255, 0.15);
+          background: rgba(0, 0, 0, 0.25);
           padding: 12px 20px;
           border-radius: 8px;
           letter-spacing: 0.01em;
