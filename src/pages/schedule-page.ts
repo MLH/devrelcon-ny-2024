@@ -199,7 +199,7 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
           <header-bottom-toolbar location="[[location]]"></header-bottom-toolbar>
         </sticky-element>
       </hero-block>
-
+<!--
       <div class="track-legend">
         <div class="track-legend-title">Filter by Track</div>
         <div class="track-cards">
@@ -218,7 +218,7 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
             </div>
           </template>
         </div>
-      </div>
+      </div> 
 
       <div class="active-filters-bar" hidden$="[[!hasActiveTrackFilter]]">
         <template is="dom-repeat" items="[[activeTrackFilters]]" as="trackFilter">
@@ -229,7 +229,7 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
         <span class="clear-track-filter" role="button" on-click="clearTrackFilters">
           Clear track filter
         </span>
-      </div>
+      </div> -->
 
       <paper-progress indeterminate hidden$="[[!pending]]"></paper-progress>
 
