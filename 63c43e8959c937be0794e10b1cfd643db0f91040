@@ -1,0 +1,44 @@
+public/data/resources.json
+  e7512b092262c2e2 177
+public/data/settings.json
+  e7512b092262c2e2 40-49,54,130-131
+src/pages/home-page.ts
+  37306516d73aab0b 311,313,316
+src/pages/convince-your-boss-page.ts
+  e7512b092262c2e2 17,21-24,27,178-180,184,186-190,194-195,198-199,202-203,206-208,216-218,220,223,230-233
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.4",
+  "base_commit_sha": "63c43e8959c937be0794e10b1cfd643db0f91040",
+  "prompts": {
+    "37306516d73aab0b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa6b213d-7815-4e89-8521-7f0f7c77620b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 3,
+      "accepted_lines": 3,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/1f9691a2b42fa19ec0b7f4560629b975f46b2d1f63815621c0a27c255aaf8bf3"
+    },
+    "e7512b092262c2e2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4bb516d8-1281-4157-b94a-1f35c9161e7f",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 50,
+      "total_deletions": 54,
+      "accepted_lines": 47,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/44e3a9ccd9efc699a5cb1607b16ad068241254304962b30b055bf45ed25d457a"
+    }
+  }
+}
