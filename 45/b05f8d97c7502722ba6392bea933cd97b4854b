@@ -1,0 +1,116 @@
+src/pages/admin/collections/config-form.ts
+  7cbaae79a118fda9 36-39,94-99,163-167
+src/hoverboard-app.ts
+  7cbaae79a118fda9 224-226
+src/pages/admin/collections/speakers-history-form.ts
+  7cbaae79a118fda9 64-74,76-78,94-96,114-116,123-125,203-204,214-217,226-228,233-235,240-242,247-252,256-259,264-269,273-276,281-283,288-292,304-310,314-319,322-327,330-332,361-364,367-370,375-380,384-389,393-399,402-446,448-449,463-466,524-527,571-575
+src/pages/session-page.ts
+  7cbaae79a118fda9 239-242,294,331,394,399
+CLAUDE.md
+  7cbaae79a118fda9 25,35,67,72
+src/pages/admin/schemas/index.ts
+  7cbaae79a118fda9 49,70-75,123-129,151-157,183-189,248-260
+scripts/regenerate-speakers.ts
+  7cbaae79a118fda9 31-33,53-55
+src/elements/speakers-block.ts
+  7cbaae79a118fda9 222-224,265-267
+.github/CODE_OF_CONDUCT.md
+  7cbaae79a118fda9 37
+index.html
+  7cbaae79a118fda9 174
+src/components/testimonials-block.ts
+  7cbaae79a118fda9 163
+src/elements/subscribe-block.ts
+  7cbaae79a118fda9 64-65
+scripts/archive-speakers/index.ts
+  7cbaae79a118fda9 59,116-118,130-132,159-165
+public/data/neighborhood.md
+  7cbaae79a118fda9 21
+src/styles/theme.ts
+  7cbaae79a118fda9 8,20
+public/data/resources.json
+  7cbaae79a118fda9 113,417
+src/pages/schedule-page.ts
+  7cbaae79a118fda9 202
+firebase.json
+  7cbaae79a118fda9 7,12
+src/pages/admin/admin-list.ts
+  7cbaae79a118fda9 46-47,134-136,163-166,173-175
+scripts/merge-speakers.ts
+  7cbaae79a118fda9 164-169,180-182
+src/elements/header-toolbar.ts
+  7cbaae79a118fda9 20-27,320-322
+src/pages/admin/admin-image-upload.ts
+  7cbaae79a118fda9 63,87-90
+src/elements/tickets-block.ts
+  7cbaae79a118fda9 351-353,357-361,364-374,391-393,450-454,457
+src/elements/partners-block.ts
+  7cbaae79a118fda9 117-120
+src/pages/admin/admin-repeater.ts
+  7cbaae79a118fda9 61-62
+scripts/rehost-speaker-images.ts
+  7cbaae79a118fda9 68,123,140,151-157,170-174
+src/elements/rotating-speakers-carousel.ts
+  7cbaae79a118fda9 163
+src/pages/convince-your-boss-page.ts
+  7cbaae79a118fda9 21-24,178-180,186-189,193-194,197-198,201-202,205-206,217,225-227,234
+src/utils/icons/workshop.ts
+  7cbaae79a118fda9 17
+.eslintrc.json
+  7cbaae79a118fda9 23
+.github/CONTRIBUTING.md
+  7cbaae79a118fda9 35,43,53,59
+src/components/who-should-attend-block.ts
+  7cbaae79a118fda9 89
+scripts/migrate-previous-speakers/index.ts
+  7cbaae79a118fda9 102,133
+src/pages/speakers-page.ts
+  7cbaae79a118fda9 260,287-289
+scripts/cleanup-history.ts
+  7cbaae79a118fda9 47-49,108-110,130-137,144-146
+src/store/speakers/selectors.ts
+  7cbaae79a118fda9 39-44
+src/pages/admin/admin-firestore.ts
+  7cbaae79a118fda9 21,40,57,68
+public/data/faq.md
+  7cbaae79a118fda9 26,84
+src/pages/admin/admin-page.ts
+  7cbaae79a118fda9 19-20,67-73,194-196,208-210,236,276-279,281-284,290-293,295-298,304-307,338-342,354-359,374-380,391-394
+src/pages/get-involved-page.ts
+  7cbaae79a118fda9 105-107,114-116,119-121,124-125,130-131,137-138,147-149,152-153,156-157,166-170,174,183-185,189
+functions/src/generate-sessions-speakers-schedule.ts
+  7cbaae79a118fda9 7-14,116-119
+src/pages/speaker-page.ts
+  7cbaae79a118fda9 250-254
+scripts/backfill-session-ids.ts
+  7cbaae79a118fda9 97-99
+src/pages/admin/collections/schedule-form.ts
+  7cbaae79a118fda9 69-70,74-80,212-217,241-242,257-260,326-327,333-335,477-481
+functions/src/schedule-generator/speakers-sessions-schedule-map.ts
+  7cbaae79a118fda9 56-57
+src/elements/footer-rel.ts
+  7cbaae79a118fda9 182
+src/pages/admin/admin-form.ts
+  7cbaae79a118fda9 137-139,192-197,202,284-285,298-299,309-312,324-325,349-350,445-449
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "45b05f8d97c7502722ba6392bea933cd97b4854b",
+  "prompts": {
+    "7cbaae79a118fda9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22ef8285-7deb-4d9d-9df4-d4991891cc89",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 5272,
+      "total_deletions": 481,
+      "accepted_lines": 5328,
+      "overriden_lines": 3,
+      "messages_url": "https://usegitai.com/cas/9b107f93df7c5746afe142964565a8294a74949988ccd9d8defcf8ff451fcacd"
+    }
+  }
+}
