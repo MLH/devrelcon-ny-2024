@@ -1,0 +1,50 @@
+src/pages/admin/admin-list.ts
+  7cbaae79a118fda9 1
+src/pages/admin/admin-page.ts
+  7cbaae79a118fda9 285-288
+scripts/cleanup-history.ts
+  7cbaae79a118fda9 65-68
+.eslintrc.json
+  7cbaae79a118fda9 59-64
+src/utils/share.test.ts
+  7cbaae79a118fda9 17
+src/pages/speakers-page.ts
+  7cbaae79a118fda9 287-290
+scripts/backfill-session-ids.ts
+  7cbaae79a118fda9 47-63
+scripts/rehost-speaker-images.ts
+  7cbaae79a118fda9 212-214
+src/pages/admin/collections/speakers-history-form.ts
+  7cbaae79a118fda9 182-187,198-202,251-254,340-341
+src/elements/footer-rel.ts
+  7cbaae79a118fda9 199-204
+src/pages/admin/admin-form.ts
+  7cbaae79a118fda9 4
+src/pages/admin/collections/schedule-form.ts
+  7cbaae79a118fda9 282-283,289-290
+src/pages/session-page.ts
+  7cbaae79a118fda9 242-244
+firestore.rules.test.ts
+  7cbaae79a118fda9 64-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "1b583312e6625258473b462c0bddfb8b41dc84dc",
+  "prompts": {
+    "7cbaae79a118fda9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22ef8285-7deb-4d9d-9df4-d4991891cc89",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 82,
+      "total_deletions": 23,
+      "accepted_lines": 285,
+      "overriden_lines": 1,
+      "messages_url": "https://usegitai.com/cas/9dbac110ffa4b9ffdcec4a911a8c8d6c8b22c0ea9d678ff3d5c254da31bfe90f"
+    }
+  }
+}
