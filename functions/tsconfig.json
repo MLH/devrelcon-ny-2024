@@ -10,5 +10,5 @@
     "strict": false
   },
   "compileOnSave": true,
-  "include": ["**/*.ts", "*.ts"]
+  "include": ["src/**/*.ts"]
 }
