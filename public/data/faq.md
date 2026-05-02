@@ -2,122 +2,83 @@
 
 ### Dates and Location
 
-GDG DevFest Ukraine will take place on the 12-13th of October in [Planeta Kino (King Cross),](https://goo.gl/Zwi76g) Lviv.
+DevRelCon NY will take place on July 21-23, 2026 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. There will be a speaker/sponsor reception the night before on July 21st. DevRelCon New York will be the only North American DevRelCon this year.
 
-### Stay Informed
+### Schedule
 
-To stay up to date on the latest information on sessions, speakers, and activities, be sure to visit the [DevFest website](https://devfest.gdg.org.ua/), RSVP on [Meetup](https://www.meetup.com/GDG-Lviv/events/244342635/) and follow us on [Facebook](https://www.facebook.com/devfest.ukraine/) and [Twitter](https://twitter.com/devfest_ukraine). You can also follow and join the social conversation about GDG DevFest Ukraine via official hashtags #dfua and #Devfest18. In addition, we'll be emailing important information to all registered attendees, along with check-in instructions prior to the conference.
+We will start the festivities on July 21st with an evening dinner for speakers and sponsors. The conference will officially kick off the morning of July 22nd and wrap up by 6 PM on July 23rd.
+Check back soon for a full schedule of the event!
 
-### Content Formats
+### Who is DevRelCon for?
 
-During two conference days, attendees will be able to attend sessions and hands-on workshops, chat with experts and attendees at coffee breaks and after-party, and more.
+DevRelCon is for everyone working with developers as customers, community members, employees, and beyond! Whether you have been a DevRel Professional for years or today is Day 1, there will be something for you at DevRelCon.
 
-### Livestream & Recordings
+### What is your COVID-19 Policy?
 
-If you’re unable to attend DevFest in-person, you can still be part of the magic. All the lectures from the sessions will be available for free on GDG Lviv [youtube channel](https://www.youtube.com/channel/UC5nknQj-2llSNd-jqXr4d_w) a few weeks after the conference. Workshops won’t be recorded. Also, there could be a live stream provided by participants which you can find via #dfua and #Devfest18 hashtags.
+We ask anyone not feeling well or in contact with someone who tested positive for COVID-19 to stay home from the conference. Unfortunately, if you cannot attend the conference due to illness, we cannot refund your ticket.
 
-## Registration
+### Is there a code of conduct?
 
-### Drawing Dates
+We want to make sure that DevRelCon North America creates a safe and welcoming environment for attendees, speakers and sponsors. For this reason all participants are expected to follow the [MLH Code of Conduct](https://mlh.io/code-of-conduct) throughout the duration of the conference.
 
-The window to buy a ticket will be opened until 6 PM GMT+2 on October 11th, 2018, or earlier if the tickets are sold out. If the ticket was bought after September 30th registered participants won’t get printed badge (their names will be written on the badge by marker). To buy a ticket [follow the link](https://2event.com/events/1027108), select the required ticket type, fill in the required information and pay for it.
+### Is the venue accessible?
 
-Once you've successfully paid for the ticket you’ll reach a confirmation screen and receive an email with the ticket. Please don’t forget to download it on your device or print it, as it’s required for entrance.
+There are ramps, elevators, and curbside dropoff spots available in both buildings we will be using for DevRelCon. There are also handicap-accessible bathrooms in both buildings. Please contact <devrelcon@mlh.io> if you require specific accommodations.
 
-### Ticket Types
+### How do I get my company to pay for DevRelCon?
 
-#### **Pre-Early birds tickets**
+We've put together a [Convince Your Boss](/convince-your-boss) page with everything you need to make the case to your manager, including a breakdown of what's included, who attends, and a ready-to-send email template you can customize.
 
-General Admission: $50
+## Attendance
 
-Conditions: Feb 7 - Mar 7 or first 50 tickets
+### I’m a speaker, do I still need to buy a ticket?
 
-#### **Early birds tickets**
+Speakers get free tickets. DevRelCon sells out quickly, so make sure you buy a ticket to secure your spot. If you are selected to speak and are eligible for a ticket reimbursement after having purchased one, we will notify you via e-mail.
 
-General Admission: $70
+### What is included with a DevRelCon New York ticket?
 
-Conditions: Mar 7 - Jun 30 or first 200 tickets
+Tickets include conference programming, breakfast and lunch on July 22nd + July 23rd, and an invite to our all-conference happy hour with snacks and drinks on July 21st. They do not include travel and/or accommodations for the conference.
 
-#### **Lazy birds tickets**
+### Do you have ticket scholarships?
 
-General Admission: $90
+You may apply for a discounted or complimentary ticket scholarship to attend DevRelCon [via this form](https://majorleaguehacking.typeform.com/to/yEl2HVpo).
 
-Conditions: Jul 1 - Sep 30 or until tickets will be sold out
+### Where should I stay for DevRelCon NY?
 
-#### **EDU (Students/lecturers) Tickets**
+We’d recommend reading the [Neighborhood Guide](/neighborhood). Our recommended group rate hotel block for 2026 attendees is at the [Even Hotel](https://www.ihg.com/redirect?path=asearch&brandCode=6C&localeCode=en&regionCode=1&hotelCode=BXYEV&checkInDate=16&checkInMonthYear=072026&checkOutDate=20&checkOutMonthYear=072026&rateCode=6CBARC&_PMID=99801505&GPC=DNY&cn=no&adjustMonth=false&showApp=true&monthIndex=00). It is one subway stop away from the venue, in a hip and accessible part of Brooklyn. If you would like to stay walking distance from the venue, our team stayed last year at the Wyndham Garden Inn Sunset Park Brooklyn, however it is a much more industrial area than where the Even Hotel is.
 
-We offer a limited number of tickets at a discounted rate of $30 for full-time students and lecturers. To qualify, you need to be a student or a professor, faculty or staff at a higher education institution. Be aware that Ph.D. students are not on the list. Once purchased, general admission tickets can't be converted to EDU tickets, and vice versa.
+## Transit & Directions
 
-When you check-in at the conference, you'll need to provide a current student ID (active during the conference dates), transcript, credential, or other forms of documentation which demonstrates that you’re qualified to receive this special rate. If you buy an academic ticket and can't provide academic documentation when you arrive at DevFest, you won't be admitted or offered a refund, nor will you be able to convert your ticket to general admission.
+### Are there any flight discounts for DevRelCon NY?
 
-#### **Press Tickets**
+Yes! We've partnered with several airlines to offer discounted fares for DevRelCon NY attendees.
 
-We’ll be offering a limited number of press passes to qualified members of the media. To submit a request, please fill out this [FORM](https://goo.gl/forms/SmKHuksRw8sb0eoB2). If you have additional questions, please email [devfest@gdg.org.ua](mailto:devfest@gdg.org.ua) for more information. Please note that we’ll have a limited number of press-passes available and will be vetting requests. Filling out the form doesn’t guarantee you a press pass. Our team will contact you if we’re able to accommodate your request.
+We are pleased to partner with United Airlines® for travel to DevRelCon NY. To make flight reservations online, please click on the discount code below:
 
-#### **I Love DFUA**
+[**ZSH5612592**](https://www.united.com/en/us/book-flight/united-reservations?txtPromoCode=ZSH5612592)
 
-General admission: $150
+MileagePlus® members earn miles for their travel when using the United Meetings℠ discount code. You may also call the United Meetings Reservation Desk from 7 a.m. to 8 p.m. CT, Monday–Friday (closed for major U.S. holidays) at (800) 426-1122 for booking assistance, or visit [united.com/meetingtravel](https://www.united.com/meetingtravel) and enter the code above. Booking fees are waived for United Meetings reservations.
 
-Special tickets for real supporters of our conference. As we’re organizing the event on a non-profit basis, additional resources will help us bring more cool speakers from all over the world and additionally invest in demo-zone, party, and other activities. Owners of “I love DFUA” tickets will get additional valuable benefits from our team.
+Delta Air Lines is pleased to offer special discounts for Major League Hacking. [Please click here to book your flights](https://www.delta.com/flight-search/book-a-flight?tripType=ROUND_TRIP&priceSchedule=price&originCity=&destinationCity=&departureDate=&returnDate=&paxCount=1&meetingEventCode=NM588&searchByCabin=true&cabinFareClass=BE&deltaOnlySearch=false&deltaOnly=deltaPartner).
 
-### Registration Terms & Conditions
+You may also call Conferences and Events® at 1.800.328.1111\* Monday–Friday, 8:00 a.m. – 8:00 p.m. (EST) and refer to Meeting Event Code **NM588**.
 
-- Tickets for GDG DevFest Ukraine are for the full two-day conference and no single-day tickets are available.
-- You may buy a ticket on behalf of the other person (for example, make a gift). Just mention during purchase the name, company and title of the person who will attend the event.
-- GDG DevFest Ukraine tickets must be used by the original registrant and are non-transferable.
-- By registering and accepting any discounts, gifts, or items of value related to GDG DevFest Ukraine, you certify that you are able to do so in compliance with applicable laws and the internal rules of your organization.
-- At check-in, we’ll check your ticket prior to assigning you your GDG DevFest Ukraine badge. If you don’t have proper identification, you won’t be able to receive a badge and won’t be admitted to the conference.
-- If you buy an EDU ticket and can't provide academic documentation during check-in at GDG DevFest Ukraine, you won't be admitted or offered a refund, nor will you be able to convert your ticket to general admission. Please be sure to bring a current student ID or other proof that you are qualified to receive this special rate when you check-in at the conference.
-- Ticket purchases can be refunded before October 4th, 2018 via your profile at the [ticket service website](https://2event.com/events/1027108).
-- After October 4th, 2018, all ticket sales are final. There will be no refunds or exchanges regardless of weather conditions, session availability, or any other circumstance.
-- Attendees aren’t permitted to bring guests to GDG DevFest Ukraine or to the after-hours party. If you have someone traveling with you, they’ll need to register themselves and purchase an attendee ticket.
-- Photographs and/or video that were taken at GDG DevFest Ukraine by GDG Lviv, or others on behalf of the conference organizers, may include your image or likeness. You agree that GDG Lviv may use such photographs and/or videos for any purpose without any compensation to you.
-- All information entered into the registration form must be correct and accurate to the best of your knowledge. All information expected to be entered in English. Some of the information entered (such as name, company, and title), will be displayed on the attendee badge.
-- By registering for a ticket you acknowledge that your information will be used in accordance with [Tickets provider Terms of Service](https://2event.com/en/agreement).
-- All registered attendees agree to allow GDG Lviv to contact them regarding their registration and attendance at the event. By registering for a ticket, you agree to allow GDG Lviv to communicate with you via email with information regarding the event.
-- You agree to be solely responsible for your own safety, belongings, and well-being while participating in GDG DevFest Ukraine. Organizers won't be liable for your participation in GDG DevFest Ukraine.
-- Applicants and attendees can request the deletion of their registration data after the event ends by emailing [devfest@gdg.org.ua](mailto:devfest@gdg.org.ua).
+\*Please note there is not a service fee for reservations booked and ticketed via our reservation 800 number.
 
-### More Registration Details
+For Southwest Airlines, [view booking instructions and company code](https://drive.google.com/file/d/1mPNYFVj_KUPm4OiMKnBKCsWQapUQWQHA/).
 
-- Please make sure to register using the name that matches the government-issued photo ID you’ll be presenting when you check in to the festival.
-- Registration for GDG DevFest Ukraine includes two full days of sessions, product demos, admission to the after-hours party, and attendance at the keynotes. We also provide complimentary snacks each day. In addition, attendees receive a conference badge and may be offered additional gifts.
-- If you aren’t a resident of Ukraine, you should check with your local government to determine the required documents and arrangements needed for your travel to Ukraine. If you require a visa letter regarding your GDG DevFest Ukraine attendance please indicate so when completing the registration form and we’ll email it to you within 7 business days. If you haven’t received your letter or have questions regarding the process, you can contact [devfest@gdg.org.ua](mailto:devfest@gdg.org.ua). GDG Lviv won’t be able to contact an embassy on your behalf.
+### How do I get to DevRelCon NY?
 
-## Attendance Details
+We recommend taking the subway to the 36th Street station in Brooklyn. The D, N, and R lines all stop at 36th St but we would encourage you to check Google Maps for up to date schedule information. From the 36th st station, there is a short (<5 minute) walk to the venue. Alternatively, you may take a ride share or taxi directly to [33 35th Street in Brooklyn](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) which we refer to as the Broadway Stage (52A).
 
-### Language
+### Is there parking available on site?
 
-All presentations at GDG DevFest Ukraine will be in English.
+If you are driving to DevRelCon NY, you may park in the [public Industry City parking lot](https://maps.app.goo.gl/MK4go7qJ3bXQNsma6) on 37th Street and 2nd Avenue. You will need to pay for your parking via the available pay stations. It costs $15 per Weekday, $5 per Weekend Day, and $5 per Weeknight after 5pm.
 
-### Pro Tips
+### How is the DevRelCon NY venue set up?
 
-If you’re joining us in-person at Planeta Kino, here are some useful tips to navigate your way through the conference:
+The macro venue is called Industry City, which is a converted industrial development in Brooklyn that now houses retail, coworking and event spaces, and more. Within Industry City, our sessions and registration will be taking place in Building 5. Upstairs will be registration and keynotes in room 52A and downstairs will be sessions in the Black Box Theater. Our unconference, lunch, and our after party will be taking place in a coworking space in Building 3 called The Landing (formerly Camp David). There is a short (<5) min walk that is partially outdoors and partially indoors between the two spaces. You can see all of our spaces on the map below.
 
-- Lost & Found: Will be located at the Conference Info Desk (Registration point) during event hours. Any items left overnight will be turned over to the Conference Security Office.
-- Lunch: Attendees are invited to have lunch at one of the many restaurants at King Cross shopping mall.
-- After Hours: Day 1 afterparty you don’t want to miss! Attendees are invited to enjoy food, drinks, music, games, and more during the evening of October 12th (location will be published). Your attendee badge is required for entrance.
+### Venue Map
 
-### Badges & Badge Pick-up
-
-To expedite the check-in process, we’ll begin badge pick-up on Thursday, October 11, (location will be published). Make sure to bring your ticket along with student/lecturer ID (for EDU tickets), as we’ll need to verify it prior to assigning you your GDG DevFest Ukraine badge. If you don’t have proper identification, you won’t be able to receive a badge and won’t be admitted to the conference.
-
-Everyone is guaranteed a seat for the keynotes but the best seats will be assigned on a first-come, first-served basis during badge pick-up beginning at 9 AM on October 12th. So make sure to come in on time!
-
-Please note, you may not share, give, or otherwise provide your badge to anyone. GDG DevFest Ukraine badges aren’t replaceable, so don't lose yours or you won’t be readmitted to the conference. You must wear your GDG DevFest Ukraine badge to gain admission to the conference, including the sessions, workshops, and afterparty. If requested by security, please display or provide additional identification. GDG DevFest Ukraine badges may include your name, company or work title (if provided).
-
-### Afterparty
-
-All registered attendees are invited to the afterparty on the evenings of October 12th. The conference badges will be required for entry. Please join us for food, drinks, music, games, and more. Alcoholic beverages will be available for those 18 and over.
-
-### Event Attire
-
-GDG DevFest is a developer event, so please be comfortable and casual. There is no enforced dress code.
-
-### Smoking
-
-Smoking is only permitted in designated outdoor smoking areas.
-
-### No Soliciting
-
-No solicitation or selling of items or services is allowed at GDG DevFest Ukraine. Any attendee conducting these activities may be removed from the conference.
+![Venue Map](/images/venuemap.png 'Venue Map')
