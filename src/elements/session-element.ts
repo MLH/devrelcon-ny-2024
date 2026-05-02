@@ -13,7 +13,7 @@ import { initialFeaturedSessionsState } from '../store/featured-sessions/state';
 import { ReduxMixin } from '../store/mixin';
 import { queueComplexSnackbar } from '../store/snackbars';
 import { initialUserState } from '../store/user/state';
-import { schedule } from '../utils/data';
+import { schedule, scheduleTracks } from '../utils/data';
 import { acceptingFeedback } from '../utils/feedback';
 import '../utils/icons';
 import { getVariableColor } from '../utils/styles';
@@ -139,6 +139,18 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           line-height: 1;
         }
 
+        .track-tag {
+          display: inline-block;
+          padding: 2px 8px;
+          border-radius: 10px;
+          font-size: 11px;
+          font-weight: 500;
+          color: #fff;
+          background-color: var(--track-tag-color, var(--secondary-text-color));
+          line-height: 1.4;
+          margin-top: 4px;
+        }
+
         .tags {
           display: flex;
           flex-wrap: wrap;
@@ -184,12 +196,6 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           </div>
           <div class="session-actions">
             <iron-icon
-              icon="hoverboard:insert-comment"
-              class="feedback-action"
-              hidden="[[!acceptingFeedback()]]"
-              on-click="toggleFeedback"
-            ></iron-icon>
-            <iron-icon
               icon="hoverboard:[[icon]]"
               class="bookmark-session"
               hidden="[[acceptingFeedback()]]"
@@ -206,6 +212,13 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
               </span>
               <span hidden$="[[!session.duration.mm]]">
                 [[session.duration.mm]] min[[getEnding(session.duration.mm)]]
+              </span>
+              <span
+                class="track-tag"
+                style$="--track-tag-color: [[getTrackColor(session.track, session.trackOverride)]]"
+                hidden$="[[!getTrackTitle(session.track, session.trackOverride)]]"
+              >
+                [[getTrackTitle(session.track, session.trackOverride)]]
               </span>
             </div>
             <div class="tags" hidden$="[[!session.tags.length]]">
@@ -308,7 +321,15 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
       store.dispatch(setUserFeaturedSessions(this.user.data.uid, sessions, bookmarked));
     }
   }
+  private getTrackTitle(track: { title?: string }, trackOverride?: string) {
+    return trackOverride ? trackOverride : track?.title || '';
+  }
 
+  private getTrackColor(track: { title?: string }, trackOverride?: string): string {
+    const title = trackOverride ? trackOverride : track?.title || '';
+    const trackMeta = (scheduleTracks as Record<string, { color: string }>)[title];
+    return trackMeta?.color || 'var(--secondary-text-color)';
+  }
   private toggleFeedback(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();

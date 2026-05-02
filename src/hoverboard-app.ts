@@ -32,6 +32,7 @@ import { initialTicketsState } from './store/tickets/state';
 import { OpenedChanged } from './utils/app-drawer';
 import {
   buyTicket,
+  scholarshipTicket,
   dates,
   location,
   navigation,
@@ -137,6 +138,30 @@ export class HoverboardApp extends PolymerElement {
           cursor: pointer;
         }
 
+        .alert-banner {
+          background-color: var(--dark-primary-color);
+          color: #fff;
+          text-align: center;
+          padding: 10px 32px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          line-height: 1.4;
+          height: auto;
+          justify-content: center;
+        }
+
+        .alert-banner a {
+          color: var(--light-primary-color);
+          text-decoration: underline;
+          font-weight: 700;
+          margin-left: 4px;
+        }
+
+        .alert-banner a:hover {
+          color: #fff;
+        }
+
         @media (min-width: 640px) {
           app-toolbar {
             padding: 0 36px;
@@ -150,7 +175,7 @@ export class HoverboardApp extends PolymerElement {
           <app-toolbar layout vertical start>
             <lazy-image
               class="toolbar-logo"
-              src="/images/logo-monochrome.svg"
+              src="/images/devrelcon-mono.svg"
               alt="[[alt]]"
             ></lazy-image>
             <h2 class="dates">[[dates]]</h2>
@@ -194,7 +219,13 @@ export class HoverboardApp extends PolymerElement {
 
         <app-header-layout id="headerLayout" fullbleed>
           <app-header id="header" slot="header" condenses fixed>
-            <header-toolbar drawer-opened="{{drawerOpened}}"></header-toolbar>
+            <app-toolbar class="alert-banner">
+              Ticket prices increase on June 1 - Buy Yours Today
+              <a href="https://ti.to/mlh/devrelcon-2026" target="_blank" rel="noopener noreferrer"
+                >Get Tickets →</a
+              >
+            </app-toolbar>
+            <header-toolbar drawer-opened="{{drawerOpened}}" sticky></header-toolbar>
           </app-header>
 
           <main></main>
@@ -213,6 +244,7 @@ export class HoverboardApp extends PolymerElement {
   private alt = title;
   private dates = dates;
   private buyTicket = buyTicket;
+  private scholarshipTicket = scholarshipTicket;
   private navigation = navigation;
   private shortLocation = location.short;
 

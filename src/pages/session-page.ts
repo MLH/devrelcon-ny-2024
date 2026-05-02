@@ -208,7 +208,7 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
           <div class="float-button" hidden$="[[!contentLoaderVisibility]]">
             <paper-fab
               icon="hoverboard:[[featuredSessionIcon]]"
-              hidden$="[[!viewport.isLaptopPlus]]"
+              hidden$="[[viewport.isLaptopPlus]]"
               on-click="toggleFeaturedSession"
             ></paper-fab>
           </div>
@@ -236,10 +236,15 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
             on-click="toggleFeaturedSession"
           ></paper-fab>
         </div>
-        <h3 class="meta-info" hidden$="[[disabledSchedule]]">
+        <h3
+          class="meta-info"
+          hidden$="[[_hideScheduleInfo(disabledSchedule, session.dateReadable)]]"
+        >
           [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
         </h3>
-        <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.track.title]]</h3>
+        <h3 class="meta-info" hidden$="[[_hideScheduleInfo(disabledSchedule, session.track)]]">
+          [[getTrackTitle(session.track, session.trackOverride)]]
+        </h3>
         <h3 class="meta-info" hidden$="[[!session.complexity]]">
           [[sessionDetails.contentLevel]]: [[session.complexity]]
         </h3>
@@ -273,7 +278,7 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
           </div>
         </div>
 
-        <div class="additional-sections" hidden$="[[!session.speakers.length]]">
+        <div class="additional-sections" hidden$="[[!hasSpeakers(session.speakers)]]">
           <h3>[[sessionDetails.speakers]]</h3>
           <template is="dom-repeat" items="[[session.speakers]]" as="speaker">
             <a class="section" href$="[[speakerUrl(speaker.id)]]">
@@ -286,24 +291,11 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
 
                 <div class="section-details" flex>
                   <div class="section-primary-text">[[speaker.name]]</div>
-                  <div class="section-secondary-text">
-                    [[speaker.company]] / [[speaker.country]]
-                  </div>
+                  <div class="section-secondary-text">[[speaker.title]] / [[speaker.company]]</div>
                 </div>
               </div>
             </a>
           </template>
-        </div>
-
-        <div id="feedback" class="additional-sections">
-          <h3>[[feedback.headline]]</h3>
-
-          <auth-required hidden="[[!acceptingFeedback]]">
-            <slot slot="prompt">[[feedback.leaveFeedback]]</slot>
-            <feedback-block session-id="[[session.id]]"></feedback-block>
-          </auth-required>
-
-          <p hidden="[[acceptingFeedback]]">[[feedback.sessionClosed]]</p>
         </div>
       </div>
 
@@ -335,6 +327,14 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
   private contentLoaderVisibility: boolean = false;
   @property({ type: Boolean })
   private acceptingFeedback: boolean = false;
+
+  private getTrackTitle(track: { title?: string }, trackOverride?: string) {
+    return trackOverride ? trackOverride : track?.title || '';
+  }
+
+  private hasSpeakers(speakers: Speaker[]): boolean {
+    return speakers && speakers.length > 0;
+  }
 
   override stateChanged(state: RootState) {
     super.stateChanged(state);
@@ -395,11 +395,20 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
       if (!this.session) {
         router.render('/404');
       } else {
-        const speaker: Speaker = this.session?.speakers?.[0] as TempAny;
-        updateImageMetadata(this.session.title, this.session.description, {
-          image: speaker.photoUrl,
-          imageAlt: speaker.name,
-        });
+        this.session.speakers = this.session.speakers || []; // Ensure speakers is an array
+
+        if (this.session.speakers.length > 0) {
+          const speaker: Speaker = this.session.speakers[0] as TempAny;
+          updateImageMetadata(this.session.title, this.session.description, {
+            image: speaker.photoUrl,
+            imageAlt: speaker.name,
+          });
+        } else {
+          updateImageMetadata(this.session.title, this.session.description, {
+            image: '', // Provide a default or placeholder image if necessary
+            imageAlt: '',
+          });
+        }
       }
     }
   }
@@ -449,5 +458,9 @@ export class SessionPage extends ReduxMixin(PolymerElement) {
 
   private speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  private _hideScheduleInfo(disabledSchedule: boolean, value: unknown) {
+    return disabledSchedule || !value;
   }
 }

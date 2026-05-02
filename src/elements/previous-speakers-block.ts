@@ -4,19 +4,16 @@ import '@polymer/iron-icon';
 import '@material/web/button/text-button.js';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
-import { PreviousSpeaker } from '../models/previous-speaker';
-import { router } from '../router';
+import { SpeakerWithTags } from '../models/speaker';
 import { RootState, store } from '../store';
 import { ReduxMixin } from '../store/mixin';
-import { fetchPreviousSpeakers } from '../store/previous-speakers/actions';
-import { selectRandomPreviousSpeakers } from '../store/previous-speakers/selectors';
-import {
-  initialPreviousSpeakersState,
-  PreviousSpeakersState,
-} from '../store/previous-speakers/state';
+import { fetchSpeakers } from '../store/speakers/actions';
+import { selectRandomPastSpeakers } from '../store/speakers/selectors';
+import { initialSpeakersState, SpeakersState } from '../store/speakers/state';
 import { loading, previousSpeakersBlock } from '../utils/data';
 import '../utils/icons';
 import './shared-styles';
+import './rotating-speakers-carousel';
 
 @customElement('previous-speakers-block')
 export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
@@ -74,25 +71,36 @@ export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
       <div class="container">
         <h1 class="container-title">[[previousSpeakersBlock.title]]</h1>
 
-        <div class="speakers-wrapper">
-          <template is="dom-if" if="[[pending]]">
-            <p>[[loading]]</p>
-          </template>
+        <template is="dom-if" if="[[pending]]">
+          <p>[[loading]]</p>
+        </template>
 
-          <template is="dom-if" if="[[failure]]">
-            <p>Error loading previous speakers.</p>
-          </template>
+        <template is="dom-if" if="[[failure]]">
+          <p>Error loading previous speakers.</p>
+        </template>
 
-          <template is="dom-repeat" items="[[speakers]]" as="speaker">
-            <a class="speaker" href$="[[previousSpeakerUrl(speaker.id)]]">
-              <lazy-image
-                class="photo"
-                src="[[speaker.photoUrl]]"
-                alt="[[speaker.name]]"
-              ></lazy-image>
-            </a>
-          </template>
-        </div>
+        <template is="dom-if" if="[[isHomePage]]">
+          <rotating-speakers-carousel
+            speakers="[[speakers]]"
+            speakers-per-slide="[[carouselConfig.speakersPerSlide]]"
+            auto-rotate-interval="[[carouselConfig.autoRotateInterval]]"
+            show-company="[[carouselConfig.showCompany]]"
+          ></rotating-speakers-carousel>
+        </template>
+
+        <template is="dom-if" if="[[!isHomePage]]">
+          <div class="speakers-wrapper">
+            <template is="dom-repeat" items="[[speakers]]" as="speaker">
+              <a class="speaker" href$="[[speakerUrl(speaker.id)]]">
+                <lazy-image
+                  class="photo"
+                  src="[[speaker.photoUrl]]"
+                  alt="[[speaker.name]]"
+                ></lazy-image>
+              </a>
+            </template>
+          </div>
+        </template>
 
         <a href="[[previousSpeakersBlock.callToAction.link]]">
           <md-text-button class="animated icon-right" trailing-icon>
@@ -108,33 +116,39 @@ export class PreviousSpeakersBlock extends ReduxMixin(PolymerElement) {
   private loading = loading;
 
   @property({ type: Object })
-  previousSpeakers: PreviousSpeakersState = initialPreviousSpeakersState;
+  speakersState: SpeakersState = initialSpeakersState;
   @property({ type: Array })
-  speakers: PreviousSpeaker[] = [];
+  speakers: SpeakerWithTags[] = [];
 
-  @computed('previousSpeakers')
+  @property({ type: Boolean })
+  isHomePage = false;
+
+  @property({ type: Object })
+  carouselConfig = previousSpeakersBlock.carousel;
+
+  @computed('speakersState')
   get pending() {
-    return this.previousSpeakers instanceof Pending;
+    return this.speakersState instanceof Pending;
   }
 
-  @computed('previousSpeakers')
+  @computed('speakersState')
   get failure() {
-    return this.previousSpeakers instanceof Failure;
+    return this.speakersState instanceof Failure;
   }
 
   override stateChanged(state: RootState) {
-    this.previousSpeakers = state.previousSpeakers;
-    this.speakers = selectRandomPreviousSpeakers(state);
+    this.speakersState = state.speakers;
+    this.speakers = selectRandomPastSpeakers(state);
   }
 
   override connectedCallback() {
     super.connectedCallback();
-    if (this.previousSpeakers instanceof Initialized) {
-      store.dispatch(fetchPreviousSpeakers);
+    if (this.speakersState instanceof Initialized) {
+      store.dispatch(fetchSpeakers);
     }
   }
 
-  previousSpeakerUrl(id: string) {
-    return router.urlForName('previous-speaker-page', { id });
+  speakerUrl(id: string) {
+    return `/speakers/${id}`;
   }
 }

@@ -17,7 +17,14 @@ import { ReduxMixin } from '../store/mixin';
 import { initialTicketsState, TicketsState } from '../store/tickets/state';
 import { initialUiState } from '../store/ui/state';
 import { initialUserState } from '../store/user/state';
-import { buyTicket, navigation, signIn, signOut as signOutText, title } from '../utils/data';
+import {
+  buyTicket,
+  scholarshipTicket,
+  navigation,
+  signIn,
+  signOut as signOutText,
+  title,
+} from '../utils/data';
 import './notification-toggle';
 import './shared-styles';
 
@@ -64,9 +71,10 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           display: block;
           width: 150px;
           height: 32px;
-          background-color: var(--default-primary-color);
+          background-color: #000;
           transition: background-color var(--animation);
-          -webkit-mask: url('/images/logo-monochrome.svg') no-repeat;
+          -webkit-mask: url('/images/devrelcon-mono.svg') no-repeat;
+          mask-size: 110px;
         }
 
         .nav-items {
@@ -184,7 +192,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             [[signInText]]
           </paper-tab>
 
-          <a href$="[[ticketUrl]]" target="_blank" rel="noopener noreferrer">
+          <a href="https://ti.to/mlh/devrelcon-2026" target="_blank" rel="noopener noreferrer">
             <md-filled-button class="buy-button">[[buyTicket]]</md-filled-button>
           </a>
         </paper-tabs>
@@ -235,6 +243,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   private navigation = navigation;
   private signOutText = signOutText;
   private buyTicket = buyTicket;
+  private scholarshipTicket = scholarshipTicket;
 
   @property({ type: Boolean, notify: true })
   drawerOpened: boolean = false;
@@ -308,7 +317,9 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   @computed('tickets')
   private get ticketUrl() {
     if (this.tickets instanceof Success && this.tickets.data.length > 0) {
-      const availableTicket = this.tickets.data.find((ticket) => ticket.available);
+      const availableTicket = this.tickets.data.find(
+        (ticket) => ticket.available && !ticket.scholarship,
+      );
       return (availableTicket || this.tickets.data[0])?.url || '';
     } else {
       return '';

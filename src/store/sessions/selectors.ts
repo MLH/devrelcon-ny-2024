@@ -11,7 +11,9 @@ const buildFilter = (group: FilterGroupKey, tag: string): Filter => {
   return { group, tag };
 };
 
-const buildFilters = (sessions: Session[], filterGroupKey: FilterGroupKey): Filter[] => {
+type SessionFilterKey = FilterGroupKey.tags | FilterGroupKey.complexity;
+
+const buildFilters = (sessions: Session[], filterGroupKey: SessionFilterKey): Filter[] => {
   const tags = new Set<string>();
 
   sessions.forEach((session) => {
@@ -21,7 +23,7 @@ const buildFilters = (sessions: Session[], filterGroupKey: FilterGroupKey): Filt
     } else if (typeof value === 'string') {
       tags.add(value.trim());
     } else {
-      value.map((tag) => tags.add(tag.trim()));
+      value.map((tag: string) => tags.add(tag.trim()));
     }
   });
 

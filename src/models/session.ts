@@ -1,3 +1,4 @@
+import { Track } from './track';
 import { Id } from './types';
 
 export interface SessionData {
@@ -13,7 +14,9 @@ export interface SessionData {
   startTime?: string;
   tags?: string[];
   title: string;
+  track?: Track;
   videoId?: string;
+  trackOverride?: string;
 }
 
 export type Session = Id & SessionData;

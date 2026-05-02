@@ -5,7 +5,7 @@ import '@material/web/button/text-button.js';
 import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 import '../components/text-truncate';
-import { Speaker } from '../models/speaker';
+import { SpeakerWithTags } from '../models/speaker';
 import { router } from '../router';
 import { RootState, store } from '../store';
 import { ReduxMixin } from '../store/mixin';
@@ -13,6 +13,7 @@ import { fetchSpeakers } from '../store/speakers/actions';
 import { initialSpeakersState } from '../store/speakers/state';
 import { randomOrder } from '../utils/arrays';
 import { speakersBlock } from '../utils/data';
+import { companyLogoUrl } from '../utils/logos';
 import '../utils/icons';
 import './shared-styles';
 
@@ -23,6 +24,10 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
       <style include="shared-styles flex flex-alignment positioning">
         :host {
           display: block;
+        }
+
+        :host([hidden]) {
+          display: none !important;
         }
 
         .speakers-wrapper {
@@ -85,7 +90,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
         .company-logo {
           margin-top: 6px;
           --lazy-image-width: 100%;
-          --lazy-image-height: 16px;
+          --lazy-image-height: 25px;
           --lazy-image-fit: contain;
           width: var(--lazy-image-width);
           height: var(--lazy-image-height);
@@ -104,6 +109,14 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
           margin-top: 4px;
           font-size: 14px;
           line-height: 1.1;
+        }
+
+        .talk-title {
+          margin-top: 6px;
+          font-size: 12px;
+          line-height: 1.3;
+          color: var(--secondary-text-color);
+          font-style: italic;
         }
 
         .cta-button {
@@ -162,7 +175,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
         }
       </style>
 
-      <div class="container">
+      <div class="container" hidden$="[[!featuredSpeakers.length]]">
         <h1 class="container-title">[[speakersBlock.title]]</h1>
 
         <div class="speakers-wrapper">
@@ -194,7 +207,7 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
 
               <lazy-image
                 class="company-logo"
-                src="[[speaker.companyLogoUrl]]"
+                src="[[_companyLogoUrl(speaker.company)]]"
                 alt="[[speaker.company]]"
               ></lazy-image>
 
@@ -204,6 +217,11 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
                 </text-truncate>
                 <text-truncate lines="1">
                   <div class="origin">[[speaker.country]]</div>
+                </text-truncate>
+                <text-truncate lines="2">
+                  <div class="talk-title" hidden$="[[!speakerTalkTitle(speaker)]]">
+                    [[speakerTalkTitle(speaker)]]
+                  </div>
                 </text-truncate>
               </div>
             </a>
@@ -239,11 +257,14 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
   }
 
   @computed('speakers')
-  get featuredSpeakers(): Speaker[] {
+  get featuredSpeakers(): SpeakerWithTags[] {
     if (this.speakers instanceof Success) {
       const { data } = this.speakers;
-      const filteredSpeakers = data.filter((speaker) => speaker.featured);
-      const randomSpeakers = randomOrder(filteredSpeakers.length ? filteredSpeakers : data);
+      const activeSpeakers = data.filter((speaker) => speaker.active);
+      const filteredSpeakers = activeSpeakers.filter((speaker) => speaker.featured);
+      const randomSpeakers = randomOrder(
+        filteredSpeakers.length ? filteredSpeakers : activeSpeakers,
+      );
       return randomSpeakers.slice(0, 4);
     } else {
       return [];
@@ -252,5 +273,18 @@ export class SpeakersBlock extends ReduxMixin(PolymerElement) {
 
   speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  speakerTalkTitle(speaker: SpeakerWithTags): string {
+    const sessions = speaker.sessions;
+    const firstSession = sessions?.[0];
+    if (firstSession) {
+      return firstSession.title;
+    }
+    return '';
+  }
+
+  _companyLogoUrl(company: string) {
+    return companyLogoUrl(company);
   }
 }

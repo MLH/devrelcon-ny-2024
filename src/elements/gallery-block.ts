@@ -154,6 +154,9 @@ export class GalleryBlock extends ReduxMixin(PolymerElement) {
             <a href="[[galleryBlock.callToAction.link]]" target="_blank" rel="noopener noreferrer">
               <md-outlined-button>[[galleryBlock.callToAction.label]]</md-outlined-button>
             </a>
+            <a href="[[galleryBlock.callToAction2.link]]" target="_blank" rel="noopener noreferrer">
+              <paper-button>[[galleryBlock.callToAction2.label]]</paper-button>
+            </a>
           </div>
         </template>
       </div>

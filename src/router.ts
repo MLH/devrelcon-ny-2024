@@ -24,10 +24,6 @@ export const selectRouteName = (pathname: string): string => {
     case 'sessions':
       part = 'schedule';
       break;
-
-    case 'previous-speakers':
-      part = 'speakers';
-      break;
   }
 
   return part || 'home';
@@ -41,26 +37,26 @@ const ROUTES: Route[] = [
       await import('./pages/home-page.js');
     },
   },
-  {
-    path: '/blog',
-    children: [
-      {
-        path: '',
-        component: 'blog-list-page',
-        action: async () => {
-          await import('./pages/blog-list-page.js');
-        },
-      },
-      { path: '/posts/:id', redirect: '/blog/:id' },
-      {
-        path: '/:id',
-        component: 'post-page',
-        action: async () => {
-          await import('./pages/post-page.js');
-        },
-      },
-    ],
-  },
+  // {
+  //   path: '/blog',
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: 'blog-list-page',
+  //       action: async () => {
+  //         await import('./pages/blog-list-page.js');
+  //       },
+  //     },
+  //     { path: '/posts/:id', redirect: '/blog/:id' },
+  //     {
+  //       path: '/:id',
+  //       component: 'post-page',
+  //       action: async () => {
+  //         await import('./pages/post-page.js');
+  //       },
+  //     },
+  //   ],
+  // },
   {
     path: '/schedule',
     component: 'schedule-page',
@@ -121,22 +117,11 @@ const ROUTES: Route[] = [
   },
   {
     path: '/previous-speakers',
-    children: [
-      {
-        path: '',
-        component: 'previous-speakers-page',
-        action: async () => {
-          await import('./pages/previous-speakers-page.js');
-        },
-      },
-      {
-        path: '/:id',
-        component: 'previous-speaker-page',
-        action: async () => {
-          await import('./pages/previous-speaker-page.js');
-        },
-      },
-    ],
+    redirect: '/speakers',
+  },
+  {
+    path: '/previous-speakers/:id',
+    redirect: '/speakers/:id',
   },
   {
     path: '/team',
@@ -153,10 +138,38 @@ const ROUTES: Route[] = [
     },
   },
   {
-    path: '/coc',
-    component: 'coc-page',
+    path: '/neighborhood',
+    component: 'neighborhood-page',
     action: async () => {
-      await import('./pages/coc-page.js');
+      await import('./pages/neighborhood-page.js');
+    },
+  },
+  {
+    path: '/get-involved',
+    component: 'get-involved-page',
+    action: async () => {
+      await import('./pages/get-involved-page.js');
+    },
+  },
+  {
+    path: '/convince-your-boss',
+    component: 'convince-your-boss-page',
+    action: async () => {
+      await import('./pages/convince-your-boss-page.js');
+    },
+  },
+  // {
+  //   path: '/coc',
+  //   component: 'coc-page',
+  //   action: async () => {
+  //     await import('./pages/coc-page.js');
+  //   },
+  // },
+  {
+    path: '/admin/(.*)?',
+    component: 'admin-page',
+    action: async () => {
+      await import('./pages/admin/admin-page.js');
     },
   },
   {

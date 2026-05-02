@@ -9,7 +9,6 @@ import '../components/hero/simple-hero';
 import '../components/text-truncate';
 import '../elements/content-loader';
 import '../elements/filter-menu';
-import '../elements/previous-speakers-block';
 import '../elements/shared-styles';
 import { Filter } from '../models/filter';
 import { FilterGroup, FilterGroupKey } from '../models/filter-group';
@@ -20,11 +19,13 @@ import { selectFilters } from '../store/filters/selectors';
 import { ReduxMixin } from '../store/mixin';
 import { selectFilterGroups } from '../store/sessions/selectors';
 import { fetchSpeakers } from '../store/speakers/actions';
-import { selectFilteredSpeakers } from '../store/speakers/selectors';
+import { selectFilteredSpeakers, selectPastSpeakers } from '../store/speakers/selectors';
 import { initialSpeakersState } from '../store/speakers/state';
 import { contentLoaders, heroSettings } from '../utils/data';
 import '../utils/icons';
+import { companyLogoUrl } from '../utils/logos';
 import { updateMetadata } from '../utils/metadata';
+import { getVariableColor } from '../utils/styles';
 
 @customElement('speakers-page')
 export class SpeakersPage extends ReduxMixin(PolymerElement) {
@@ -40,7 +41,6 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: 16px;
-          min-height: 80%;
         }
 
         .speaker {
@@ -131,6 +131,27 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
           line-height: 1.1;
         }
 
+        .tag-pills {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 4px;
+          margin-top: 8px;
+        }
+
+        .tag-pill {
+          display: inline-block;
+          padding: 2px 8px;
+          border-radius: 10px;
+          font-size: 11px;
+          font-weight: 500;
+          line-height: 1.4;
+          color: var(--tag-color);
+          border: 1px solid var(--tag-color);
+          background: transparent;
+          text-transform: capitalize;
+        }
+
         .bio {
           margin-top: 16px;
           color: var(--secondary-text-color);
@@ -178,11 +199,11 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
       <paper-progress indeterminate hidden$="[[contentLoaderVisibility]]"></paper-progress>
 
-      <filter-menu
+      <!-- <filter-menu
         filter-groups="[[filterGroups]]"
         selected-filters="[[selectedFilters]]"
         results-count="[[speakersToRender.length]]"
-      ></filter-menu>
+      ></filter-menu> -->
 
       <content-loader
         class="container"
@@ -226,7 +247,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
 
             <lazy-image
               class="company-logo"
-              src="[[speaker.companyLogoUrl]]"
+              src="[[_companyLogoUrl(speaker.company)]]"
               alt="[[speaker.company]]"
             ></lazy-image>
 
@@ -234,8 +255,14 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
               <h2 class="name">[[speaker.name]]</h2>
               <div class="origin">[[speaker.country]]</div>
 
+              <div class="tag-pills">
+                <template is="dom-repeat" items="[[limitTags(speaker.tags)]]" as="tag">
+                  <span class="tag-pill" style$="--tag-color: [[getTagColor(tag)]]">[[tag]]</span>
+                </template>
+              </div>
+
               <text-truncate lines="5">
-                <div class="bio">[[speaker.bio]]</div>
+                <short-markdown class="bio" content="[[speaker.bio]]"></short-markdown>
               </text-truncate>
             </div>
 
@@ -253,7 +280,29 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
         </template>
       </div>
 
-      <previous-speakers-block></previous-speakers-block>
+      <div class="container" hidden$="[[!pastSpeakers.length]]">
+        <h1
+          class="container-title"
+          style="grid-column: 1 / -1; text-align: center; margin-top: 32px;"
+        >
+          Past Speakers
+        </h1>
+        <template is="dom-repeat" items="[[pastSpeakers]]" as="speaker">
+          <a class="speaker card" href$="[[speakerUrl(speaker.id)]]">
+            <div relative>
+              <lazy-image
+                class="photo"
+                src="[[speaker.photoUrl]]"
+                alt="[[speaker.name]]"
+              ></lazy-image>
+            </div>
+            <div class="description">
+              <h2 class="name">[[speaker.name]]</h2>
+              <div class="origin">[[speaker.company]]</div>
+            </div>
+          </a>
+        </template>
+      </div>
 
       <footer-block></footer-block>
     `;
@@ -271,6 +320,8 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
   private selectedFilters: Filter[] = [];
   @property({ type: Array })
   private speakersToRender: SpeakerWithTags[] = [];
+  @property({ type: Array })
+  private pastSpeakers: SpeakerWithTags[] = [];
 
   override connectedCallback() {
     super.connectedCallback();
@@ -287,6 +338,7 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
     this.filterGroups = selectFilterGroups(state, [FilterGroupKey.tags]);
     this.selectedFilters = selectFilters(state);
     this.speakersToRender = selectFilteredSpeakers(state);
+    this.pastSpeakers = selectPastSpeakers(state);
   }
 
   @computed('speakers')
@@ -294,7 +346,19 @@ export class SpeakersPage extends ReduxMixin(PolymerElement) {
     return this.speakers instanceof Success;
   }
 
+  private limitTags(tags: string[]): string[] {
+    return (tags || []).slice(0, 2);
+  }
+
+  private getTagColor(value: string): string {
+    return getVariableColor(this, value, 'primary-text-color') || 'var(--primary-text-color)';
+  }
+
   speakerUrl(id: string) {
     return router.urlForName('speaker-page', { id });
+  }
+
+  _companyLogoUrl(company: string) {
+    return companyLogoUrl(company);
   }
 }

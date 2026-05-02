@@ -20,7 +20,7 @@ describe('footer-nav', () => {
 
     expect(screen.getByTestId('footer')).toBeInTheDocument();
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', '../../images/organizer-logo.svg');
+    expect(logo).toHaveAttribute('src', '../../images/mlhhoopyblack.png');
     expect(hoverboardLink).toBeInTheDocument();
     expect(hoverboardLink).toHaveAttribute('href', 'https://github.com/gdg-x/hoverboard');
     expect(hoverboardLink).toHaveAttribute('target', '_blank');
@@ -33,6 +33,6 @@ describe('footer-nav', () => {
     const cocLink = withinShadowRoot.getByText(codeOfConduct);
 
     expect(cocLink).toBeInTheDocument();
-    expect(cocLink).toHaveAttribute('href', '/coc');
+    expect(cocLink).toHaveAttribute('href', 'https://mlh.io/code-of-conduct');
   });
 });

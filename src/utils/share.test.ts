@@ -14,7 +14,7 @@ describe('share', () => {
     `menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=600,height=${height}`;
   const twitterUrl = [
     'https://twitter.com/intent/tweet',
-    'text=Check%20out%20Awesome%20Schedule%20at%20%23DevFest%3A%20http%3A%2F%2Flocalhost%2F',
+    'text=Check%20out%20Awesome%20Schedule%20at%20%23DevRelCon%3A%20http%3A%2F%2Flocalhost%2F',
   ].join('?');
 
   beforeAll(() => {

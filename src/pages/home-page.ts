@@ -6,6 +6,9 @@ import { html, PolymerElement } from '@polymer/polymer';
 import '@power-elements/lazy-image';
 import '../components/about-block';
 import '../components/hero/hero-block';
+import '../components/testimonials-block';
+import '../components/who-should-attend-block';
+import '../components/why-attend-block';
 import { HeroBlock } from '../components/hero/hero-block';
 import '../elements/about-organizer-block';
 import '../elements/featured-videos';
@@ -18,6 +21,7 @@ import '../elements/partners-block';
 import '../elements/speakers-block';
 import '../elements/subscribe-block';
 import '../elements/tickets-block';
+import '../elements/previous-speakers-block';
 import { firebaseApp } from '../firebase';
 import { store } from '../store';
 import { ReduxMixin } from '../store/mixin';
@@ -26,11 +30,14 @@ import { openVideoDialog } from '../store/ui/actions';
 import {
   aboutBlock,
   buyTicket,
+  cfp,
+  scholarshipTicket,
   dates,
   description,
   heroSettings,
   location,
   showForkMeBlockForProjectIds,
+  ticketUrl,
   title,
   viewHighlights,
 } from '../utils/data';
@@ -55,24 +62,72 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
         .hero-logo {
           --lazy-image-width: 100%;
-          --lazy-image-height: 76px;
+          --lazy-image-height: 160px;
           width: var(--lazy-image-width);
           height: var(--lazy-image-height);
-          max-width: 240px;
-          max-height: 76px;
+          max-width: 300px;
+          max-height: 300px;
         }
 
         .info-items {
-          margin: 24px auto;
+          margin: 16px auto;
           font-size: 22px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          max-width: 1100px;
+          padding: 0 24px;
+          box-sizing: border-box;
         }
 
-        .info-items > *:not(:first-of-type) {
-          margin-top: 4px;
+        .hero-columns {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-top: 16px;
+        }
+
+        .hero-tagline {
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin: 0;
+          color: inherit;
+        }
+
+        .hero-details {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 16px;
+        }
+
+        .hero-subtitle {
+          font-size: 17px;
+          font-weight: 600;
+          line-height: 1.4;
+          margin: 0;
+          color: inherit;
+          opacity: 0.95;
+          background: rgba(0, 0, 0, 0.25);
+          padding: 12px 20px;
+          border-radius: 8px;
+          letter-spacing: 0.01em;
+        }
+
+        .hero-description {
+          font-size: 14px;
+          line-height: 1.6;
+          opacity: 0.8;
+          margin: 14px 0 0;
+          padding: 0;
+          font-weight: 400;
         }
 
         .action-buttons {
-          margin: 0 -8px;
+          margin: 24px -8px 0;
           font-size: 14px;
         }
 
@@ -91,6 +146,25 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         .action-buttons iron-icon {
           --iron-icon-fill-color: currentColor;
           margin-right: 8px;
+        }
+
+        .apply-to-speak {
+          background-color: #fff;
+          color: var(--default-primary-color);
+          font-size: 16px;
+          font-weight: 600;
+          padding: 12px 32px;
+          letter-spacing: 0.02em;
+        }
+
+        .buy-ticket {
+          background-color: var(--default-primary-color);
+          color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+          padding: 12px 32px;
+          letter-spacing: 0.02em;
+          border: 2px solid #fff;
         }
 
         .scroll-down {
@@ -128,8 +202,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
         @media (min-height: 500px) {
           hero-block {
-            height: calc(100vh + 57px);
-            max-height: calc(100vh + 1px);
+            min-height: calc(100vh + 57px);
           }
 
           .home-content {
@@ -147,17 +220,61 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
         @media (min-width: 812px) {
           hero-block {
-            height: calc(100vh + 65px);
+            min-height: calc(100vh + 65px);
           }
 
           .hero-logo {
-            max-width: 320px;
+            --lazy-image-height: 180px;
+            max-width: 280px;
           }
 
           .info-items {
-            margin: 48px auto;
-            font-size: 28px;
+            margin: 32px auto;
+            font-size: 26px;
             line-height: 1.1;
+          }
+
+          .hero-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+            text-align: left;
+            margin-top: 24px;
+          }
+
+          .hero-tagline {
+            font-size: 40px;
+          }
+
+          .hero-details {
+            align-items: flex-start;
+            margin-top: 0;
+          }
+
+          .hero-subtitle {
+            font-size: 18px;
+            padding: 14px 24px;
+            text-align: left;
+          }
+
+          .hero-description {
+            font-size: 15px;
+            text-align: left;
+          }
+        }
+
+        @media (min-width: 1100px) {
+          .hero-tagline {
+            font-size: 46px;
+          }
+
+          .hero-subtitle {
+            font-size: 20px;
+          }
+
+          .hero-description {
+            font-size: 16px;
           }
         }
       </style>
@@ -165,28 +282,49 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       <hero-block
         id="hero"
         background-image="[[heroSettings.background.image]]"
+        background-video="[[heroSettings.background.video]]"
         background-color="[[heroSettings.background.color]]"
         font-color="[[heroSettings.fontColor]]"
         hide-logo
       >
         <div class="home-content" layout vertical center>
-          <lazy-image class="hero-logo" src="/images/logo.svg" alt="[[siteTitle]]"></lazy-image>
+          <lazy-image
+            class="hero-logo"
+            src="/images/devrelcon26.png"
+            alt="[[siteTitle]]"
+          ></lazy-image>
 
           <div class="info-items">
             <div class="info-item">[[city]]. [[dates]]</div>
-            <div class="info-item">[[heroSettings.description]]</div>
+            <div class="hero-columns">
+              <h1 class="hero-tagline">[[heroSettings.tagline]]</h1>
+              <div class="hero-details">
+                <div class="hero-subtitle" hidden$="[[!heroSettings.subtitle]]">
+                  [[heroSettings.subtitle]]
+                </div>
+                <div class="hero-description" hidden$="[[!heroSettings.description]]">
+                  [[heroSettings.description]]
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="action-buttons" layout horizontal center-justified wrap>
-            <md-outlined-button class="watch-video" on-click="playVideo">
-              <iron-icon icon="hoverboard:movie" slot="icon"></iron-icon>
-              [[viewHighlights]]
-            </md-outlined-button>
-            <md-filled-button on-click="scrollToTickets">
-              <iron-icon icon="hoverboard:ticket" slot="icon"></iron-icon>
-              [[buyTicket]]
-            </md-filled-button>
-          </div>
+          <template is="dom-if" if="[[isCfpOpen]]">
+            <div class="action-buttons" layout horizontal center-justified wrap>
+              <a href="[[cfpFormUrl]]" target="_blank" rel="noopener noreferrer">
+                <md-outlined-button class="apply-to-speak animated icon-right">
+                  <span>Apply to Speak</span>
+                  <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
+                </md-outlined-button>
+              </a>
+              <a href="[[ticketUrl]]" target="_blank" rel="noopener noreferrer">
+                <md-filled-button class="buy-ticket animated icon-right">
+                  <span>[[buyTicket]]</span>
+                  <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
+                </md-filled-button>
+              </a>
+            </div>
+          </template>
 
           <div class="scroll-down" on-click="scrollNextBlock">
             <svg
@@ -256,14 +394,18 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         <fork-me-block></fork-me-block>
       </template>
       <about-block></about-block>
+      <who-should-attend-block></who-should-attend-block>
+      <why-attend-block></why-attend-block>
+      <testimonials-block></testimonials-block>
+
       <speakers-block></speakers-block>
-      <subscribe-block></subscribe-block>
+      <previous-speakers-block is-home-page></previous-speakers-block>
       <tickets-block id="tickets-block"></tickets-block>
       <gallery-block></gallery-block>
       <about-organizer-block></about-organizer-block>
       <featured-videos></featured-videos>
-      <latest-posts-block></latest-posts-block>
       <map-block></map-block>
+      <subscribe-block></subscribe-block>
       <partners-block></partners-block>
       <footer-block></footer-block>
     `;
@@ -274,8 +416,12 @@ export class HomePage extends ReduxMixin(PolymerElement) {
   private dates = dates;
   private viewHighlights = viewHighlights;
   private buyTicket = buyTicket;
+  private scholarshipTicket = scholarshipTicket;
   private heroSettings = heroSettings.home;
   private aboutBlock = aboutBlock;
+  private isCfpOpen = cfp.status === 'open';
+  private cfpFormUrl = cfp.formUrl;
+  private ticketUrl = ticketUrl;
 
   @query('#hero')
   hero!: HeroBlock;
