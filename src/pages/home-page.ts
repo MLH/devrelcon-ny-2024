@@ -30,7 +30,6 @@ import { openVideoDialog } from '../store/ui/actions';
 import {
   aboutBlock,
   buyTicket,
-  cfp,
   scholarshipTicket,
   dates,
   description,
@@ -146,15 +145,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         .action-buttons iron-icon {
           --iron-icon-fill-color: currentColor;
           margin-right: 8px;
-        }
-
-        .apply-to-speak {
-          background-color: #fff;
-          color: var(--default-primary-color);
-          font-size: 16px;
-          font-weight: 600;
-          padding: 12px 32px;
-          letter-spacing: 0.02em;
         }
 
         .buy-ticket {
@@ -309,22 +299,14 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             </div>
           </div>
 
-          <template is="dom-if" if="[[isCfpOpen]]">
-            <div class="action-buttons" layout horizontal center-justified wrap>
-              <a href="[[cfpFormUrl]]" target="_blank" rel="noopener noreferrer">
-                <md-outlined-button class="apply-to-speak animated icon-right">
-                  <span>Apply to Speak</span>
-                  <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
-                </md-outlined-button>
-              </a>
-              <a href="[[ticketUrl]]" target="_blank" rel="noopener noreferrer">
-                <md-filled-button class="buy-ticket animated icon-right">
-                  <span>[[buyTicket]]</span>
-                  <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
-                </md-filled-button>
-              </a>
-            </div>
-          </template>
+          <div class="action-buttons" layout horizontal center-justified wrap>
+            <a href="[[ticketUrl]]" target="_blank" rel="noopener noreferrer">
+              <md-filled-button class="buy-ticket animated icon-right">
+                <span>[[buyTicket]]</span>
+                <iron-icon icon="hoverboard:arrow-right-circle"></iron-icon>
+              </md-filled-button>
+            </a>
+          </div>
 
           <div class="scroll-down" on-click="scrollNextBlock">
             <svg
@@ -419,8 +401,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
   private scholarshipTicket = scholarshipTicket;
   private heroSettings = heroSettings.home;
   private aboutBlock = aboutBlock;
-  private isCfpOpen = cfp.status === 'open';
-  private cfpFormUrl = cfp.formUrl;
   private ticketUrl = ticketUrl;
 
   @query('#hero')

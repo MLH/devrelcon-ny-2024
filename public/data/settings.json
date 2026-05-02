@@ -214,8 +214,8 @@
   },
   "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"],
   "cfp": {
-    "status": "open",
-    "formUrl": "https://majorleaguehacking.typeform.com/to/WkalvfPw",
+    "status": "closed",
+    "formUrl": "",
     "year": "2026"
   },
   "ticketUrl": "https://ti.to/mlh/devrelcon-2026"
