@@ -236,6 +236,7 @@ export default [
     languageOptions: {
       globals: {
         ...globals.node,
+        FirebaseFirestore: 'readonly',
       },
     },
   },

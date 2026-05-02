@@ -4,7 +4,14 @@ import { getFirestore } from 'firebase-admin/firestore';
 import * as functions from 'firebase-functions';
 import { sessionsSpeakersMap } from './schedule-generator/speakers-sessions-map.js';
 import { sessionsSpeakersScheduleMap } from './schedule-generator/speakers-sessions-schedule-map.js';
-import { isEmpty, ScheduleMap, SessionMap, snapshotToObject, SpeakerMap } from './utils.js';
+import {
+  isEmpty,
+  pickMainTag,
+  ScheduleMap,
+  SessionMap,
+  snapshotToObject,
+  SpeakerMap,
+} from './utils.js';
 
 const isScheduleEnabled = async (): Promise<boolean> => {
   const doc = await getFirestore().collection('config').doc('schedule').get();
@@ -74,12 +81,42 @@ async function generateAndSaveData(changedSpeaker?) {
     generatedData.speakers[changedSpeaker.id] = changedSpeaker;
   }
 
-  saveGeneratedData(generatedData.sessions, 'generatedSessions');
-  saveGeneratedData(generatedData.speakers, 'generatedSpeakers');
-  saveGeneratedData(generatedData.schedule, 'generatedSchedule');
+  // Include all speakers (active and inactive) in generated output
+  // This ensures inactive/past speakers are available to the frontend
+  for (const [speakerId, speaker] of Object.entries(speakers)) {
+    if (!generatedData.speakers[speakerId]) {
+      generatedData.speakers[speakerId] = { ...(speaker as object), id: speakerId };
+    }
+  }
+
+  // Include all sessions (including past years not on current schedule)
+  // Enrich with resolved speaker objects so session pages render correctly
+  for (const [sessionId, session] of Object.entries(sessions)) {
+    if (!generatedData.sessions[sessionId]) {
+      const raw = session as { speakers?: string[]; tags?: string[]; [key: string]: unknown };
+      const resolvedSpeakers = (raw.speakers || []).map((speakerId: string) => ({
+        id: speakerId,
+        ...(speakers[speakerId] || {}),
+        sessions: null,
+      }));
+      generatedData.sessions[sessionId] = {
+        ...raw,
+        id: sessionId,
+        mainTag: pickMainTag(raw.tags),
+        speakers: resolvedSpeakers,
+      };
+    }
+  }
+
+  await saveGeneratedData(generatedData.sessions, 'generatedSessions');
+  await saveGeneratedData(generatedData.speakers, 'generatedSpeakers');
+  await saveGeneratedData(generatedData.schedule, 'generatedSchedule');
 }
 
-function saveGeneratedData(data: SessionMap | SpeakerMap | ScheduleMap, collectionName: string) {
+async function saveGeneratedData(
+  data: SessionMap | SpeakerMap | ScheduleMap,
+  collectionName: string,
+) {
   if (isEmpty(data)) {
     functions.logger.error(
       `Attempting to write empty data to Firestore collection: "${collectionName}".`,
@@ -87,8 +124,14 @@ function saveGeneratedData(data: SessionMap | SpeakerMap | ScheduleMap, collecti
     return;
   }
 
-  for (let index = 0; index < Object.keys(data).length; index++) {
-    const key = Object.keys(data)[index];
-    getFirestore().collection(collectionName).doc(key).set(data[key]);
+  const keys = Object.keys(data);
+  const batchSize = 500;
+  for (let i = 0; i < keys.length; i += batchSize) {
+    const batch = getFirestore().batch();
+    const chunk = keys.slice(i, i + batchSize);
+    for (const key of chunk) {
+      batch.set(getFirestore().collection(collectionName).doc(key), data[key]);
+    }
+    await batch.commit();
   }
 }
