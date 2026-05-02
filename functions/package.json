@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npm run clean && concurrently npm:build:*",
     "build:index": "cd .. && cpx \"dist/*.html\" \"functions/dist\" --verbose",
-    "build:src": "tsc",
+    "build:src": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "start": "npm run clean && concurrently --kill-others npm:start:*",
     "start:index": "npm run build:index -- --watch",
