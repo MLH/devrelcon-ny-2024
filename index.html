@@ -101,6 +101,14 @@
     <script src="./src/service-worker-registration.ts" type="module"></script>
 
     <style>
+      /* Theme Material 3 web buttons with the DevRelCon brand color
+         (otherwise they default to Material's purple). Custom properties
+         cross shadow-DOM boundaries via inheritance. */
+      :root {
+        --md-sys-color-primary: #00add0;
+        --md-sys-color-on-primary: #fff;
+      }
+
       html,
       body {
         min-height: 100%;
