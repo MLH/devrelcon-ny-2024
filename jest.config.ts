@@ -40,7 +40,7 @@ const config: InitialOptionsTsJest = {
       testMatch: ['<rootDir>/scripts/**/*.test.ts'],
       transform: { '^.+\\.[t|j]sx?$': ['ts-jest', {}] },
       transformIgnorePatterns: [`node_modules/(?!${ES_MODULE_DEPENDENCIES})`],
-    } as Config.InitialProjectOptions,
+    } as Config.InitialProjectOptions, // InitialProjectOptions thinks `preset` isn't allowed
     {
       displayName: 'Firestore',
       preset: 'ts-jest',
