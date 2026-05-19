@@ -7,6 +7,7 @@
  */
 
 import { firestore } from '../firebase-config';
+import { toSlug } from '../utils/slug';
 
 interface PreviousSession {
   title: string;
@@ -24,15 +25,6 @@ interface YearSnapshot {
 
 function parseArgs(): { dryRun: boolean } {
   return { dryRun: process.argv.includes('--dry-run') };
-}
-
-function toSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, '')
-    .replace(/\s+/g, '_')
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '');
 }
 
 async function main() {
