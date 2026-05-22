@@ -44,10 +44,7 @@ export interface SpeakerPlan {
   resolveByName: Map<string, string>;
 }
 
-export function planSpeakers(
-  csvSpeakers: CsvSpeaker[],
-  existing: ExistingSpeaker[],
-): SpeakerPlan {
+export function planSpeakers(csvSpeakers: CsvSpeaker[], existing: ExistingSpeaker[]): SpeakerPlan {
   const byId = new Map<string, ExistingSpeaker>();
   const bySlug = new Map<string, ExistingSpeaker[]>();
   for (const s of existing) {

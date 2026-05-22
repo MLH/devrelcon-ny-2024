@@ -33,9 +33,7 @@ function parseArgs(): Args {
   const positional = argv.filter((a) => !a.startsWith('--'));
   const csvPath = positional[0];
   if (!csvPath) {
-    console.error(
-      'Usage: npx ts-node-script scripts/import-from-csv <csv-path> [--dry-run]',
-    );
+    console.error('Usage: npx ts-node-script scripts/import-from-csv <csv-path> [--dry-run]');
     process.exit(1);
   }
   return { csvPath, dryRun };
