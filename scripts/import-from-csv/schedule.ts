@@ -11,10 +11,15 @@ export interface Timeslot {
   sessions: TimeslotStageEntry[];
 }
 
+export interface Track {
+  title: string;
+}
+
 export interface ScheduleDay {
   date: string;
   dateReadable: string;
   timeslots: Timeslot[];
+  tracks: Track[];
 }
 
 export interface ScheduleInput {
@@ -165,6 +170,7 @@ export function buildSchedule(input: ScheduleInput): ScheduleDay[] {
       date,
       dateReadable: dateReadable(date),
       timeslots,
+      tracks: stages.map((title) => ({ title })),
     });
   }
 

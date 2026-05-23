@@ -34,6 +34,7 @@ describe('buildSchedule', () => {
             sessions: [{ items: ['101'] }],
           },
         ],
+        tracks: [{ title: 'Main' }],
       },
     ]);
   });

@@ -152,6 +152,7 @@ async function main(): Promise<void> {
         date: d.date,
         dateReadable: d.dateReadable,
         timeslots: d.timeslots,
+        tracks: d.tracks,
       }),
   );
   await commitInBatches(scheduleOps);
