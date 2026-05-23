@@ -1,0 +1,6 @@
+title,description,stage,day,startTime,endTime,speakerName,speakerTitle,speakerHeadshotUrl,speakerCompany
+Opening Keynote,Welcome to DevRelCon NY.,Main Stage,2026-10-12,09:00,09:40,Alex Sample,Head of DevRel,https://example.com/alex.jpg,Acme Inc
+Scaling Developer Programs,A discussion of growth tactics — note this talk has two co-presenters on two rows.,Main Stage,2026-10-12,10:00,10:40,Bea Sample,VP Developer Experience,https://example.com/bea.jpg,Beta Corp
+Scaling Developer Programs,A discussion of growth tactics — note this talk has two co-presenters on two rows.,Main Stage,2026-10-12,10:00,10:40,Cee Sample,Director of Community,,Gamma LLC
+Lightning A,A short talk on stage 2 while the keynote happens elsewhere.,Side Stage,2026-10-12,10:00,10:20,Dee Sample,Engineer,https://example.com/dee.jpg,Delta Co
+Lightning B,Back-to-back with Lightning A on the same stage.,Side Stage,2026-10-12,10:20,10:40,Eli Sample,Engineer,,Epsilon Studio
