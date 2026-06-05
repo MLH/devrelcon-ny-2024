@@ -1,0 +1,36 @@
+scripts/import-from-csv/csv.ts
+  s_bf930527e5d53f::t_55550cdedeae54 29-57,74-84,89-91
+scripts/import-from-csv/__tests__/csv.test.ts
+  s_bf930527e5d53f::t_277105d49da02f 68-136
+  s_bf930527e5d53f::t_1be3d9aafc4c10 1
+scripts/rehost-speaker-images.ts
+  s_bf930527e5d53f::t_706d9ce9a580ca 24,31-39
+  s_bf930527e5d53f::t_7a960f6a3e17ae 177-194,206-213
+  s_bf930527e5d53f::t_c6df8b21d2aa33 14-21
+  s_bf930527e5d53f::t_61720b1828fe41 114
+  s_bf930527e5d53f::t_e5699f24f941cd 45-56
+  s_bf930527e5d53f::t_0f98a62efdd4c5 96,105
+scripts/import-from-csv/index.ts
+  s_bf930527e5d53f::t_cedc7a938a6ec2 66,68
+  s_bf930527e5d53f::t_f55fb5b97ea862 5,10-17,20-22
+  s_bf930527e5d53f::t_ed8a6c3fb0df4a 36,42,46-48,51
+  s_bf930527e5d53f::t_aa7e0b6805d845 105-118,120,122-123,125-127
+  s_bf930527e5d53f::t_193b85358c2b4d 199-219
+  s_bf930527e5d53f::t_f3bf18a51504ab 146-148,155-166
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "cfd88635a941365c00f975f3ef1e435cd21e4999",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
