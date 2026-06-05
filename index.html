@@ -8,6 +8,9 @@
       content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"
       name="viewport"
     />
+    <!-- Cross-origin requests must send the origin as referrer: the logo.dev
+         API key is referrer-restricted and 401s on no-referrer requests. -->
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
     <meta content="{{ description }}" name="description" />
     <meta content="{{ keywords }}" name="keywords" />
     <meta content="{{ organizer.name }}" name="author" />
