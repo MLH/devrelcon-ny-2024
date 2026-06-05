@@ -95,10 +95,7 @@ describe('parseCsv', () => {
   });
 
   it('keeps all rows when no "Ready for Website?" column is present', () => {
-    const csv = [
-      HEADER,
-      'Talk A,D,Main Stage,2026-10-12,11:00,11:40,Jane Doe,T,,Acme',
-    ].join('\n');
+    const csv = [HEADER, 'Talk A,D,Main Stage,2026-10-12,11:00,11:40,Jane Doe,T,,Acme'].join('\n');
 
     expect(parseCsv(csv)).toHaveLength(1);
   });
