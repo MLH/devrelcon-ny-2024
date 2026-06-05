@@ -1,0 +1,86 @@
+CLAUDE.md
+  7cbaae79a118fda9 25-72
+functions/src/schedule-generator/speakers-sessions-schedule-map.ts
+  7cbaae79a118fda9 57
+.github/workflows/deploy-preview.yaml
+  7cbaae79a118fda9 19-20
+config/development.json
+  7cbaae79a118fda9 3-4
+mise.toml
+  b332dc829cc65af9 1-2
+config/production.json
+  7cbaae79a118fda9 3-4
+index.html
+  73180fb943355135 145-146,148-151,153-171,173-176
+  b332dc829cc65af9 147,152
+  7cbaae79a118fda9 172
+eslint.config.js
+  b332dc829cc65af9 239
+src/__mocks__/firebase.ts
+  7cbaae79a118fda9 5-12
+storage.rules
+  b332dc829cc65af9 4-10,12-13
+firestore.rules
+  b332dc829cc65af9 4-7,17,21-22,32,52,57,63,80,86,103,131,159,164,171,177,193
+.github/workflows/deploy.yaml
+  7cbaae79a118fda9 23-24
+functions/package.json
+  b332dc829cc65af9 14
+functions/src/generate-sessions-speakers-schedule.ts
+  7cbaae79a118fda9 7-14,84-113,116-119
+package.json
+  b332dc829cc65af9 16-22,24,44,67,70
+config/logo-dev.json
+  7cbaae79a118fda9 1-3
+firestore.rules.test.ts
+  7cbaae79a118fda9 66-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "04ca0bcff724b7d78f5203204c760f63718698d1",
+  "prompts": {
+    "73180fb943355135": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85293e24-32e0-4357-9b7a-b9188ce9ac7b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 29,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/8a7f17129428b7a92cbb57e6ce0d3df87ac7b56a24f02b94a50534fb827ad1c8"
+    },
+    "7cbaae79a118fda9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22ef8285-7deb-4d9d-9df4-d4991891cc89",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 119,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/9300635ef187b00cd12dfbb8873b495ea8eaa3e05dbdb09a7570e19a598ca38f"
+    },
+    "b332dc829cc65af9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7fb8a9e3-fac4-47e2-9bda-861a02b05de6",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 43,
+      "total_deletions": 86,
+      "accepted_lines": 45,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/e966a1f9f37958cb101c54ba03c78e44dc2fc71917009d22fcd9e278587869f8"
+    }
+  }
+}

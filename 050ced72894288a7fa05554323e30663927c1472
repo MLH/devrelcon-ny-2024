@@ -1,0 +1,24 @@
+src/hoverboard-app.ts
+  37306516d73aab0b 141-164,222-230
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "050ced72894288a7fa05554323e30663927c1472",
+  "prompts": {
+    "37306516d73aab0b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa6b213d-7815-4e89-8521-7f0f7c77620b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 35,
+      "total_deletions": 35,
+      "accepted_lines": 33,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/a398a285a040e09a346113023ff84f5abee153b973e94550f3c0d4f13fb0960a"
+    }
+  }
+}

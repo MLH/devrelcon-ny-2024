@@ -1,0 +1,24 @@
+src/components/footer-nav.test.ts
+  b332dc829cc65af9 23,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "5b595913a3172484cfeb8194794d94edb525d97f",
+  "prompts": {
+    "b332dc829cc65af9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7fb8a9e3-fac4-47e2-9bda-861a02b05de6",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Jonathan Gottfried",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/40b7c519eca39c902d4b11ffa53b049069cdae02371b370170bfb8586fcc0f84"
+    }
+  }
+}
