@@ -1,0 +1,21 @@
+src/utils/ticket-source.ts
+  s_a4887bf05259b2::t_38aa7858af65ab 1-51
+src/utils/ticket-source.test.ts
+  s_a4887bf05259b2::t_dac9f847a6ee33 1-122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "6e8d26d8f3e2683edf494c427cb81c3973a87dbd",
+  "prompts": {},
+  "sessions": {
+    "s_a4887bf05259b2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b7a7e7-c98a-4834-b1d0-aa0aa6f628a1",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
