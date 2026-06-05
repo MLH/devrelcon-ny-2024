@@ -41,12 +41,12 @@
     {
       "route": "speakers",
       "permalink": "/speakers",
-      "label": "2025 Speakers"
+      "label": "Speakers"
     },
     {
       "route": "schedule",
       "permalink": "/schedule",
-      "label": "2025 Schedule"
+      "label": "Schedule"
     }
   ],
   "heroSettings": {
@@ -79,8 +79,8 @@
       "fontColor": "#424242"
     },
     "schedule": {
-      "title": "Last Year's Schedule",
-      "description": "Here is our 2025 schedule for you to get an idea of what to expect at DevRelCon. We will be updating this with our selected speakers starting in May 2026. Want to see yourself on the schedule? Apply to speak at DevRelCon 2026! Speaker applications close on March 31st.",
+      "title": "Schedule",
+      "description": "Here is the schedule for DevRelCon 2026 on July 22-23 at Industry City, Brooklyn. We are confirming more talks and will keep updating the schedule, so check back for the latest lineup.",
       "metaDescription": "Choose your sessions to visit",
       "background": {
         "color": "#fff"
