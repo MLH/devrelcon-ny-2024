@@ -1,0 +1,20 @@
+src/hoverboard-app.ts
+  s_a4887bf05259b2::t_38045a03bc680a 32
+  s_a4887bf05259b2::t_cb802feca1cb8d 291
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "909105cadae3768485d5adec09708db2396c6db8",
+  "prompts": {},
+  "sessions": {
+    "s_a4887bf05259b2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b7a7e7-c98a-4834-b1d0-aa0aa6f628a1",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
