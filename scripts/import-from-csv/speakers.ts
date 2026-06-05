@@ -94,7 +94,11 @@ export function planSpeakers(csvSpeakers: CsvSpeaker[], existing: ExistingSpeake
         title: csv.title,
         company: csv.company,
       };
-      if (csv.headshotUrl) {
+      // Don't clobber a photo that's already rehosted on our Storage —
+      // the CSV value is the original (often non-public Drive) source.
+      const existingPhoto = String(match.data['photoUrl'] ?? '');
+      const alreadyHosted = existingPhoto.includes('storage.googleapis.com/devrelcon-ny-2024');
+      if (csv.headshotUrl && !alreadyHosted) {
         fields['photo'] = csv.headshotUrl;
         fields['photoUrl'] = csv.headshotUrl;
       }

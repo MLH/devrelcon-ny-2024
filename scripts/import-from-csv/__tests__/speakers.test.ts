@@ -144,3 +144,54 @@ describe('planSpeakers', () => {
     expect(plan.creates).toHaveLength(1);
   });
 });
+
+describe('planSpeakers photo preservation', () => {
+  it('does not overwrite an already-hosted Storage photo', () => {
+    const existing = [
+      {
+        id: 'jane_doe',
+        data: {
+          name: 'Jane Doe',
+          order: 0,
+          photoUrl:
+            'https://storage.googleapis.com/devrelcon-ny-2024.appspot.com/admin-uploads/speakers/photos/jane_doe.jpg',
+        },
+      },
+    ];
+    const plan = planSpeakers(
+      [
+        {
+          name: 'Jane Doe',
+          title: 'T',
+          company: 'Acme',
+          headshotUrl: 'https://drive.google.com/uc?id=x',
+        },
+      ],
+      existing,
+    );
+    expect(plan.updates).toHaveLength(1);
+    expect(plan.updates[0]!.fields).not.toHaveProperty('photoUrl');
+    expect(plan.updates[0]!.fields).not.toHaveProperty('photo');
+  });
+
+  it('still sets the photo when the existing one is not hosted', () => {
+    const existing = [
+      {
+        id: 'jane_doe',
+        data: { name: 'Jane Doe', order: 0, photoUrl: 'https://example.com/old.jpg' },
+      },
+    ];
+    const plan = planSpeakers(
+      [
+        {
+          name: 'Jane Doe',
+          title: 'T',
+          company: 'Acme',
+          headshotUrl: 'https://drive.google.com/uc?id=x',
+        },
+      ],
+      existing,
+    );
+    expect(plan.updates[0]!.fields['photoUrl']).toBe('https://drive.google.com/uc?id=x');
+  });
+});
