@@ -1,0 +1,9 @@
+public/data/settings.json
+  ai_agent 44,49,82-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "5374d613e4366cf7bdcfe5025fcc0caa24b0294c",
+  "prompts": {}
+}
