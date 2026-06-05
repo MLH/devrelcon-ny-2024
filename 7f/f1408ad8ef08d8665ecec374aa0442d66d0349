@@ -1,0 +1,21 @@
+firebase.json
+  s_bf930527e5d53f::t_85a84b675cf38c 37
+index.html
+  s_bf930527e5d53f::t_75f10fbbcb566d 11-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "7ff1408ad8ef08d8665ecec374aa0442d66d0349",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
