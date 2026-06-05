@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { planSpeakers, type ExistingSpeaker, type CsvSpeaker } from '../speakers';
 
 const baseExisting: ExistingSpeaker = {

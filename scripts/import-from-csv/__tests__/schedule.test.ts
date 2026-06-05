@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { buildSchedule, type ScheduleInput } from '../schedule';
 import type { Talk } from '../grouping';
 

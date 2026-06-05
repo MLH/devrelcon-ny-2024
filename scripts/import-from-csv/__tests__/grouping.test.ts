@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { groupTalks } from '../grouping';
 import type { CsvRow } from '../csv';
 

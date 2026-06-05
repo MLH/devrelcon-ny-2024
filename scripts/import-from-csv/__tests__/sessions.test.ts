@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { buildSessions, type SessionsInput } from '../sessions';
 import type { Talk } from '../grouping';
 
