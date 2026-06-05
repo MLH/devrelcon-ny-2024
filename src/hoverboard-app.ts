@@ -288,6 +288,7 @@ export class HoverboardApp extends PolymerElement {
     super.ready();
     console.log('Hoverboard is ready!');
     this.removeAttribute('unresolved');
+    // Capture ?source= before the router can rewrite the URL
     initTicketSource();
     startRouter(this.main);
     onUser();

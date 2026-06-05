@@ -6,7 +6,7 @@ import '../elements/footer-block';
 import { cfp, heroSettings, mailto, partnershipProposition } from '../utils/data';
 import { updateMetadata } from '../utils/metadata';
 
-/* eslint-disable max-len */
+ 
 
 @customElement('get-involved-page')
 export class GetInvolvedPage extends PolymerElement {
