@@ -71,3 +71,4 @@ serviceAccount.json
 *-adminsdk-*.json
 .DS_Store
 docs/superpowers/
+backups/

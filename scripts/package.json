@@ -1,0 +1,4 @@
+{
+  "comment": "Overrides the root \"type\": \"module\" so ts-node-script can run these CommonJS admin scripts.",
+  "type": "commonjs"
+}
