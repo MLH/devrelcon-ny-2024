@@ -40,6 +40,31 @@ describe('ticket-source', () => {
       expect(sessionStorage.getItem('ticketSource')).toBe('myad');
     });
 
+    it('captures ?promocode= into sessionStorage', () => {
+      window.history.replaceState({}, '', '/?promocode=mycode');
+
+      initTicketSource();
+
+      expect(sessionStorage.getItem('ticketPromocode')).toBe('mycode');
+    });
+
+    it('preserves a previously stored promocode when the param is absent', () => {
+      sessionStorage.setItem('ticketPromocode', 'mycode');
+
+      initTicketSource();
+
+      expect(sessionStorage.getItem('ticketPromocode')).toBe('mycode');
+    });
+
+    it('captures source and promocode from one landing URL', () => {
+      window.history.replaceState({}, '', '/?promocode=mycode&source=dev.to');
+
+      initTicketSource();
+
+      expect(sessionStorage.getItem('ticketSource')).toBe('dev.to');
+      expect(sessionStorage.getItem('ticketPromocode')).toBe('mycode');
+    });
+
     it('does not throw when sessionStorage is unavailable', () => {
       window.history.replaceState({}, '', '/?source=myad');
       jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
@@ -117,6 +142,63 @@ describe('ticket-source', () => {
       pointerdown(anchor);
 
       expect(anchor.href).toBe('https://ti.to/mlh/devrelcon-2026');
+    });
+  });
+
+  describe('promocode rewriting', () => {
+    beforeEach(() => {
+      window.history.replaceState({}, '', '/?promocode=mycode');
+      initTicketSource();
+    });
+
+    it('appends /discount/<code> to a bare event URL', () => {
+      const anchor = titoAnchor();
+
+      pointerdown(anchor);
+
+      expect(anchor.href).toBe('https://ti.to/mlh/devrelcon-2026/discount/mycode');
+    });
+
+    it('appends /discount/<code> after a deeper path', () => {
+      const anchor = titoAnchor('https://ti.to/mlh/devrelcon-2026/with/supporter-ticket');
+
+      pointerdown(anchor);
+
+      expect(anchor.href).toBe(
+        'https://ti.to/mlh/devrelcon-2026/with/supporter-ticket/discount/mycode',
+      );
+    });
+
+    it('skips links that already contain /discount/', () => {
+      const anchor = titoAnchor('https://ti.to/mlh/devrelcon-2026/discount/existing');
+
+      pointerdown(anchor);
+
+      expect(anchor.href).toBe('https://ti.to/mlh/devrelcon-2026/discount/existing');
+    });
+
+    it('URL-encodes the promocode', () => {
+      sessionStorage.setItem('ticketPromocode', '50% off');
+      const anchor = titoAnchor();
+
+      pointerdown(anchor);
+
+      expect(anchor.href).toBe('https://ti.to/mlh/devrelcon-2026/discount/50%25%20off');
+    });
+  });
+
+  describe('combined source and promocode rewriting', () => {
+    beforeEach(() => {
+      window.history.replaceState({}, '', '/?promocode=mycode&source=dev.to');
+      initTicketSource();
+    });
+
+    it('applies the path and query rewrites together', () => {
+      const anchor = titoAnchor();
+
+      pointerdown(anchor);
+
+      expect(anchor.href).toBe('https://ti.to/mlh/devrelcon-2026/discount/mycode?source=dev.to');
     });
   });
 });
