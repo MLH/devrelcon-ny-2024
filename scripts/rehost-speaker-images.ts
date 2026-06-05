@@ -11,22 +11,49 @@
  * Flags:
  *   --dry-run   Preview without uploading or updating Firestore
  *   --force     Re-download even if URL already points to Firebase Storage
+ *
+ * Environment:
+ *   DRIVE_TOKEN   OAuth token with drive.readonly scope, used to download
+ *                 non-public Google Drive files via the Drive API:
+ *                   DRIVE_TOKEN=$(gcloud auth application-default print-access-token) \
+ *                     npm run firestore:rehost-images
+ *                 (requires `gcloud auth application-default login --scopes=`
+ *                 `https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive.readonly`)
  */
 
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
+import { applicationDefault, cert, initializeApp, ServiceAccount } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
 import * as https from 'https';
 import * as http from 'http';
 import serviceAccount from '../serviceAccount.json';
 
-const credential = cert(serviceAccount as ServiceAccount);
-const app = initializeApp({ credential, storageBucket: 'devrelcon-ny-2024.appspot.com' }, 'rehost');
+// Prefer a real service account key; fall back to Application Default
+// Credentials (`gcloud auth application-default login`) when
+// serviceAccount.json is the empty `{}` stub used by CI.
+const hasKey = 'private_key' in (serviceAccount as Record<string, unknown>);
+const credential = hasKey ? cert(serviceAccount as ServiceAccount) : applicationDefault();
+const app = initializeApp(
+  { credential, projectId: 'devrelcon-ny-2024', storageBucket: 'devrelcon-ny-2024.appspot.com' },
+  'rehost',
+);
 const firestore = getFirestore(app);
 const bucket = getStorage(app).bucket();
 
 const dryRun = process.argv.includes('--dry-run');
 const force = process.argv.includes('--force');
+const driveToken = process.env['DRIVE_TOKEN'];
+
+const DRIVE_ID_PATTERN =
+  /^https:\/\/drive\.google\.com\/(?:uc\?(?:.*&)?id=([\w-]+)|file\/d\/([\w-]+))/;
+
+/**
+ * Extract the file ID from a Google Drive URL (uc?id= or file/d/ forms).
+ */
+function driveFileId(url: string): string | undefined {
+  const match = url.match(DRIVE_ID_PATTERN);
+  return match ? (match[1] ?? match[2]) : undefined;
+}
 
 interface BrokenUrl {
   speakerId: string;
@@ -66,6 +93,7 @@ function extFromContentType(contentType: string | undefined): string {
 function downloadImage(
   url: string,
   maxRedirects = 5,
+  headers: Record<string, string> = {},
 ): Promise<{ buffer: Buffer; contentType: string | undefined } | null> {
   return new Promise((resolve) => {
     if (maxRedirects <= 0) {
@@ -74,7 +102,7 @@ function downloadImage(
     }
 
     const client = url.startsWith('https') ? https : http;
-    const req = client.get(url, { timeout: 15000 }, (res) => {
+    const req = client.get(url, { timeout: 15000, headers }, (res) => {
       // Follow redirects
       if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         let redirectUrl = res.headers.location;
@@ -83,7 +111,7 @@ function downloadImage(
           const parsed = new URL(url);
           redirectUrl = `${parsed.protocol}//${parsed.host}${redirectUrl}`;
         }
-        resolve(downloadImage(redirectUrl, maxRedirects - 1));
+        resolve(downloadImage(redirectUrl, maxRedirects - 1, headers));
         return;
       }
 
@@ -146,7 +174,24 @@ async function processImage(
     return null;
   }
 
-  const result = await downloadImage(url);
+  // Non-public Google Drive files need an authenticated Drive API download;
+  // the plain uc?export=download URL serves a sign-in page to anonymous users.
+  const driveId = driveFileId(url);
+  let result: { buffer: Buffer; contentType: string | undefined } | null;
+  if (driveId && driveToken) {
+    result = await downloadImage(
+      `https://www.googleapis.com/drive/v3/files/${driveId}?alt=media&supportsAllDrives=true`,
+      5,
+      { Authorization: `Bearer ${driveToken}` },
+    );
+  } else {
+    if (driveId) {
+      console.warn(
+        `    [warn] ${url} is a Google Drive link; set DRIVE_TOKEN if the file is not public`,
+      );
+    }
+    result = await downloadImage(url);
+  }
   if (!result) {
     brokenUrls.push({
       speakerId,
@@ -154,6 +199,18 @@ async function processImage(
       field,
       url,
       error: 'Download failed (404, timeout, or empty)',
+    });
+    return null;
+  }
+
+  // Guard against HTML (sign-in pages, error pages) masquerading as an image.
+  if (result.contentType && !result.contentType.startsWith('image/')) {
+    brokenUrls.push({
+      speakerId,
+      speakerName,
+      field,
+      url,
+      error: `Not an image (Content-Type: ${result.contentType})`,
     });
     return null;
   }

@@ -2,16 +2,24 @@
  * Import speakers, sessions, and schedule from a CSV.
  *
  * Usage:
- *   npx ts-node-script scripts/import-from-csv path/to/talks.csv [--dry-run]
+ *   npx ts-node-script scripts/import-from-csv path/to/talks.csv [--dry-run] [--replace]
  *
  * CSV columns (one row per talk × speaker):
  *   title, description, stage, day, startTime, endTime,
  *   speakerName, speakerTitle, speakerHeadshotUrl, speakerCompany
+ * An optional "Ready for Website?" column restricts the import to rows
+ * marked TRUE.
+ *
+ * Flags:
+ *   --dry-run   Preview without writing
+ *   --replace   Delete all sessions and schedule docs before writing, so the
+ *               CSV becomes the source of truth (speakers are still upserted
+ *               in place). Use this for re-imports as the tracker sheet grows.
  *
  * Prerequisite: run
- *   npm run firestore:archive-speakers -- --year <prevYear> --clear
- * before this script to archive last year's speakers and wipe
- * the sessions and schedule collections.
+ *   npm run firestore:archive-speakers -- --year <prevYear>
+ * before this script to archive last year's speakers (with --clear, or use
+ * --replace here, to wipe the sessions and schedule collections).
  */
 
 import { readFileSync } from 'fs';
@@ -25,18 +33,22 @@ import { buildSchedule } from './schedule';
 interface Args {
   csvPath: string;
   dryRun: boolean;
+  replace: boolean;
 }
 
 function parseArgs(): Args {
   const argv = process.argv.slice(2);
   const dryRun = argv.includes('--dry-run');
+  const replace = argv.includes('--replace');
   const positional = argv.filter((a) => !a.startsWith('--'));
   const csvPath = positional[0];
   if (!csvPath) {
-    console.error('Usage: npx ts-node-script scripts/import-from-csv <csv-path> [--dry-run]');
+    console.error(
+      'Usage: npx ts-node-script scripts/import-from-csv <csv-path> [--dry-run] [--replace]',
+    );
     process.exit(1);
   }
-  return { csvPath, dryRun };
+  return { csvPath, dryRun, replace };
 }
 
 async function commitInBatches(
@@ -51,8 +63,9 @@ async function commitInBatches(
 }
 
 async function main(): Promise<void> {
-  const { csvPath, dryRun } = parseArgs();
+  const { csvPath, dryRun, replace } = parseArgs();
   if (dryRun) console.log('=== DRY RUN ===\n');
+  if (replace) console.log('=== REPLACE MODE: existing sessions + schedule will be deleted ===\n');
 
   // 1. Read + parse CSV.
   const raw = readFileSync(csvPath, 'utf8');
@@ -73,13 +86,6 @@ async function main(): Promise<void> {
   });
   console.log(`  Found ${existing.length} existing speakers`);
 
-  const activeCount = existing.filter((e) => e.data['active']).length;
-  if (activeCount > 0) {
-    console.warn(
-      `[warn] ${activeCount} active speakers exist. Did you run firestore:archive-speakers --clear first?`,
-    );
-  }
-
   const csvSpeakers: CsvSpeaker[] = [];
   for (const t of talks) {
     for (const s of t.speakers) {
@@ -96,11 +102,29 @@ async function main(): Promise<void> {
     `  Plan: ${speakerPlan.updates.length} speakers to update, ${speakerPlan.creates.length} new`,
   );
 
+  // Surface active speakers the CSV no longer references (e.g. cancelled
+  // talks on a re-import) — they stay active unless handled manually.
+  const importedIds = new Set(speakerPlan.resolveByName.values());
+  const staleActive = existing.filter((e) => e.data['active'] && !importedIds.has(e.id));
+  if (staleActive.length > 0) {
+    const action = replace
+      ? 'They will stay active — deactivate manually if their talks were cancelled.'
+      : 'Did you run firestore:archive-speakers first?';
+    console.warn(
+      `[warn] ${staleActive.length} active speaker(s) not referenced by this CSV: ` +
+        `${staleActive.map((e) => e.id).join(', ')}. ${action}`,
+    );
+  }
+
   // 4. Build sessions.
-  console.log('Fetching existing sessions for ID continuation...');
+  console.log('Fetching existing sessions...');
   const sessionsSnap = await firestore.collection('sessions').get();
+  // In replace mode existing sessions are deleted, so IDs restart; otherwise
+  // continue numbering after the highest existing ID.
   const existingSessionIds: string[] = [];
-  sessionsSnap.forEach((doc) => existingSessionIds.push(doc.id));
+  if (!replace) {
+    sessionsSnap.forEach((doc) => existingSessionIds.push(doc.id));
+  }
   const { sessions, talkToSessionId } = buildSessions({
     talks,
     existingSessionIds,
@@ -119,13 +143,27 @@ async function main(): Promise<void> {
   );
   console.log(`  Sessions: ${sessions.length}`);
   console.log(`  Schedule days: ${days.length}`);
+  if (replace) {
+    console.log(`  Will delete: ${sessionsSnap.size} existing sessions + existing schedule docs`);
+  }
 
   if (dryRun) {
     console.log('\n[dry-run] No writes performed.');
     process.exit(0);
   }
 
-  // 7. Write.
+  // 7. Replace: wipe sessions + schedule now that everything built cleanly.
+  if (replace) {
+    console.log('\nDeleting existing sessions and schedule...');
+    const scheduleSnap = await firestore.collection('schedule').get();
+    const deleteOps = [...sessionsSnap.docs, ...scheduleSnap.docs].map(
+      (doc) => (b: FirebaseFirestore.WriteBatch) => b.delete(doc.ref),
+    );
+    await commitInBatches(deleteOps);
+    console.log(`  Deleted ${sessionsSnap.size} sessions, ${scheduleSnap.size} schedule docs`);
+  }
+
+  // 8. Write.
   console.log('\nWriting speakers...');
   const speakerOps: Array<(b: FirebaseFirestore.WriteBatch) => void> = [];
   for (const u of speakerPlan.updates) {
@@ -157,6 +195,27 @@ async function main(): Promise<void> {
   );
   await commitInBatches(scheduleOps);
   console.log(`  Wrote ${scheduleOps.length} schedule day(s)`);
+
+  // 9. The generate-sessions-speakers-schedule Cloud Function only ever
+  // upserts into the generated* collections, so in replace mode prune docs
+  // left over from sessions/days that no longer exist.
+  if (replace) {
+    console.log('Pruning stale generated docs...');
+    const newSessionIds = new Set(sessions.map((s) => s.id));
+    const newDates = new Set(days.map((d) => d.date));
+    const [genSessions, genSchedule] = await Promise.all([
+      firestore.collection('generatedSessions').get(),
+      firestore.collection('generatedSchedule').get(),
+    ]);
+    const staleDocs = [
+      ...genSessions.docs.filter((doc) => !newSessionIds.has(doc.id)),
+      ...genSchedule.docs.filter((doc) => !newDates.has(doc.id)),
+    ];
+    await commitInBatches(
+      staleDocs.map((doc) => (b: FirebaseFirestore.WriteBatch) => b.delete(doc.ref)),
+    );
+    console.log(`  Deleted ${staleDocs.length} stale generated docs`);
+  }
 
   console.log('\nImport complete.');
   process.exit(0);
