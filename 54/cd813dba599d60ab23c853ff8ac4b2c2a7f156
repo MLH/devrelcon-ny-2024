@@ -1,0 +1,25 @@
+scripts/package.json
+  s_bf930527e5d53f::t_5404c92a395931 1-4
+scripts/firebase-config.ts
+  s_bf930527e5d53f::t_7140280770a4ef 3,9-14
+scripts/firestore-dump/index.ts
+  s_bf930527e5d53f::t_d741f2502cb666 1-71
+package.json
+  s_bf930527e5d53f::t_b37979aefdbe5f 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "54cd813dba599d60ab23c853ff8ac4b2c2a7f156",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
