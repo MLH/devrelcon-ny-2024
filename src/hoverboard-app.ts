@@ -29,6 +29,7 @@ import { onUser } from './store/auth/actions';
 import { queueSnackbar } from './store/snackbars';
 import { fetchTickets } from './store/tickets/actions';
 import { initialTicketsState } from './store/tickets/state';
+import { initTicketSource } from './utils/ticket-source';
 import { OpenedChanged } from './utils/app-drawer';
 import {
   buyTicket,
@@ -287,6 +288,7 @@ export class HoverboardApp extends PolymerElement {
     super.ready();
     console.log('Hoverboard is ready!');
     this.removeAttribute('unresolved');
+    initTicketSource();
     startRouter(this.main);
     onUser();
   }
