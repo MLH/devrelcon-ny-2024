@@ -1,0 +1,29 @@
+scripts/utils/__tests__/slug.test.ts
+  s_a4887bf05259b2::t_c204fab116199d 1
+scripts/import-from-csv/__tests__/sessions.test.ts
+  s_a4887bf05259b2::t_32d76691985eef 1
+scripts/import-from-csv/__tests__/csv.test.ts
+  s_a4887bf05259b2::t_dc6a076129a191 1
+scripts/import-from-csv/__tests__/grouping.test.ts
+  s_a4887bf05259b2::t_99da7f794ef8eb 1
+scripts/import-from-csv/__tests__/speakers.test.ts
+  s_a4887bf05259b2::t_1701d688e16985 1
+scripts/import-from-csv/__tests__/schedule.test.ts
+  s_a4887bf05259b2::t_fc4d685692d6f9 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "9ba34a5ccac28fa94b69c3898e27264f77c37a99",
+  "prompts": {},
+  "sessions": {
+    "s_a4887bf05259b2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3b7a7e7-c98a-4834-b1d0-aa0aa6f628a1",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
