@@ -1,5 +1,3 @@
- 
-
 import { html } from '@polymer/polymer/lib/utils/html-tag';
 
 export const workshop = html`

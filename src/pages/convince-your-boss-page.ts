@@ -8,7 +8,6 @@ import { queueSnackbar } from '../store/snackbars';
 import { heroSettings } from '../utils/data';
 import { updateMetadata } from '../utils/metadata';
 
- 
 const EMAIL_TEMPLATE_LINES = [
   'Subject: Request to attend DevRelCon NYC — July 22-23, 2026',
   '',
@@ -33,7 +32,7 @@ const EMAIL_TEMPLATE_LINES = [
   '',
   '[Your name]',
 ];
- 
+
 const EMAIL_TEMPLATE = EMAIL_TEMPLATE_LINES.join('\n');
 
 @customElement('convince-your-boss-page')

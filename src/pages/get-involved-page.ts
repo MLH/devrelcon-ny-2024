@@ -6,8 +6,6 @@ import '../elements/footer-block';
 import { cfp, heroSettings, mailto, partnershipProposition } from '../utils/data';
 import { updateMetadata } from '../utils/metadata';
 
- 
-
 @customElement('get-involved-page')
 export class GetInvolvedPage extends PolymerElement {
   static get template() {

@@ -3,7 +3,6 @@ import { customElement } from 'lit/decorators.js';
 import { whyAttendBlock } from '../utils/data';
 import { ThemedElement } from './themed-element';
 
- 
 const iconPaths: Record<string, string[]> = {
   mic: [
     'M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z',
@@ -29,7 +28,6 @@ const iconPaths: Record<string, string[]> = {
     'M12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z',
   ],
 };
- 
 
 function renderIcon(key: string): SVGTemplateResult {
   const paths = iconPaths[key] ?? iconPaths['mic'] ?? [];
