@@ -1,0 +1,19 @@
+public/data/resources.json
+  s_f51a77077d5b36::t_2aaaa6574588e2 210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "05e67d6b3c9f021fbff1534dd11c2513ee82be4c",
+  "prompts": {},
+  "sessions": {
+    "s_f51a77077d5b36": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57ee9739-1beb-4fe1-b47f-1f285625a62c",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
