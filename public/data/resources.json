@@ -207,7 +207,7 @@
     "soldOut": "You missed it!",
     "notAvailableYet": "Not available yet",
     "save": "Save ${discount}% today",
-    "urgencyMessage": "Early Bird tickets are now on sale!",
+    "urgencyMessage": "",
     "convinceBoss": "Need help justifying the trip?",
     "convinceBossLink": "/convince-your-boss",
     "convinceBossLabel": "Make the case to your manager",
