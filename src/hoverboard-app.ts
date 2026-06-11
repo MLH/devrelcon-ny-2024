@@ -220,12 +220,6 @@ export class HoverboardApp extends PolymerElement {
 
         <app-header-layout id="headerLayout" fullbleed>
           <app-header id="header" slot="header" condenses fixed>
-            <app-toolbar class="alert-banner">
-              Ticket prices increase on June 1 - Buy Yours Today
-              <a href="https://ti.to/mlh/devrelcon-2026" target="_blank" rel="noopener noreferrer"
-                >Get Tickets →</a
-              >
-            </app-toolbar>
             <header-toolbar drawer-opened="{{drawerOpened}}" sticky></header-toolbar>
           </app-header>
 
