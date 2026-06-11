@@ -1,0 +1,21 @@
+public/data/faq.md
+  s_b5f01d3baa4b81::t_a507571baf10d7 48
+public/data/neighborhood.md
+  s_b5f01d3baa4b81::t_432a5c29010681 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9d0050c2129081747eabbc04614c0c51623a958d",
+  "prompts": {},
+  "sessions": {
+    "s_b5f01d3baa4b81": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "693f8f2d-4c56-4534-b977-ed4b8b1ab4aa",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
