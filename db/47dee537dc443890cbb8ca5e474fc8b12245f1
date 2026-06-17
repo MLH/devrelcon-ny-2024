@@ -1,0 +1,32 @@
+package.json
+  s_bf930527e5d53f::t_a5e789c8459a9b 21
+scripts/import-from-csv/__tests__/sessions.test.ts
+  s_bf930527e5d53f::t_818f1a9e9c4e77 99-117
+scripts/import-from-csv/sessions.ts
+  s_bf930527e5d53f::t_c5b3b7171d26fb 57,72
+  s_bf930527e5d53f::t_3568983aaec88f 22-27
+scripts/import-from-csv/index.ts
+  s_bf930527e5d53f::t_649f58356224f8 169-172
+  s_bf930527e5d53f::t_c554a223c65a92 119-134,138-139,153
+  s_bf930527e5d53f::t_412dc0c1cbd62c 181,186-187,191-193
+  s_bf930527e5d53f::t_7e69a8bf018a46 241-243
+  s_bf930527e5d53f::t_9e02bf32e89c61 135-137,185
+scripts/restore-archived-sessions/index.ts
+  s_bf930527e5d53f::t_002bcea988a89b 1-114
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "db47dee537dc443890cbb8ca5e474fc8b12245f1",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
