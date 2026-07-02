@@ -1,0 +1,20 @@
+scripts/import-from-csv/index.ts
+  s_bf930527e5d53f::t_a2d91d0d739a81 143-148
+  s_bf930527e5d53f::t_658ea543af5dda 177,198
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "14043712b7bd85d2463faaaddf63f70594aee259",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
