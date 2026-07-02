@@ -1,0 +1,21 @@
+scripts/import-from-csv/grouping.ts
+  s_bf930527e5d53f::t_d068dec28af3c1 50-58
+scripts/import-from-csv/__tests__/grouping.test.ts
+  s_bf930527e5d53f::t_4a8c4bbf8c1c8b 63-87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "e165d6b0e11a3247dd33c7d0d68ca60214726d32",
+  "prompts": {},
+  "sessions": {
+    "s_bf930527e5d53f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f5d57aa-c3d9-464b-8dd8-c8487d26ae2e",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jonathan Gottfried <jonmarkgo@gmail.com>"
+    }
+  }
+}
