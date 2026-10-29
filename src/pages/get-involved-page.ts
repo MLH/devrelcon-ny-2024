@@ -123,10 +123,11 @@ export class GetInvolvedPage extends PolymerElement {
             workshops, and panel discussions.
           </p>
 
-          <p class="cfp-closed-note">
-            The CFP for [[cfpYear]] is now closed. Sign up for our newsletter to be notified when
-            the next CFP opens.
-          </p>
+          <div class="cta-container">
+            <a href="[[cfpFormUrl]]" target="_blank" rel="noopener noreferrer">
+              <paper-button class="cta-button"> Apply to Speak </paper-button>
+            </a>
+          </div>
         </div>
 
         <!-- Pathway 2: Partner / Sponsor -->
@@ -186,7 +187,7 @@ export class GetInvolvedPage extends PolymerElement {
   }
 
   private heroSettings = heroSettings.getInvolved;
-  private cfpYear = cfp.year;
+  private cfpFormUrl = cfp.formUrl;
   private partnerFormUrl = partnershipProposition;
   private volunteerEmail = mailto;
   private sideEventEmail = mailto;

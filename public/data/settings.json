@@ -5,8 +5,8 @@
     "blog": "https://developerrelations.com/all-content",
     "url": "https://sponsor.mlh.io"
   },
-  "startDate": "2026-07-16T09:00:00+03:00",
-  "endDate": "2026-07-17T19:00:00+03:00",
+  "startDate": "2027-07-21T09:00:00-04:00",
+  "endDate": "2027-07-22T19:00:00-04:00",
   "webapp": {
     "shortName": "DevRelCon NY",
     "themeColor": "#673AB7",
@@ -51,7 +51,7 @@
   ],
   "heroSettings": {
     "home": {
-      "tagline": "Developer relations is becoming developer GTM. DevRelCon 2026 is where the people navigating that shift come together.",
+      "tagline": "Developer relations is becoming developer GTM. DevRelCon 2027 is where the people navigating that shift come together.",
       "subtitle": "Featuring deep dives on AI developer tooling, agentic platforms, and the new developer go-to-market playbook.",
       "description": "DevRelCon is the premier conference for anyone working to grow developer adoption — from Developer Relations and Developer Experience to Product Marketing, Platform Product Management, and Go-to-Market strategy. Join practitioners and leaders from the world's top developer platforms for talks, hands-on workshops, and the conversations that shape our craft.",
       "background": {
@@ -80,7 +80,7 @@
     },
     "schedule": {
       "title": "Schedule",
-      "description": "Here is the schedule for DevRelCon 2026 on July 22-23 at Industry City, Brooklyn. We are confirming more talks and will keep updating the schedule, so check back for the latest lineup.",
+      "description": "Here is the schedule for DevRelCon 2027 on July 21-22 at Industry City, Brooklyn. We are confirming more talks and will keep updating the schedule, so check back for the latest lineup.",
       "metaDescription": "Choose your sessions to visit",
       "background": {
         "color": "#fff"
@@ -214,9 +214,9 @@
   },
   "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"],
   "cfp": {
-    "status": "closed",
-    "formUrl": "",
-    "year": "2026"
+    "status": "open",
+    "formUrl": "https://majorleaguehacking.typeform.com/to/WWGhI7iB",
+    "year": "2027"
   },
-  "ticketUrl": "https://ti.to/mlh/devrelcon-2026"
+  "ticketUrl": "https://ti.to/mlh/devrelcon-2027"
 }

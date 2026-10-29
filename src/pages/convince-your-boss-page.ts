@@ -9,11 +9,11 @@ import { heroSettings } from '../utils/data';
 import { updateMetadata } from '../utils/metadata';
 
 const EMAIL_TEMPLATE_LINES = [
-  'Subject: Request to attend DevRelCon NYC — July 22-23, 2026',
+  'Subject: Request to attend DevRelCon NYC — July 21-22, 2027',
   '',
   'Hi [Manager],',
   '',
-  "I'd like to attend DevRelCon NYC on July 22-23 in Brooklyn, NY. It's the leading conference for developer go-to-market teams — covering developer relations, developer experience, product marketing, and GTM strategy for developer platforms.",
+  "I'd like to attend DevRelCon NYC on July 21-22 in Brooklyn, NY. It's the leading conference for developer go-to-market teams — covering developer relations, developer experience, product marketing, and GTM strategy for developer platforms.",
   '',
   "Here's why I think it's worth the investment:",
   '',
@@ -182,9 +182,9 @@ export class ConvinceYourBossPage extends PolymerElement {
         <div class="section">
           <h2 class="section-title">What You'll Take Back on Monday Morning</h2>
           <p>
-            DevRelCon 2026 is built around the two things developer GTM teams are being asked to
+            DevRelCon 2027 is built around the two things developer GTM teams are being asked to
             solve right now: proving ROI on developer work, and adapting to an industry shifting
-            toward agentic development. Three days of practitioner-led sessions — no vendor pitches,
+            toward agentic development. Two days of practitioner-led sessions — no vendor pitches,
             no academic theory.
           </p>
           <ul>
@@ -210,8 +210,8 @@ export class ConvinceYourBossPage extends PolymerElement {
         <div class="section">
           <h2 class="section-title">The Numbers</h2>
           <ul class="numbers-list">
-            <li>July 22–23, 2026 · Industry City, Brooklyn</li>
-            <li>3 days · 40+ sessions · 3 tracks</li>
+            <li>July 21–22, 2027 · Industry City, Brooklyn</li>
+            <li>2 days · 40+ sessions · 3 tracks</li>
             <li>Early Bird: $450 · Regular: $699 · Supporter: $1,000</li>
             <li>Ticket includes all sessions, breakfast, lunch, coffee, and evening reception</li>
             <li>20 minutes from Manhattan</li>

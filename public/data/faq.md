@@ -2,11 +2,11 @@
 
 ### Dates and Location
 
-DevRelCon NY will take place on July 21-23, 2026 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. There will be a speaker/sponsor reception the night before on July 21st. DevRelCon New York will be the only North American DevRelCon this year.
+DevRelCon NY will take place on July 21-22, 2027 at [Industry City](https://maps.app.goo.gl/ht8BG4xB8GSJdJQY7) in Brooklyn, New York City. DevRelCon New York will be the only North American DevRelCon this year.
 
 ### Schedule
 
-We will start the festivities on July 21st with an evening dinner for speakers and sponsors. The conference will officially kick off the morning of July 22nd and wrap up by 6 PM on July 23rd.
+The conference will officially kick off the morning of July 21st and wrap up by 6 PM on July 22nd.
 Check back soon for a full schedule of the event!
 
 ### Who is DevRelCon for?
@@ -37,7 +37,7 @@ Speakers get free tickets. DevRelCon sells out quickly, so make sure you buy a t
 
 ### What is included with a DevRelCon New York ticket?
 
-Tickets include conference programming, breakfast and lunch on July 22nd + July 23rd, and an invite to our all-conference happy hour with snacks and drinks on July 21st. They do not include travel and/or accommodations for the conference.
+Tickets include conference programming, breakfast and lunch on July 21st + July 22nd. They do not include travel and/or accommodations for the conference.
 
 ### Do you have ticket scholarships?
 
