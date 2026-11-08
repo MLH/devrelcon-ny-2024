@@ -315,7 +315,9 @@ export class TicketsBlock extends ReduxMixin(PolymerElement) {
               </div>
               <div class="content" layout vertical flex-auto>
                 <div class="ticket-price-wrapper">
-                  <div class="price">[[ticket.currency]][[ticket.price]]</div>
+                  <div class="price" hidden$="[[!ticket.available]]">
+                    [[ticket.currency]][[ticket.price]]
+                  </div>
                   <div class="discount">[[getDiscount(ticket)]]</div>
                 </div>
                 <div class="type-description" layout vertical flex-auto center-justified>
