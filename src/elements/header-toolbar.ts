@@ -152,6 +152,26 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             height: initial;
           }
         }
+
+        @media (max-width: 1240px) {
+          .nav-item a,
+          .signin-tab {
+            padding: 0 6px;
+            font-size: 12px;
+          }
+
+          .toolbar-logo {
+            width: 110px;
+          }
+        }
+
+        @media (max-width: 1023px) {
+          .nav-item a,
+          .signin-tab {
+            padding: 0 3px;
+            font-size: 11px;
+          }
+        }
       </style>
 
       <app-toolbar class="header">
