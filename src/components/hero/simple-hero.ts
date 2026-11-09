@@ -13,6 +13,7 @@ type SimpleHeroKeys = Extract<
   | 'faq'
   | 'getInvolved'
   | 'notFound'
+  | 'previousSessions'
   | 'schedule'
   | 'speakers'
   | 'team'

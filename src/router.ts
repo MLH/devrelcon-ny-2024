@@ -97,6 +97,13 @@ const ROUTES: Route[] = [
     },
   },
   {
+    path: '/previous-sessions',
+    component: 'previous-sessions-page',
+    action: async () => {
+      await import('./pages/previous-sessions-page.js');
+    },
+  },
+  {
     path: '/speakers',
     children: [
       {

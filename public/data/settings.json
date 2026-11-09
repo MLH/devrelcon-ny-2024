@@ -47,6 +47,11 @@
       "route": "schedule",
       "permalink": "/schedule",
       "label": "2026 Schedule"
+    },
+    {
+      "route": "previous-sessions",
+      "permalink": "/previous-sessions",
+      "label": "Previous Sessions"
     }
   ],
   "heroSettings": {
@@ -84,6 +89,15 @@
       "metaDescription": "Choose your sessions to visit",
       "background": {
         "color": "#fff"
+      },
+      "fontColor": "#424242"
+    },
+    "previousSessions": {
+      "title": "Previous Sessions",
+      "metaDescription": "Browse talks from past DevRelCon NY events",
+      "description": "Browse talks from past DevRelCon NY events. Open a session to read more and watch its recording when one is available.",
+      "background": {
+        "color": "#FFF"
       },
       "fontColor": "#424242"
     },
