@@ -5,7 +5,7 @@
   "private": true,
   "description": "Conference website template",
   "engines": {
-    "node": "22",
+    "node": ">=22.23.4 <23",
     "npm": "10"
   },
   "scripts": {
